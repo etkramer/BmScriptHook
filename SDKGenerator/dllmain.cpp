@@ -946,7 +946,7 @@ bool GLogger::Open()
 #ifndef NO_LOGGING
     if (!m_file.is_open() && GConfig::HasOutputPath())
     {
-        std::filesystem::path fullDirectory = (GConfig::GetOutputPath() / GConfig::GetGameNameShort());
+        std::filesystem::path fullDirectory = (GConfig::GetOutputPath());
         std::filesystem::create_directory(GConfig::GetOutputPath());
         std::filesystem::create_directory(fullDirectory);
 
@@ -3285,7 +3285,7 @@ namespace Generator
     {
         if (GConfig::UsingConstants())
         {
-            std::ofstream constantsFile(GConfig::GetOutputPath() / GConfig::GetGameNameShort() / "SdkConstants.hpp");
+            std::ofstream constantsFile(GConfig::GetOutputPath() / "SdkConstants.hpp");
             constantsFile << "#pragma once\n";
 
             std::map<std::string, class UObject*>* constants = GCache::GetConstants();
@@ -3306,7 +3306,7 @@ namespace Generator
 
     void GenerateHeaders()
     {
-        std::ofstream headersFile(GConfig::GetOutputPath() / GConfig::GetGameNameShort() / "SdkHeaders.hpp");
+        std::ofstream headersFile(GConfig::GetOutputPath() / "SdkHeaders.hpp");
 
         Printer::Header(headersFile, "SdkHeaders", "hpp", false);
         headersFile << "#pragma once\n";
@@ -3333,7 +3333,7 @@ namespace Generator
 
     void GenerateDefines()
     {
-        std::ofstream definesFile(GConfig::GetOutputPath() / GConfig::GetGameNameShort() / "GameDefines.hpp");
+        std::ofstream definesFile(GConfig::GetOutputPath() / "GameDefines.hpp");
         Printer::Header(definesFile, "GameDefines", "hpp", false);
 
         definesFile << "#pragma once\n";
@@ -3418,7 +3418,7 @@ namespace Generator
         Printer::Footer(definesFile, false);
         definesFile.close();
 
-        definesFile.open(GConfig::GetOutputPath() / GConfig::GetGameNameShort() / "GameDefines.cpp");
+        definesFile.open(GConfig::GetOutputPath() / "GameDefines.cpp");
         Printer::Header(definesFile, "GameDefines", "cpp", false);
 
         definesFile << "#include \"GameDefines.hpp\"\n";
@@ -3492,7 +3492,7 @@ namespace Generator
 
     void GenerateSDK()
     {
-        std::filesystem::path fullDirectory = (GConfig::GetOutputPath() / GConfig::GetGameNameShort());
+        std::filesystem::path fullDirectory = (GConfig::GetOutputPath());
         std::filesystem::path headerDirectory = (fullDirectory / "SDK_HEADERS");
 
         std::filesystem::create_directory(GConfig::GetOutputPath());
@@ -3658,7 +3658,7 @@ namespace Generator
     {
         if (Initialize(false) && AreGlobalsValid())
         {
-            std::filesystem::path fullDirectory = (GConfig::GetOutputPath() / GConfig::GetGameNameShort());
+            std::filesystem::path fullDirectory = (GConfig::GetOutputPath());
             std::filesystem::create_directory(GConfig::GetOutputPath());            
             std::filesystem::create_directory(fullDirectory);
 
@@ -3702,7 +3702,7 @@ namespace Generator
     {
         if (Initialize(false) && AreGlobalsValid())
         {
-            std::filesystem::path fullDirectory = (GConfig::GetOutputPath() / GConfig::GetGameNameShort());
+            std::filesystem::path fullDirectory = (GConfig::GetOutputPath());
             std::filesystem::create_directory(GConfig::GetOutputPath());
             std::filesystem::create_directory(fullDirectory);
 
