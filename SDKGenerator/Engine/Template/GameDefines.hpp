@@ -1254,9 +1254,14 @@ class UProperty : public UField
 {
 public:
 	int32_t ArrayDim;						REGISTER_MEMBER(int32_t, ArrayDim, EMemberTypes::UProperty_Dim)						// 0x0030 (0x04)
-	int32_t ElementSize;					REGISTER_MEMBER(int32_t, ElementSize, EMemberTypes::UProperty_Size)					// 0x0034 (0x04)
+	uint8_t UnknownData00[0x08];
+	int16_t ElementSize;					REGISTER_MEMBER(int16_t, ElementSize, EMemberTypes::UProperty_Size)					// 0x0034 (0x04)
+	int16_t Offset;							REGISTER_MEMBER(int16_t, Offset, EMemberTypes::UProperty_Offset)					// 0x0040 (0x04)
+	uint8_t UnknownData01[0x0C];
+
+	// NOTE: This is probably incorrect
 	uint64_t PropertyFlags;					REGISTER_MEMBER(uint64_t, PropertyFlags, EMemberTypes::UProperty_Flags)				// 0x0038 (0x08)
-	int32_t Offset;							REGISTER_MEMBER(int32_t, Offset, EMemberTypes::UProperty_Offset)					// 0x0040 (0x04)
+	uint8_t UnknownData02[0x04];
 
 public:
 	static class UClass* StaticClass()
@@ -1657,7 +1662,7 @@ public:
 class UBoolProperty : public UProperty
 {
 public:
-	uint64_t BitMask;						REGISTER_MEMBER(uint64_t, BitMask, EMemberTypes::UBoolProperty_BitMask)						// 0x0044 (0x08) [THIS IS A UINT32_T FOR 32 BIT AND UINT64_T FOR 64 BIT, UPDATE THIS FIELD IN MEMBER.CPP ACORDINGLY]
+	uint32_t BitMask;						REGISTER_MEMBER(uint32_t, BitMask, EMemberTypes::UBoolProperty_BitMask)						// 0x0044 (0x08) [THIS IS A UINT32_T FOR 32 BIT AND UINT64_T FOR 64 BIT, UPDATE THIS FIELD IN MEMBER.CPP ACORDINGLY]
 
 public:
 	static class UClass* StaticClass()
