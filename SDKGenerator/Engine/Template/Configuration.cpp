@@ -215,9 +215,9 @@ const std::string& GConfig::GetProcessEventStr()
 */
 
 // If want to use offsets or patterns to initialize global objects and names.
-bool GConfig::m_useOffsets = false;
+bool GConfig::m_useOffsets = true;
 
-uintptr_t GConfig::m_gobjectOffset = 0x0;
+uintptr_t GConfig::m_gobjectOffset = 0x162E900 - 0x400000;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gobjectMask = "xxx???x";
@@ -225,7 +225,7 @@ std::string GConfig::m_gobjectMask = "xxx???x";
 // First value is the actual hex escaped pattern, second value is the string version of it printed in the final sdk.
 std::pair<uint8_t*, std::string> GConfig::m_gobjectPattern = { (uint8_t*)"\x10\x11\x12\x00\x00\x00\x13", "\\x10\\x11\\x12\\x00\\x00\\x00\\x13" };
 
-uintptr_t GConfig::m_gnameOffset = 0x0;
+uintptr_t GConfig::m_gnameOffset = 0x15EC5E8 - 0x400000;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gnameMask = "xxx???x";
@@ -285,16 +285,16 @@ const std::string& GConfig::GetGNameMask()
 */
 
 // Mainly just used for the printed headers at the top of each generated file.
-std::string GConfig::m_gameNameLong = "Template Game";
+std::string GConfig::m_gameNameLong = "Batman: Arkham City";
 
 // This is used for the output folder name, along with the printed headers at the top of each file.
-std::string GConfig::m_gameNameShort = "TSDK";
+std::string GConfig::m_gameNameShort = "BatmanAC";
 
 // Optional, mainly for your own sake, like comparing sdks you generate or release to people.
-std::string GConfig::m_gameVersion = "1.0.0.0";
+std::string GConfig::m_gameVersion = "1.1.0.0";
 
 // Directory folder that your want your sdk to be generated in.
-std::filesystem::path GConfig::m_outputPath = "I_FORGOT_TO_SET_A_PATH";
+std::filesystem::path GConfig::m_outputPath = "I:\\BmScriptHook\\build\\sdk\\";
 
 const std::string& GConfig::GetGameNameLong()
 {
