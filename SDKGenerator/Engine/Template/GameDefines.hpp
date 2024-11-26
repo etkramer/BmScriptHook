@@ -1123,7 +1123,7 @@ struct FQWord
 */
 
 // Comment this out if "SuperField" is located in UField instead of UStruct!
-#define SUPERFIELDS_IN_UFIELD
+//#define SUPERFIELDS_IN_UFIELD
 
 // Uncommenting this will disabling using the "MinAlignment" field in UStruct, it is recommended you keep this commented.
 //#define SKIP_MIN_ALIGNMENT
@@ -1134,11 +1134,13 @@ class UObject
 {
 public:
 	struct FPointer VfTableObject;			REGISTER_MEMBER(struct FPointer, VfTableObject, EMemberTypes::UObject_VfTable)		// 0x0000 (0x04)
+	int32_t ObjectInternalInteger;			REGISTER_MEMBER(int32_t, ObjectInternalInteger, EMemberTypes::UObject_Integer)
 	uint8_t UnknownData00[0x10];			// Example of padding, you do not need to register this because offsets are all automatically calculated.
-	int32_t ObjectInternalInteger;			REGISTER_MEMBER(int32_t, ObjectInternalInteger, EMemberTypes::UObject_Integer)		// 0x0014 (0x04)
 	class UObject* Outer;					REGISTER_MEMBER(class UObject*, Outer, EMemberTypes::UObject_Outer)					// 0x0018 (0x04)
 	class FName Name;						REGISTER_MEMBER(class FName, Name, EMemberTypes::UObject_Name)						// 0x001C (0x08)
 	class UClass* Class;					REGISTER_MEMBER(class UClass*, Class, EMemberTypes::UObject_Class)					// 0x0024 (0x04)
+
+	class UObject* ObjectArchetype;			// Custom
 
 public:
 	static class UClass* StaticClass()
@@ -1188,7 +1190,7 @@ class UField : public UObject
 {
 public:
 	class UField* Next;						REGISTER_MEMBER(class UField*, Next, EMemberTypes::UField_Next)						// 0x0028 (0x04)
-	class UField* SuperField;				REGISTER_MEMBER(class UField*, SuperField, EMemberTypes::UField_SuperField)			// 0x002C (0x04) [SUPERFIELD CAN EITHER BE HERE, OR IN USTRUCT DPENDING ON THE GAME!]
+	//class UField* SuperField;				REGISTER_MEMBER(class UField*, SuperField, EMemberTypes::UField_SuperField)			// 0x002C (0x04) [SUPERFIELD CAN EITHER BE HERE, OR IN USTRUCT DPENDING ON THE GAME!]
 
 public:
 	static class UClass* StaticClass()
@@ -1275,10 +1277,13 @@ public:
 class UStruct : public UField
 {
 public:
+	uint8_t UnknownData00[0x08];
 	class UField* SuperField;				REGISTER_MEMBER(class UField*, SuperField, EMemberTypes::UStruct_SuperField)		// 0x0030 (0x04) [SUPERFIELD CAN EITHER BE HERE, OR IN UFIELD DPENDING ON THE GAME. COMMENT OUT ACCORDINGLY!]
 	class UField* Children;					REGISTER_MEMBER(class UField*, Children, EMemberTypes::UStruct_Children)			// 0x0034 (0x04)
-	int32_t PropertySize;					REGISTER_MEMBER(int32_t, PropertySize, EMemberTypes::UStruct_Size)					// 0x0038 (0x04)
-	int32_t MinAlignment;					REGISTER_MEMBER(int32_t, MinAlignment, EMemberTypes::UStruct_Alignment)				// 0x003C (0x04)
+	int16_t PropertySize;					REGISTER_MEMBER(int16_t, PropertySize, EMemberTypes::UStruct_Size)					// 0x0038 (0x04)
+	int16_t MinAlignment;					REGISTER_MEMBER(int16_t, MinAlignment, EMemberTypes::UStruct_Alignment)				// 0x003C (0x04)
+	
+	uint8_t UnknownData01[0x28];
 
 public:
 	static class UClass* StaticClass()
@@ -1299,8 +1304,10 @@ public:
 class UFunction : public UStruct
 {
 public:
-	uint64_t FunctionFlags;					REGISTER_MEMBER(uint64_t, FunctionFlags, EMemberTypes::UFunction_Flags)				// 0x0040 (0x08)
+	uint32_t FunctionFlags;					REGISTER_MEMBER(uint64_t, FunctionFlags, EMemberTypes::UFunction_Flags)				// 0x0040 (0x08)
 	uint16_t iNative;						REGISTER_MEMBER(uint16_t, iNative, EMemberTypes::UFunction_Native)					// 0x0048 (0x02)
+
+	uint8_t UnknownData00[0x1A];
 
 public:
 	static class UClass* StaticClass()
@@ -1323,7 +1330,7 @@ public:
 class UScriptStruct : public UStruct
 {
 public:
-	uint8_t UnknownData00[0x01]; // 0x0058 (0x01) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
+	uint8_t UnknownData00[0x1C]; // 0x0058 (0x01) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
 
 public:
 	static class UClass* StaticClass()
@@ -1344,7 +1351,7 @@ public:
 class UState : public UStruct
 {
 public:
-	uint8_t UnknownData00[0x01]; // 0x0058 (0x01) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
+	uint8_t UnknownData00[0x48]; // 0x0058 (0x01) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
 
 public:
 	static class UClass* StaticClass()
@@ -1365,7 +1372,7 @@ public:
 class UClass : public UState
 {
 public:
-	uint8_t UnknownData00[0x01]; // 0x0058 (0x00) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
+	uint8_t UnknownData00[0xF4]; // 0x0058 (0x00) [USE THIS CLASSES PROPERTYSIZE IN RECLASS TO DETERMINE THE SIZE OF THE UNKNOWNDATA]
 
 public:
 	static class UClass* StaticClass()
