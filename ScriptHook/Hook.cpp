@@ -1,4 +1,4 @@
-#include "Shared.h"
+#include "pch.h"
 #include "Hook.h"
 
 // Include SDK

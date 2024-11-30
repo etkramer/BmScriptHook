@@ -1,6 +1,7 @@
-#include <unknwn.h>
-
+#include "pch.h"
 #include "Hook.h"
+
+#include <unknwn.h>
 
 using DirectInput8CreateFunc = HRESULT(__stdcall*)(
 	HINSTANCE hinst,
