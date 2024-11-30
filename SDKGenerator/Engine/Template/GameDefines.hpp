@@ -79,17 +79,20 @@ enum EFunctionFlags : uint64_t
 // Proprerty Flags
 enum EPropertyFlags : uint64_t
 {
+	// Fully reversed
+	CPF_Parm = 0x00000008,
+	CPF_SkipParm = 0x00000020,
+	CPF_ReturnParm = 0x00000080,
+
+	// Assumed from CodeRed
 	CPF_Edit = 0x0000000000000001, // Property is user-settable in the editor.
 	CPF_Const = 0x0000000000000002,	// Actor's property always matches class's default actor property.
 	CPF_Input = 0x0000000000000004,	// Variable is writable by the input system.
-	CPF_ExportObject = 0x0000000000000008, // Object can be exported with actor.
 	CPF_OptionalParm = 0x0000000000000010, // Optional parameter (if CPF_Param is set).
-	CPF_Net = 0x0000000000000020, // Property is relevant to network replication.
 	CPF_EditFixedSize = 0x0000000000000040, // Indicates that elements of an array can be modified, but its size cannot be changed.
-	CPF_Parm = 0x0000000000000080,	// Function/When call parameter.
 	CPF_OutParm = 0x0000000000000100, // Value is copied out after function call.
-	CPF_SkipParm = 0x0000000000000200, // Property is a short-circuitable evaluation function parm.
-	CPF_ReturnParm = 0x0000000000000400, // Return value.
+	CPF_Net = 0x0000000000000200, // Property is a short-circuitable evaluation function parm. (WAS CPF_SKIPPARM)
+	CPF_ExportObject = 0x0000000000000400, // Return value. (WAS CPF_RETURNPARM)
 	CPF_CoerceParm = 0x0000000000000800, // Coerce args into this function parameter.
 	CPF_Native = 0x0000000000001000, // Property is native: C++ code is responsible for serializing it.
 	CPF_Transient = 0x0000000000002000,	// Property is transient: shouldn't be saved, zero-filled at load time.
@@ -1254,14 +1257,11 @@ class UProperty : public UField
 {
 public:
 	int32_t ArrayDim;						REGISTER_MEMBER(int32_t, ArrayDim, EMemberTypes::UProperty_Dim)						// 0x0030 (0x04)
-	uint8_t UnknownData00[0x08];
+	uint64_t PropertyFlags;					REGISTER_MEMBER(uint64_t, PropertyFlags, EMemberTypes::UProperty_Flags)				// 0x0038 (0x08)
 	int16_t ElementSize;					REGISTER_MEMBER(int16_t, ElementSize, EMemberTypes::UProperty_Size)					// 0x0034 (0x04)
 	int16_t Offset;							REGISTER_MEMBER(int16_t, Offset, EMemberTypes::UProperty_Offset)					// 0x0040 (0x04)
-	uint8_t UnknownData01[0x0C];
 
-	// NOTE: This is probably incorrect
-	uint64_t PropertyFlags;					REGISTER_MEMBER(uint64_t, PropertyFlags, EMemberTypes::UProperty_Flags)				// 0x0038 (0x08)
-	uint8_t UnknownData02[0x04];
+	uint8_t UnknownData00[0x18];
 
 public:
 	static class UClass* StaticClass()
