@@ -172,10 +172,10 @@ std::string GConfig::GetTypeOverride(const std::string& name)
 */
 
 // If you want to use "m_peIndex" change this to true, if not virutal voids will be generated from "m_peMask" and "m_pePattern".
-bool GConfig::m_useIndex = false;
+bool GConfig::m_useIndex = true;
 
 // Position where the process event function is in UObject's VfTable.
-int32_t GConfig::m_peIndex = -1;
+int32_t GConfig::m_peIndex = 0x43;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_peMask = "xxx???x";

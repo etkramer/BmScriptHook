@@ -1432,7 +1432,7 @@ namespace EnumGenerator
                     enumName = ("E" + enumName);
                 }
 
-                if (m_enumNames.contains(enumName) && (m_enumNames[enumName] != unrealObj->Object))
+                /*if (m_enumNames.contains(enumName) && (m_enumNames[enumName] != unrealObj->Object) true)
                 {
                     uint32_t freeIndex = 0;
 
@@ -1446,7 +1446,12 @@ namespace EnumGenerator
                             break;
                         }
                     }
-                }
+                }*/
+
+                // Use outer object name to avoid name collisions
+                std::string outerName = unrealObj->Object->Outer->Name.ToString();
+                std::string freeName = outerName + "_" + "E" + enumName;
+                enumName = freeName;
 
                 unrealObj->ValidName = enumName;
                 m_enumNames[enumName] = static_cast<UEnum*>(unrealObj->Object);
@@ -2200,11 +2205,6 @@ namespace ClassGenerator
                 }
 
                 classStream << "\n{\npublic:\n";
-
-                // TODO: Why do we need to add this back manually?
-                if (uClass == UObject::StaticClass()) {
-                    classStream << "\tstruct FPointer VfTableObject;\n";
-                }
 
                 if (uClass == UField::StaticClass()) { GenerateClassMembers(classStream, uClass, EClassTypes::UField); }
                 else if (uClass == UEnum::StaticClass()) { GenerateClassMembers(classStream, uClass, EClassTypes::UEnum); }

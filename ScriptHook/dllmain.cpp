@@ -3,7 +3,7 @@
 
 #include "GameDefines.cpp"
 #include "SDK_HEADERS\Core_structs.hpp"
-#include "SDK_HEADERS\Core_classes.hpp"
+#include "SDK_HEADERS\Core_classes.cpp"
 #include "SDK_HEADERS\Core_parameters.hpp"
 
 static DWORD WINAPI init(LPVOID lpParam) {
