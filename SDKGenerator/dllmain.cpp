@@ -2201,6 +2201,11 @@ namespace ClassGenerator
 
                 classStream << "\n{\npublic:\n";
 
+                // TODO: Why do we need to add this back manually?
+                if (uClass == UObject::StaticClass()) {
+                    classStream << "\tstruct FPointer VfTableObject;\n";
+                }
+
                 if (uClass == UField::StaticClass()) { GenerateClassMembers(classStream, uClass, EClassTypes::UField); }
                 else if (uClass == UEnum::StaticClass()) { GenerateClassMembers(classStream, uClass, EClassTypes::UEnum); }
                 else if (uClass == UConst::StaticClass()) { GenerateClassMembers(classStream, uClass, EClassTypes::UConst); }

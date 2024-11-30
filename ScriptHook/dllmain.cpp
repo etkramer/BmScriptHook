@@ -1,7 +1,10 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#include <GameDefines.cpp>
+#include "GameDefines.cpp"
+#include "SDK_HEADERS\Core_structs.hpp"
+#include "SDK_HEADERS\Core_classes.hpp"
+#include "SDK_HEADERS\Core_parameters.hpp"
 
 static DWORD WINAPI init(LPVOID lpParam) {
 	Sleep(1000);
