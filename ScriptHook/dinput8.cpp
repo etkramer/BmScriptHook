@@ -1,5 +1,7 @@
 #include <unknwn.h>
 
+#include "Hook.h"
+
 using DirectInput8CreateFunc = HRESULT(__stdcall*)(
 	HINSTANCE hinst,
 	DWORD dwVersion,
@@ -7,6 +9,14 @@ using DirectInput8CreateFunc = HRESULT(__stdcall*)(
 	LPVOID* ppvOut,
 	LPUNKNOWN punkOuter
 );
+
+static DWORD WINAPI ThreadMain(LPVOID lpParam)
+{
+	// TODO: Let's hook BeginPlay() instead
+	Sleep(1000);
+	Hook::Init();
+	return 0;
+}
 
 extern "C" {
 	__declspec(dllexport) HRESULT __stdcall DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID* ppvOut, LPUNKNOWN punkOuter) {
@@ -28,9 +38,11 @@ extern "C" {
 			}
 		}
 
+		// Run our code
+		CreateThread(nullptr, 0, &ThreadMain, nullptr, 0, nullptr);
+
 		// Call original impl
 		if (pDirectInput8Create) {
-			OutputDebugStringA("DirectInput8Create()\n");
 			return pDirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);
 		}
 

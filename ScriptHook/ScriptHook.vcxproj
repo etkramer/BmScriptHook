@@ -99,7 +99,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dinput8.cpp" />
-    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Hook.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Hook.h" />
+    <ClInclude Include="Shared.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
