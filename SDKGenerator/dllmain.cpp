@@ -2768,10 +2768,12 @@ namespace FunctionGenerator
                     codeStream << "\treturn reinterpret_cast<T>(vtable[index]);\n";
                     codeStream << "}\n\n";
 
+                    codeStream << "#pragma runtime_checks(\"s\", off)\n";
                     codeStream << "void UObject::ProcessEvent(class UFunction* uFunction, void* uParams, void* uResult)\n";
                     codeStream << "{\n";
-                    codeStream << "\tGetVirtualFunction<void(*)(class UObject*, class UFunction*, void*)>(this, " << GConfig::GetProcessEventIndex() << ")(this, uFunction, uParams);\n";
-                    codeStream << "}\n\n";
+                    codeStream << "\tGetVirtualFunction<void(__fastcall*)(void* self, class UObject*, class UFunction*, void*)>(this, " << GConfig::GetProcessEventIndex() << ")(this, this, uFunction, uParams);\n";
+                    codeStream << "}\n";
+                    codeStream << "#pragma runtime_checks(\"s\", restore)\n\n";
                 }
 
                 m_printedObjects = true;
@@ -2956,7 +2958,7 @@ namespace FunctionGenerator
 
                     if (GConfig::UsingConstants())
                     {
-                        codeStream << "\t\tuFn" << functionObj.ValidName << " = reinterpret_cast<UFunction*>(UObject::GObjObjects()->at(" << GCache::GetConstant(unrealObj).first << "));\n";
+                        codeStream << "\t\tuFn" << functionObj.ValidName << " = reinterpret_cast<UFunction*>(UObject::GObjObjects()->at(" << GCache::GetConstant(functionObj).first << "));\n";
                     }
                     else
                     {
