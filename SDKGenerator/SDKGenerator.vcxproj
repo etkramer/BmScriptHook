@@ -16,6 +16,7 @@
     <ProjectGuid>{a023646c-04f2-4da2-8e90-7f7974d9b1f0}</ProjectGuid>
     <RootNamespace>CodeRedGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SDKGenerator</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

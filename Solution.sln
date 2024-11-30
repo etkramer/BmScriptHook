@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeRedGenerator", "SDKGenerator\CodeRedGenerator.vcxproj", "{A023646C-04F2-4DA2-8E90-7F7974D9B1F0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDKGenerator", "SDKGenerator\SDKGenerator.vcxproj", "{A023646C-04F2-4DA2-8E90-7F7974D9B1F0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptHook", "ScriptHook\ScriptHook.vcxproj", "{2578BBE6-F567-414C-8735-3B9D94ADF8B3}"
 EndProject
