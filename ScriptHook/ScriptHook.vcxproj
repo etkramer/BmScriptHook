@@ -102,6 +102,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BeginPlay.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="ProcessEvent.cpp" />
     <ClCompile Include="dinput8.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -110,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Detours.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Runtime.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="pch.h" />

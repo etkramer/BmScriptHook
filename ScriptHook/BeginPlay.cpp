@@ -2,6 +2,7 @@
 #include "Detours.h"
 #include "Offsets.h"
 #include "Runtime.h"
+#include "Functions.h"
 
 #include "SdkHeaders.hpp"
 
@@ -24,7 +25,7 @@ static void __fastcall BeginPlayDetour(UWorld* pThis, void* unk, FURL& InURL, BO
 		TRACE("World (from {}) has gravity {}", worldInfo->GetPackageName().ToString(), worldInfo->WorldGravityZ);
 
 		// Test 3 (modify object archetype)
-		auto counterMove = UObject::FindObject<ARCombatMove_BatmanCounter>("RCombatMove_BatmanCounter BmGame.Default__RCombatMove_BatmanCounter");
+		auto counterMove = Functions::GetDefaultObject<ARCombatMove_BatmanCounter>();
 		counterMove->bShouldKill = true;
 		TRACE("One-hit counters enabled");
 
