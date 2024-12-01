@@ -3,6 +3,8 @@
 #include "Offsets.h"
 #include "Runtime.h"
 
+#include "SdkHeaders.hpp"
+
 DECLARE_DETOUR(BeginPlay, void, UWorld*, void*, FURL&, BOOL)
 
 static void __fastcall BeginPlayDetour(UWorld* pThis, void* unk, FURL& InURL, BOOL bResetTime) {
@@ -13,13 +15,18 @@ static void __fastcall BeginPlayDetour(UWorld* pThis, void* unk, FURL& InURL, BO
 
 	static bool isFirstRun = true;
 	if (isFirstRun) {
-		// Test 1
+		// Test 1 (call instance fn)
 		auto obj = UObject::GObjObjects()->at(20);
 		TRACE("Object {} is from package {}", obj->GetName(), obj->GetPackageName().ToString());
 
-		// Test 2
+		// Test 2 (call static fn)
 		auto worldInfo = UEngine::GetCurrentWorldInfo();
 		TRACE("World (from {}) has gravity {}", worldInfo->GetPackageName().ToString(), worldInfo->WorldGravityZ);
+
+		// Test 3 (modify object archetype)
+		auto counterMove = UObject::FindObject<ARCombatMove_BatmanCounter>("RCombatMove_BatmanCounter BmGame.Default__RCombatMove_BatmanCounter");
+		counterMove->bShouldKill = true;
+		TRACE("One-hit counters enabled");
 
 		isFirstRun = false;
 	}
