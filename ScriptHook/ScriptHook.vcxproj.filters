@@ -20,10 +20,10 @@
     <ClCompile Include="Runtime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DetourBeginPlay.cpp">
+    <ClCompile Include="BeginPlay.cpp">
       <Filter>Source Files\Detours</Filter>
     </ClCompile>
-    <ClCompile Include="DetourProcessEvent.cpp">
+    <ClCompile Include="ProcessEvent.cpp">
       <Filter>Source Files\Detours</Filter>
     </ClCompile>
   </ItemGroup>

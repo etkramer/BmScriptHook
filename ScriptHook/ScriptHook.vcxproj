@@ -101,8 +101,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DetourBeginPlay.cpp" />
-    <ClCompile Include="DetourProcessEvent.cpp" />
+    <ClCompile Include="BeginPlay.cpp" />
+    <ClCompile Include="ProcessEvent.cpp" />
     <ClCompile Include="dinput8.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

@@ -1,6 +1,4 @@
 #pragma once
-#include <cstdint>
-#include <GameDefines.hpp>
 
 class Offsets {
 private:
@@ -8,8 +6,8 @@ private:
 
 public:
     // Globals
-    static const uintptr_t GNames = GNames_Offset;
-    static const uintptr_t GObjects = GObjects_Offset;
+    static const uintptr_t GNames = 0x11EC5E8;
+    static const uintptr_t GObjects = 0x122E900;
 
     // Functions
     static const uintptr_t UWorld_BeginPlay = 0x008AEE10 - 0x400000;

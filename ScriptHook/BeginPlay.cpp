@@ -11,13 +11,18 @@ static void __fastcall BeginPlayDetour(UWorld* pThis, void* unk, FURL& InURL, BO
 	// Call original
 	BeginPlay(pThis, unk, InURL, bResetTime);
 
-	// Test 1
-	auto obj = UObject::GObjObjects()->at(20);
-	TRACE("Object {} is from package {}", obj->GetName(), obj->GetPackageName().ToString());
+	static bool isFirstRun = true;
+	if (isFirstRun) {
+		// Test 1
+		auto obj = UObject::GObjObjects()->at(20);
+		TRACE("Object {} is from package {}", obj->GetName(), obj->GetPackageName().ToString());
 
-	// Test 2
-	auto worldInfo = UEngine::GetCurrentWorldInfo();
-	TRACE("World (from {}) has gravity {}", worldInfo->GetPackageName().ToString(), worldInfo->WorldGravityZ);
+		// Test 2
+		auto worldInfo = UEngine::GetCurrentWorldInfo();
+		TRACE("World (from {}) has gravity {}", worldInfo->GetPackageName().ToString(), worldInfo->WorldGravityZ);
+
+		isFirstRun = false;
+	}
 }
 
 void Detours::DetourBeginPlay() {

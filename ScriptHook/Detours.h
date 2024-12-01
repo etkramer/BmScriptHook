@@ -1,6 +1,5 @@
 #pragma once
 
-#include "pch.h"
 #include <detours/detours.h>
 
 class Detours {
