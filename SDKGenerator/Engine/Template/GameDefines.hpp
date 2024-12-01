@@ -1661,7 +1661,7 @@ public:
 class UBoolProperty : public UProperty
 {
 public:
-	uint32_t BitMask;						REGISTER_MEMBER(uint32_t, BitMask, EMemberTypes::UBoolProperty_BitMask)						// 0x0044 (0x08) [THIS IS A UINT32_T FOR 32 BIT AND UINT64_T FOR 64 BIT, UPDATE THIS FIELD IN MEMBER.CPP ACORDINGLY]
+	uint64_t BitMask;						REGISTER_MEMBER(uint32_t, BitMask, EMemberTypes::UBoolProperty_BitMask)						// 0x0044 (0x08) [THIS IS A UINT32_T FOR 32 BIT AND UINT64_T FOR 64 BIT, UPDATE THIS FIELD IN MEMBER.CPP ACORDINGLY]
 
 public:
 	static class UClass* StaticClass()
