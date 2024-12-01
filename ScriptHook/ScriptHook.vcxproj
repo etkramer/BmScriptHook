@@ -64,6 +64,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,11 +101,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dinput8.cpp" />
-    <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="DetourBeginPlay.cpp" />
+    <ClCompile Include="DetourProcessEvent.cpp" />
+    <ClCompile Include="dinput8.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Runtime.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Hook.h" />
+    <ClInclude Include="Detours.h" />
+    <ClInclude Include="Runtime.h" />
+    <ClInclude Include="Offsets.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
