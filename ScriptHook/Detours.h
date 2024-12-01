@@ -7,7 +7,6 @@ private:
     Detours() = delete;
 
 public:
-    static void DetourBeginPlay();
     static void DetourProcessEvent();
 
     template <typename TFunc>

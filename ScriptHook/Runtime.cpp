@@ -23,7 +23,6 @@ void Runtime::Init() {
 	GObjects = (TArray<UObject*>*)(BaseAddress + Offsets::GObjects);
 
 	// Set up detours
-	Detours::DetourBeginPlay();
 	Detours::DetourProcessEvent();
 }
 

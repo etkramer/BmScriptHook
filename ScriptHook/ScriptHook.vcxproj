@@ -101,7 +101,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BeginPlay.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="ProcessEvent.cpp" />
     <ClCompile Include="dinput8.cpp">
