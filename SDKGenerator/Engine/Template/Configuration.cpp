@@ -217,7 +217,7 @@ const std::string& GConfig::GetProcessEventStr()
 // If want to use offsets or patterns to initialize global objects and names.
 bool GConfig::m_useOffsets = true;
 
-uintptr_t GConfig::m_gobjectOffset = 0x162E900 - 0x400000; // TODO (BAK)
+uintptr_t GConfig::m_gobjectOffset = 0x340CBE4;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gobjectMask = "xxx???x";
@@ -225,7 +225,7 @@ std::string GConfig::m_gobjectMask = "xxx???x";
 // First value is the actual hex escaped pattern, second value is the string version of it printed in the final sdk.
 std::pair<uint8_t*, std::string> GConfig::m_gobjectPattern = { (uint8_t*)"\x10\x11\x12\x00\x00\x00\x13", "\\x10\\x11\\x12\\x00\\x00\\x00\\x13" };
 
-uintptr_t GConfig::m_gnameOffset = 0x15EC5E8 - 0x400000; // TODO (BAK)
+uintptr_t GConfig::m_gnameOffset = 0x3A208B8;
 
 // Half byte mask, use question marks for unknown data.
 std::string GConfig::m_gnameMask = "xxx???x";

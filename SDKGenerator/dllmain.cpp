@@ -3548,12 +3548,12 @@ namespace Generator
         {
             if (GConfig::UsingOffsets())
             {
-                GObjects = reinterpret_cast<TArray<UObject*>*>(Retrievers::GetBaseAddress() + GConfig::GetGObjectOffset());
+                GObjects = reinterpret_cast<TObjectsArray<UObject*>*>(Retrievers::GetBaseAddress() + GConfig::GetGObjectOffset());
                 GNames = reinterpret_cast<TArray<FNameEntry*>*>(Retrievers::GetBaseAddress() + GConfig::GetGNameOffset());
             }
             else
             {
-                GObjects = reinterpret_cast<TArray<UObject*>*>(Retrievers::FindPattern(GConfig::GetGObjectPattern(), GConfig::GetGObjectMask()));
+                GObjects = reinterpret_cast<TObjectsArray<UObject*>*>(Retrievers::FindPattern(GConfig::GetGObjectPattern(), GConfig::GetGObjectMask()));
                 GNames = reinterpret_cast<TArray<FNameEntry*>*>(Retrievers::FindPattern(GConfig::GetGNamePattern(), GConfig::GetGNameMask()));
             }
 
@@ -3789,7 +3789,7 @@ namespace Generator
 void OnAttach(HMODULE hModule)
 {
     DisableThreadLibraryCalls(hModule);
-    Generator::GenerateSDK();
+    //Generator::GenerateSDK();
     Generator::DumpInstances(true, true);
 }
 

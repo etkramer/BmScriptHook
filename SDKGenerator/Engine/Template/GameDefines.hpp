@@ -546,6 +546,111 @@ private:
 	}
 };
 
+template<typename InElementType>
+class TObjectsArray
+{
+public:
+	using ElementType = InElementType;
+	using ElementPointer = ElementType*;
+	using ElementReference = ElementType&;
+	using ElementConstPointer = const ElementType*;
+	using ElementConstReference = const ElementType&;
+	using Iterator = TIterator<TArray<ElementType>>;
+
+private:
+	ElementType ArrayData[785000];
+	uint8_t unk[4];
+	int32_t ArrayCount;
+	int32_t ArrayMax;
+
+public:
+	TObjectsArray() : ArrayCount(0), ArrayMax(0) {}
+	~TObjectsArray() {}
+
+public:
+	ElementConstReference operator[](int32_t index) const
+	{
+		return ArrayData[index];
+	}
+
+	ElementReference operator[](int32_t index)
+	{
+		return ArrayData[index];
+	}
+
+	ElementConstReference at(int32_t index) const
+	{
+		return ArrayData[index];
+	}
+
+	ElementReference at(int32_t index)
+	{
+		return ArrayData[index];
+	}
+
+	ElementConstPointer data() const
+	{
+		return ArrayData;
+	}
+
+	int32_t size() const
+	{
+		return 5000;
+		//return ArrayCount;
+	}
+
+	int32_t capacity() const
+	{
+		return ArrayMax;
+	}
+
+	bool empty() const
+	{
+		if (ArrayData)
+		{
+			return (size() == 0);
+		}
+
+		return true;
+	}
+
+	Iterator begin()
+	{
+		return Iterator(ArrayData);
+	}
+
+	Iterator end()
+	{
+		return Iterator(ArrayData + ArrayCount);
+	}
+
+private:
+	void ReAllocate(int32_t newArrayMax)
+	{
+		ElementPointer newArrayData = (ElementPointer)::operator new(newArrayMax * sizeof(ElementType));
+		int32_t newNum = ArrayCount;
+
+		if (newArrayMax < newNum)
+		{
+			newNum = newArrayMax;
+		}
+
+		for (int32_t i = 0; i < newNum; i++)
+		{
+			new(newArrayData + i) ElementType(std::move(ArrayData[i]));
+		}
+
+		for (int32_t i = 0; i < ArrayCount; i++)
+		{
+			ArrayData[i].~ElementType();
+		}
+
+		::operator delete(ArrayData, ArrayMax * sizeof(ElementType));
+		ArrayData = newArrayData;
+		ArrayMax = newArrayMax;
+	}
+};
+
 // THIS CLASS CAN BE GAME SPECIFIC, MOST GAMES WILL GENERATE A STRUCT MIRROR!
 template<typename TKey, typename TValue>
 class TMap
@@ -729,7 +834,7 @@ public:
 # ========================================================================================= #
 */
 
-extern TArray<class UObject*>* GObjects;
+extern TObjectsArray<class UObject*>* GObjects;
 extern TArray<class FNameEntry*>* GNames;
 
 /*
@@ -743,18 +848,27 @@ extern TArray<class FNameEntry*>* GNames;
 class FNameEntry
 {
 public:
-	uint64_t Flags;							REGISTER_MEMBER(uint64_t, Flags, EMemberTypes::FNameEntry_Flags)					// 0x0000 (0x08)
 	int32_t Index;							REGISTER_MEMBER(int32_t, Index, EMemberTypes::FNameEntry_Index)						// 0x0008 (0x04)
 	class FNameEntry* HashNext;				REGISTER_MEMBER(class FNameEntry*, HashNext, EMemberTypes::FNameEntry_HashNext)		// 0x000C (0x04)
-
 #ifdef UTF16
 	wchar_t			Name[0x400];			REGISTER_MEMBER(wchar_t, Name, EMemberTypes::FNameEntry_Name)						// 0x0010 (0x00)
 #else
-	char			Name[0x400];			REGISTER_MEMBER(char, Name, EMemberTypes::FNameEntry_Name)							// 0x0010 (0x00)
+	//char			Name[0x400];			REGISTER_MEMBER(char, Name, EMemberTypes::FNameEntry_Name)							// 0x0010 (0x00)
+	//char* Name;					REGISTER_MEMBER(char*, Name, EMemberTypes::FNameEntry_Name)
+
+	union
+	{
+		char* NamePtr;
+		char Name[0x400];
+	};
+	REGISTER_MEMBER(char, Name, EMemberTypes::FNameEntry_Name);
 #endif
 
+	uint64_t Flags;							REGISTER_MEMBER(uint64_t, Flags, EMemberTypes::FNameEntry_Flags)					// 0x0000 (0x08)
+
+
 public:
-	FNameEntry() : Flags(0), Index(-1), HashNext(nullptr) {}
+	FNameEntry() : Flags(0), Index(-1), NamePtr(0), HashNext(nullptr) {}
 	~FNameEntry() {}
 
 public:
@@ -795,12 +909,19 @@ public:
 #else
 	const char* GetAnsiName() const
 	{
+		// TODO: There's probably a right way to do this.
+		auto pName = (char*)(void*)&NamePtr;
+		bool isPtr = pName[5] && !pName[6] && !pName[7] && pName[8] && !(*(int*)(pName + 16));
+		if (isPtr) {
+			return NamePtr;
+		}
+
 		return Name;
 	}
 
 	std::string ToString() const
 	{
-		return std::string(Name);
+		return std::string(GetAnsiName());
 	}
 #endif
 };
@@ -933,7 +1054,9 @@ public:
 	{
 		if (IsValid())
 		{
-			return GetDisplayNameEntry().ToString();
+			auto names = GNames;
+			auto entry = GetDisplayNameEntry();
+			return entry.ToString();
 		}
 
 		return "UnknownName";
@@ -1137,8 +1260,8 @@ class UObject
 {
 public:
 	struct FPointer VfTableObject;			REGISTER_MEMBER(struct FPointer, VfTableObject, EMemberTypes::UObject_VfTable)		// 0x0000 (0x04)
+	uint8_t UnknownData00[0x28];
 	int32_t ObjectInternalInteger;			REGISTER_MEMBER(int32_t, ObjectInternalInteger, EMemberTypes::UObject_Integer)		// 0x0004 (0x04)
-	uint8_t UnknownData00[0x10];
 	class UObject* Outer;					REGISTER_MEMBER(class UObject*, Outer, EMemberTypes::UObject_Outer)					// 0x0018 (0x04)
 	class FName Name;						REGISTER_MEMBER(class FName, Name, EMemberTypes::UObject_Name)						// 0x001C (0x08)
 	class UClass* Class;					REGISTER_MEMBER(class UClass*, Class, EMemberTypes::UObject_Class)					// 0x0024 (0x04)
@@ -1157,7 +1280,7 @@ public:
 		return uClassPointer;
 	}
 
-	static class TArray<class UObject*>* GObjObjects();
+	static class TObjectsArray<class UObject*>* GObjObjects();
 	std::string GetName();
 	std::string GetNameCPP();
 	std::string GetFullName();
