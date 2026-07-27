@@ -9,10 +9,15 @@ public partial class Function
     {
         FUNC_Defined = 0x2,
         FUNC_Iterator = 0x4,
+        FUNC_Net = 0x40,
+        FUNC_NetReliable = 0x80,
+        FUNC_Simulated = 0x100,
         FUNC_Native = 0x400,
         FUNC_Event = 0x800,
         FUNC_Operator = 0x1000,
         FUNC_Static = 0x2000,
+        FUNC_NetServer = 0x00200000,
+        FUNC_NetClient = 0x01000000,
     }
 
     public bool IsStatic => FunctionFlags.HasFlag(EFunctionFlags.FUNC_Static);
