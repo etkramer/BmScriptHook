@@ -48,13 +48,9 @@ internal static partial class StaticInit
     /// </summary>
     /// <param name="type">The type at the bottom of the hierarchy to go up from</param>
     /// <param name="methodName">The name of the method to seach for</param>
-    /// <returns>The declaring type</returns>
-    /// <exception cref="ArgumentException">If the method couldn't be found.</exception>
-    public static Type GetDeclaringTypeForMethod(Type type, string methodName) =>
-        Guard.NotNull(
-            type.GetMethod(methodName, FuncSearchFlags)?.DeclaringType,
-            $"{type} and its supers have no declaration of the method '{methodName}'."
-        );
+    /// <returns>The declaring type or null if not found.</returns>
+    public static Type? GetDeclaringTypeForMethod(Type type, string methodName) =>
+        type.GetMethod(methodName, FuncSearchFlags)?.DeclaringType;
 
     /// <summary>
     /// Gets the fully qualified path of the method definition for the given type in the UE3 format.
@@ -63,12 +59,23 @@ internal static partial class StaticInit
     /// is originally declared.</remarks>
     /// <param name="type">The type to search for the method declaration. This can be a derived type; the method's actual declaring type
     /// will be resolved.</param>
+    /// <param name="stateName">The state the function is defined in.</param>
     /// <param name="methodName">The name of the method whose defining type path is to be retrieved.</param>
-    /// <returns>A string representing the path to the method definition: "Namespace.Type:MethodName".</returns>
-    public static string GetDeclaringFuncPath(Type type, string methodName)
+    /// <returns>A string representing the path to the method definition: "Namespace.Type:Method".
+    /// If a state is supplied, it looks like this: "Namespace.Type:State:Method"</returns>
+    public static string GetDeclaringFuncPath(Type type, string? stateName, string methodName)
     {
-        var declaringType = GetDeclaringTypeForMethod(type, methodName);
+        // TODO: generate states and evaluate type for states properly
+        var declaringType = GetDeclaringTypeForMethod(type, methodName) ?? type;
         var declaringTypePath = GetClassPathForManagedType(declaringType);
-        return $"{declaringTypePath}:{methodName}";
+
+        if (stateName is not null)
+        {
+            return $"{declaringTypePath}:{stateName}:{methodName}";
+        }
+        else
+        {
+            return $"{declaringTypePath}:{methodName}";
+        }
     }
 }

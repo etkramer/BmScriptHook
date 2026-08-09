@@ -30,6 +30,11 @@ public sealed class RedirectAttribute(Type targetType, string targetMethod) : At
     public string TargetMethod { get; } = targetMethod;
 
     /// <summary>
+    /// The name of the state to detour the function of.
+    /// </summary>
+    public string? TargetState { get; init; }
+
+    /// <summary>
     /// Whether the redirect should apply to <see cref="TargetType"/> only or its children too.
     /// It's important to note that a redirect overrides a specific definition of a UFunction.
     /// If the child class overrides the target function, this option has no effect on that

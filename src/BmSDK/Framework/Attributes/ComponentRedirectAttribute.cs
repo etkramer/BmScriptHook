@@ -34,4 +34,9 @@ namespace BmSDK.Framework;
 public sealed class ComponentRedirectAttribute(string targetMethod) : Attribute
 {
     public string TargetMethod { get; } = targetMethod;
+
+    /// <summary>
+    /// The name of the state to detour the function of.
+    /// </summary>
+    public string? TargetState { get; init; }
 }

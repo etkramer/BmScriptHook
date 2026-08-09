@@ -61,6 +61,7 @@ internal sealed class LocalRedirectManager(BindingFlags genericRedirSearchFlags)
             // Get actual path that will be called by UE3
             var targetFuncPath = StaticInit.GetDeclaringFuncPath(
                 targetType,
+                redirAttr.TargetState,
                 redirAttr.TargetMethod
             );
 

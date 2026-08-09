@@ -58,7 +58,11 @@ internal sealed class GlobalRedirectManager(BindingFlags genericRedirSearchFlags
         }
 
         // Get the full path of the function (as originally declared).
-        var declaringFuncPath = StaticInit.GetDeclaringFuncPath(targetType, redirAttr.TargetMethod);
+        var declaringFuncPath = StaticInit.GetDeclaringFuncPath(
+            targetType,
+            redirAttr.TargetState,
+            redirAttr.TargetMethod
+        );
 
         // Store the redirect for later use.
         var redirInfo = new GlobalRedirectorInfo(
