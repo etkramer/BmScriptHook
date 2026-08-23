@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace BmSDK.Framework;
@@ -7,16 +8,10 @@ internal static partial class StaticInit
     private const BindingFlags FuncSearchFlags =
         BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
-    public static Type GetManagedTypeForClassPath(string classPath)
-    {
-        if (_classPathToManagedTypeMap.TryGetValue(classPath, out var res))
-        {
-            return res;
-        }
-
-        Debug.LogWarning($"Couldn't find managed type for class '{classPath}'");
-        return typeof(GameObject);
-    }
+    public static bool TryGetManagedTypeForClassPath(
+        string classPath,
+        [NotNullWhen(true)] out Type? managedType
+    ) => _classPathToManagedTypeMap.TryGetValue(classPath, out managedType);
 
     public static string GetClassPathForManagedType(Type type)
     {

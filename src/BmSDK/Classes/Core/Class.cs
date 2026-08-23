@@ -36,7 +36,7 @@ public partial class Class
     /// <summary>
     /// Returns the matching Type object for this class.
     /// </summary>
-    public Type GetManagedType() => StaticInit.GetManagedTypeForClassPath(GetPathName());
+    public Type GetManagedType() => MarshalUtil.GetManagedTypeForClassPtr(Ptr);
 
     /// <summary>
     /// Returns the matching Class object for the given type.

@@ -53,6 +53,7 @@ internal static class GameInfo
         public const IntPtr Object__Outer = 24;
         public const IntPtr Object__Name = 28;
         public const IntPtr Object__Class = 36;
+        public const IntPtr Struct__SuperStruct = 56;
         public const IntPtr Class__ClassFlags = 180;
     }
 }

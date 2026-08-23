@@ -186,12 +186,48 @@ public static unsafe class MarshalUtil
 
         // Get the managed type through the class object
         var managedType = !classFlags.HasFlag(Class.EClassFlags.CLASS_Interface)
-            ? StaticInit.GetManagedTypeForClassPath(GetClassPath(classPtr))
+            ? GetManagedTypeForClassPtr(classPtr)
             : typeof(GameObject); // Wrap CDOs of interfaces as GameObject
 
         // Wrap this object in a managed instance
         return CreateManagedWrapper(objPtr, managedType);
     }
+
+    /// <summary>
+    /// Gets the managed type for the given unmanaged class. Classes that didn't exist at generation
+    /// time fall back to the closest known type in their super chain.
+    /// </summary>
+    internal static Type GetManagedTypeForClassPtr(IntPtr classPtr)
+    {
+        var classPath = GetClassPath(classPtr);
+
+        if (StaticInit.TryGetManagedTypeForClassPath(classPath, out var managedType))
+        {
+            return managedType;
+        }
+
+        // Class didn't exist at generation time, so walk up the super chain until we find one that did.
+        for (
+            var superPtr = GetSuperStruct(classPtr);
+            superPtr != IntPtr.Zero;
+            superPtr = GetSuperStruct(superPtr)
+        )
+        {
+            if (StaticInit.TryGetManagedTypeForClassPath(GetClassPath(superPtr), out var superType))
+            {
+                Debug.LogWarning(
+                    $"Couldn't find managed type for class '{classPath}', falling back to {superType.FullName}"
+                );
+                return superType;
+            }
+        }
+
+        Debug.LogWarning($"Couldn't find managed type for class '{classPath}'");
+        return typeof(GameObject);
+    }
+
+    private static IntPtr GetSuperStruct(IntPtr structPtr) =>
+        *(IntPtr*)(structPtr + GameInfo.MemberOffsets.Struct__SuperStruct).ToPointer();
 
     private static GameObject CreateManagedWrapper(IntPtr objPtr, Type managedType)
     {
