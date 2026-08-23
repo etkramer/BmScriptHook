@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.17.2...v0.18.0) (2026-08-23)
+
+
+### Features
+
+* Fall back to next known super in case of unknown class ([#131](https://github.com/Team-BmSDK/BmSDK-AC/issues/131)) ([acb7a26](https://github.com/Team-BmSDK/BmSDK-AC/commit/acb7a26e04ea5235c7f7adb3cc421ee21089a72b))
+
 ## [0.17.2](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.17.1...v0.17.2) (2026-07-10)
 
 
