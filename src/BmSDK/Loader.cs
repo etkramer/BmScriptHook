@@ -27,9 +27,21 @@ internal static class Loader
     /// This is done when FEngineLoop::PreInit() is executed.
     /// </summary>
     [UnmanagedCallersOnly]
-    public static void GuardedDllMain() => Debug.RunWithSender("Loader", () => RunGuarded(DllMain));
+    public static void GuardedDllMain() => Debug.RunWithSender("Loader", DllMain);
 
     private static void DllMain()
+    {
+        try
+        {
+            DllMainImpl();
+        }
+        catch (Exception ex)
+        {
+            Abort(ex);
+        }
+    }
+
+    private static void DllMainImpl()
     {
         EngineSynchronizationContext.InitOnThread();
 
@@ -94,7 +106,7 @@ internal static class Loader
     // Detour for UObject::ProcessInternal()
     private static unsafe void ProcessInternalDetour(IntPtr self, IntPtr Stack, IntPtr Result)
     {
-        RunGuarded(() =>
+        try
         {
             IntPtr selfPtr = self;
             FFrame* stackPtr = (FFrame*)Stack.ToPointer();
@@ -108,27 +120,32 @@ internal static class Loader
                 // Preload packages and root keep-alive objects before any world loads
                 PreloadManager.Run();
 
-                ScriptManager.Scripts.ForEach(script =>
-                    Debug.RunWithSender(script.Name, script.Main)
-                );
+                foreach (var script in ScriptManager.Scripts)
+                {
+                    Debug.RunWithSender(script.Name, script.Main);
+                }
+
                 s_hasGameInited = true;
             }
 
             // Notify scripts of game start
             if (!s_hasGameStarted && funcName == EnterMenuFuncName)
             {
-                ScriptManager.Scripts.ForEach(script =>
-                    Debug.RunWithSender(script.Name, script.OnEnterMenu)
-                );
+                foreach (var script in ScriptManager.Scripts)
+                {
+                    Debug.RunWithSender(script.Name, script.OnEnterMenu);
+                }
+
                 s_hasGameStarted = true;
             }
 
             // Notify scripts of game begin play
             if (funcName == EnterGameFuncName)
             {
-                ScriptManager.Scripts.ForEach(script =>
-                    Debug.RunWithSender(script.Name, script.OnEnterGame)
-                );
+                foreach (var script in ScriptManager.Scripts)
+                {
+                    Debug.RunWithSender(script.Name, script.OnEnterGame);
+                }
             }
 
             // Notify scripts of game tick
@@ -138,9 +155,10 @@ internal static class Loader
                 InputManager.Tick();
 
                 // Call OnTick() for scripts
-                ScriptManager.Scripts.ForEach(script =>
-                    Debug.RunWithSender(script.Name, script.OnTick)
-                );
+                foreach (var script in ScriptManager.Scripts)
+                {
+                    Debug.RunWithSender(script.Name, script.OnTick);
+                }
 
                 // Call OnTick() for script components
                 if (GameObject.AllScriptComponents.Count > 0)
@@ -160,7 +178,11 @@ internal static class Loader
 
             // Call base impl. Redirected implementations are expected to reach this by calling "themselves" a second time.
             _ProcessInternalDetourBase!.Invoke(self, Stack, Result);
-        });
+        }
+        catch (Exception ex)
+        {
+            Abort(ex);
+        }
     }
 
     // Detour for FWindowsViewport::ProcessDeferredMessage()
@@ -194,7 +216,7 @@ internal static class Loader
         // Call base impl to instantiate UObject
         _AddObjectDelegateDetourBase!.Invoke(self, InIndex);
 
-        RunGuarded(() =>
+        try
         {
             var obj = MarshalUtil.GetOrCreateWrapper(self);
 
@@ -203,7 +225,11 @@ internal static class Loader
             {
                 ScriptComponentManager.TryAutoAttachComponents(obj, objNotLoaded: true);
             }
-        });
+        }
+        catch (Exception ex)
+        {
+            Abort(ex);
+        }
     }
 
     // Detour for UObject::ConditionalPostLoad()
@@ -213,7 +239,7 @@ internal static class Loader
         _ConditionalPostLoadDetourBase!.Invoke(self);
 
         // Configure redirected functions
-        RunGuarded(() =>
+        try
         {
             var obj = MarshalUtil.GetOrCreateWrapper(self);
             if (obj is Function func)
@@ -226,31 +252,36 @@ internal static class Loader
             {
                 ScriptComponentManager.TryAutoAttachComponents(obj, objNotLoaded: true);
             }
-        });
+        }
+        catch (Exception ex)
+        {
+            Abort(ex);
+        }
     }
 
     // Detour for UObject::ConditionalDestroy()
     private static void ConditionalDestroyDetour(IntPtr self)
     {
         // Destroy this object's managed instance
-        RunGuarded(() => MarshalUtil.DestroyManagedWrapper(self));
+        try
+        {
+            MarshalUtil.DestroyManagedWrapper(self);
+        }
+        catch (Exception ex)
+        {
+            Abort(ex);
+        }
 
         // Call base impl
         _ConditionalDestroyDetourBase!.Invoke(self);
     }
 
-    private static void RunGuarded(Action action)
+    [DoesNotReturn]
+    private static void Abort(Exception ex)
     {
-        try
-        {
-            action();
-        }
-        catch (Exception ex)
-        {
-            // Just abort, because otherwise UE3 will crash anyway but print
-            // its more-or-less useless DBGHELP messages.
-            Debug.LogError(ex.ToString());
-            Environment.Exit(1);
-        }
+        // Just abort, because otherwise UE3 will crash anyway but print
+        // its more-or-less useless DBGHELP messages.
+        Debug.LogError(ex.ToString());
+        Environment.Exit(1);
     }
 }
