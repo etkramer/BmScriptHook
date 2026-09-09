@@ -170,9 +170,9 @@ public static unsafe class MarshalUtil
         }
 
         // Calculate memory address of the object's class
-        var classPtr = *(IntPtr*)(objPtr + GameInfo.MemberOffsets.Object__Class).ToPointer();
-        var classIndexPtr = classPtr + GameInfo.MemberOffsets.Object__ObjectInternalInteger;
-        var classFlagsPtr = classPtr + GameInfo.MemberOffsets.Class__ClassFlags;
+        var classPtr = *(IntPtr*)(objPtr + GameDefine.MemberOffsets.Object__Class).ToPointer();
+        var classIndexPtr = classPtr + GameDefine.MemberOffsets.Object__ObjectInternalInteger;
+        var classFlagsPtr = classPtr + GameDefine.MemberOffsets.Class__ClassFlags;
 
         // Not clear yet why this happens, but maybe we don't need to worry about it.
         var classIndex = *(int*)classIndexPtr.ToPointer();
@@ -227,7 +227,7 @@ public static unsafe class MarshalUtil
     }
 
     private static IntPtr GetSuperStruct(IntPtr structPtr) =>
-        *(IntPtr*)(structPtr + GameInfo.MemberOffsets.Struct__SuperStruct).ToPointer();
+        *(IntPtr*)(structPtr + GameDefine.MemberOffsets.Struct__SuperStruct).ToPointer();
 
     private static GameObject CreateManagedWrapper(IntPtr objPtr, Type managedType)
     {
@@ -244,12 +244,12 @@ public static unsafe class MarshalUtil
     private static string GetClassPath(IntPtr classPtr)
     {
         // Fetch class name.
-        var className = *(FName*)(classPtr + GameInfo.MemberOffsets.Object__Name).ToPointer();
+        var className = *(FName*)(classPtr + GameDefine.MemberOffsets.Object__Name).ToPointer();
 
         // Fetch outer name.
-        var classOuterPtr = *(IntPtr*)(classPtr + GameInfo.MemberOffsets.Object__Outer).ToPointer();
+        var classOuterPtr = *(IntPtr*)(classPtr + GameDefine.MemberOffsets.Object__Outer).ToPointer();
         var classOuterName = *(FName*)
-            (classOuterPtr + GameInfo.MemberOffsets.Object__Name).ToPointer();
+            (classOuterPtr + GameDefine.MemberOffsets.Object__Name).ToPointer();
 
         return $"{classOuterName}.{className}";
     }

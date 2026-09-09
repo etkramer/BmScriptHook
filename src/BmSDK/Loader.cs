@@ -17,7 +17,8 @@ internal static class Loader
 
     private static GameFunctions.EngineTickDelegate? _EngineTickDetourBase = null;
     private static GameFunctions.ProcessInternalDelegate? _ProcessInternalDetourBase = null;
-    private static GameFunctions.ProcessDeferredMessageDelegate? _ProcessDeferredMessageDetourBase = null;
+    private static GameFunctions.ProcessDeferredMessageDelegate? _ProcessDeferredMessageDetourBase =
+        null;
     private static GameFunctions.AddObjectDelegate? _AddObjectDelegateDetourBase = null;
     private static GameFunctions.ConditionalPostLoadDelegate? _ConditionalPostLoadDetourBase = null;
     private static GameFunctions.ConditionalDestroyDelegate? _ConditionalDestroyDetourBase = null;
@@ -33,9 +34,8 @@ internal static class Loader
     {
         EngineSynchronizationContext.InitOnThread();
 
-        // Environment.CurrentDirectory gets unreliable once we start
-        // running code in detours, so let's store it early.
-        FileUtils.Init();
+        Debug.InitFileLog();
+        Debug.Log($"Detected {GameDefine.Current.Name} build");
 
         // Perform static init (before engine load)
         StaticInit.StaticInitClasses();
@@ -48,35 +48,35 @@ internal static class Loader
 
         // Create function detours
         _EngineTickDetourBase = DetourUtil.NewDetour<GameFunctions.EngineTickDelegate>(
-            GameInfo.FuncOffsets.EngineTick,
+            GameDefine.Current.EngineTick,
             EngineTickDetour
         );
 
         _ProcessInternalDetourBase = DetourUtil.NewDetour<GameFunctions.ProcessInternalDelegate>(
-            GameInfo.FuncOffsets.ProcessInternal,
+            GameDefine.Current.ProcessInternal,
             ProcessInternalDetour
         );
 
         _ProcessDeferredMessageDetourBase =
             DetourUtil.NewDetour<GameFunctions.ProcessDeferredMessageDelegate>(
-                GameInfo.FuncOffsets.ProcessDeferredMessage,
+                GameDefine.Current.ProcessDeferredMessage,
                 ProcessDeferredMessageDetour
             );
 
         _AddObjectDelegateDetourBase = DetourUtil.NewDetour<GameFunctions.AddObjectDelegate>(
-            GameInfo.FuncOffsets.AddObject,
+            GameDefine.Current.AddObject,
             AddObjectDetour
         );
 
         _ConditionalPostLoadDetourBase =
             DetourUtil.NewDetour<GameFunctions.ConditionalPostLoadDelegate>(
-                GameInfo.FuncOffsets.ConditionalPostLoad,
+                GameDefine.Current.ConditionalPostLoad,
                 ConditionalPostLoadDetour
             );
 
         _ConditionalDestroyDetourBase =
             DetourUtil.NewDetour<GameFunctions.ConditionalDestroyDelegate>(
-                GameInfo.FuncOffsets.ConditionalDestroy,
+                GameDefine.Current.ConditionalDestroy,
                 ConditionalDestroyDetour
             );
     }

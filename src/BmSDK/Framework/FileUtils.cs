@@ -2,17 +2,11 @@ namespace BmSDK.Framework;
 
 public static class FileUtils
 {
-    private static string s_exeDir = "";
-
-    internal static void Init()
-    {
-        s_exeDir = Path.GetFullPath(Environment.CurrentDirectory);
-    }
-
     /// <summary>
     /// Returns the full path to the game directory (./).
     /// </summary>
-    public static string GetBasePath() => Path.GetFullPath(Path.Combine(s_exeDir, "..", ".."));
+    public static string GetBasePath() =>
+        Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Environment.ProcessPath)!, "..", ".."));
 
     /// <summary>
     /// Returns the full path to the binaries directory (./Binaries/Win32/).

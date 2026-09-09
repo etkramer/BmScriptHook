@@ -4,7 +4,11 @@
 #include "Framework/detour_manager.h"
 
 static void init_runtime() {
-    offsets::BaseAddress = (uintptr_t)(GetModuleHandle(NULL));
+    // Bail out on unsupported builds rather than detouring a bogus address
+    if (!offsets::init()) {
+        return;
+    }
+
     DetourRestoreAfterWith();
     DetourManager::RegisterEngineLoopPreInitDetour();
 }

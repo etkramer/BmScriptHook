@@ -8,7 +8,7 @@ public partial class GameObject
     /// Returns a reference to the global objects array. Should not be used directly - see <see cref="FindObjectsSlow"/> instead.
     /// </summary>
     private static readonly TArray<IntPtr> GObjects = new(
-        MemUtil.GetIntPointer(GameInfo.GlobalOffsets.GObjObjects)
+        MemUtil.GetIntPointer(GameDefine.Current.GObjObjects)
     );
 
     /// <summary>
@@ -106,7 +106,7 @@ public partial class GameObject
             Name is null ? FName.None : new FName(Name),
             SetFlags,
             Template?.Ptr ?? 0,
-            MemUtil.GetIntPointer(GameInfo.GlobalOffsets.GError),
+            MemUtil.GetIntPointer(GameDefine.Current.GError),
             0,
             0
         );

@@ -28,6 +28,13 @@ void Runtime::OnAttach()
     // Find base address
     Runtime::BaseAddress = (uintptr_t)(GetModuleHandle(NULL));
 
+    // Bail out on unsupported builds rather than reading bogus addresses
+    if (!GameOffsets::Init(Runtime::BaseAddress))
+    {
+        TRACE("Unrecognized BatmanAC.exe build, aborting");
+        return;
+    }
+
     // Get the main thread Id
     Runtime::MainThreadId = GetCurrentThreadId();
 
