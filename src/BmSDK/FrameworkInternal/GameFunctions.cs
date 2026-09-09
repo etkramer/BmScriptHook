@@ -144,86 +144,86 @@ internal static class GameFunctions
     public static StaticConstructObjectDelegate StaticConstructObject =>
         _StaticConstructObject ??=
             Marshal.GetDelegateForFunctionPointer<StaticConstructObjectDelegate>(
-                MemUtil.GetIntPointer(GameInfo.FuncOffsets.StaticConstructObject)
+                MemUtil.GetIntPointer(GameDefine.Current.StaticConstructObject)
             );
 
     public static StaticFindObjectDelegate StaticFindObject =>
         _StaticFindObject ??= Marshal.GetDelegateForFunctionPointer<StaticFindObjectDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.StaticFindObject)
+            MemUtil.GetIntPointer(GameDefine.Current.StaticFindObject)
         );
 
     public static LoadPackageDelegate LoadPackage =>
         _LoadPackage ??= Marshal.GetDelegateForFunctionPointer<LoadPackageDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.LoadPackage)
+            MemUtil.GetIntPointer(GameDefine.Current.LoadPackage)
         );
 
     public static CollectGarbageDelegate CollectGarbage =>
         _CollectGarbage ??= Marshal.GetDelegateForFunctionPointer<CollectGarbageDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.CollectGarbage)
+            MemUtil.GetIntPointer(GameDefine.Current.CollectGarbage)
         );
 
     public static ProcessEventDelegate ProcessEvent =>
         _ProcessEvent ??= Marshal.GetDelegateForFunctionPointer<ProcessEventDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.ProcessEvent)
+            MemUtil.GetIntPointer(GameDefine.Current.ProcessEvent)
         );
 
     public static ProcessInternalDelegate ProcessInternal =>
         _ProcessInternal ??= Marshal.GetDelegateForFunctionPointer<ProcessInternalDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.ProcessInternal)
+            MemUtil.GetIntPointer(GameDefine.Current.ProcessInternal)
         );
 
     public static CallFunctionDelegate CallFunction =>
         _CallFunction ??= Marshal.GetDelegateForFunctionPointer<CallFunctionDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.CallFunction)
+            MemUtil.GetIntPointer(GameDefine.Current.CallFunction)
         );
 
     public static AddObjectDelegate AddObject =>
         _AddObject ??= Marshal.GetDelegateForFunctionPointer<AddObjectDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.AddObject)
+            MemUtil.GetIntPointer(GameDefine.Current.AddObject)
         );
 
     public static ConditionalDestroyDelegate ConditionalDestroy =>
         _ConditionalDestroy ??= Marshal.GetDelegateForFunctionPointer<ConditionalDestroyDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.ConditionalDestroy)
+            MemUtil.GetIntPointer(GameDefine.Current.ConditionalDestroy)
         );
 
     public static FindFunctionDelegate FindFunction =>
         _FindFunction ??= Marshal.GetDelegateForFunctionPointer<FindFunctionDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.FindFunction)
+            MemUtil.GetIntPointer(GameDefine.Current.FindFunction)
         );
 
     public static GetDefaultObjectDelegate GetDefaultObject =>
         _GetDefaultObject ??= Marshal.GetDelegateForFunctionPointer<GetDefaultObjectDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.GetDefaultObject)
+            MemUtil.GetIntPointer(GameDefine.Current.GetDefaultObject)
         );
 
     public static SpawnActorDelegate SpawnActor =>
         _SpawnActor ??= Marshal.GetDelegateForFunctionPointer<SpawnActorDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.SpawnActor)
+            MemUtil.GetIntPointer(GameDefine.Current.SpawnActor)
         );
 
     public static NameInitDelegate NameInit =>
         _NameInit ??= Marshal.GetDelegateForFunctionPointer<NameInitDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.NameInit)
+            MemUtil.GetIntPointer(GameDefine.Current.NameInit)
         );
 
     public static StringCtorDelegate StringCtor =>
         _StringCtor ??= Marshal.GetDelegateForFunctionPointer<StringCtorDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.StringCtor)
+            MemUtil.GetIntPointer(GameDefine.Current.StringCtor)
         );
 
     public static AppReallocDelegate AppRealloc =>
         _AppRealloc ??= Marshal.GetDelegateForFunctionPointer<AppReallocDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.AppRealloc)
+            MemUtil.GetIntPointer(GameDefine.Current.AppRealloc)
         );
 
     public static AppFreeDelegate AppFree =>
         _AppFree ??= Marshal.GetDelegateForFunctionPointer<AppFreeDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.AppFree)
+            MemUtil.GetIntPointer(GameDefine.Current.AppFree)
         );
 
     public static EngineTickDelegate EngineTick =>
         _EngineTick ??= Marshal.GetDelegateForFunctionPointer<EngineTickDelegate>(
-            MemUtil.GetIntPointer(GameInfo.FuncOffsets.EngineTick)
+            MemUtil.GetIntPointer(GameDefine.Current.EngineTick)
         );
 }

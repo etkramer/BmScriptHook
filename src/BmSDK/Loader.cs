@@ -33,6 +33,8 @@ internal static class Loader
     {
         EngineSynchronizationContext.InitOnThread();
 
+        Debug.Log($"Detected {GameDefine.Current.Name} build");
+
         // Environment.CurrentDirectory gets unreliable once we start
         // running code in detours, so let's store it early.
         FileUtils.Init();
@@ -48,35 +50,35 @@ internal static class Loader
 
         // Create function detours
         _EngineTickDetourBase = DetourUtil.NewDetour<GameFunctions.EngineTickDelegate>(
-            GameInfo.FuncOffsets.EngineTick,
+            GameDefine.Current.EngineTick,
             EngineTickDetour
         );
 
         _ProcessInternalDetourBase = DetourUtil.NewDetour<GameFunctions.ProcessInternalDelegate>(
-            GameInfo.FuncOffsets.ProcessInternal,
+            GameDefine.Current.ProcessInternal,
             ProcessInternalDetour
         );
 
         _ProcessDeferredMessageDetourBase =
             DetourUtil.NewDetour<GameFunctions.ProcessDeferredMessageDelegate>(
-                GameInfo.FuncOffsets.ProcessDeferredMessage,
+                GameDefine.Current.ProcessDeferredMessage,
                 ProcessDeferredMessageDetour
             );
 
         _AddObjectDelegateDetourBase = DetourUtil.NewDetour<GameFunctions.AddObjectDelegate>(
-            GameInfo.FuncOffsets.AddObject,
+            GameDefine.Current.AddObject,
             AddObjectDetour
         );
 
         _ConditionalPostLoadDetourBase =
             DetourUtil.NewDetour<GameFunctions.ConditionalPostLoadDelegate>(
-                GameInfo.FuncOffsets.ConditionalPostLoad,
+                GameDefine.Current.ConditionalPostLoad,
                 ConditionalPostLoadDetour
             );
 
         _ConditionalDestroyDetourBase =
             DetourUtil.NewDetour<GameFunctions.ConditionalDestroyDelegate>(
-                GameInfo.FuncOffsets.ConditionalDestroy,
+                GameDefine.Current.ConditionalDestroy,
                 ConditionalDestroyDetour
             );
     }

@@ -45,7 +45,7 @@ public struct FName
 
     public override unsafe string ToString()
     {
-        var GNames = (FNameEntry***)MemUtil.GetPointer<byte>(GameInfo.GlobalOffsets.GNames);
+        var GNames = (FNameEntry***)MemUtil.GetPointer<byte>(GameDefine.Current.GNames);
         var GNamesData = *GNames;
 
         var str = Guard.NotNull(Marshal.PtrToStringUni((IntPtr)GNamesData[Index]->UniName));

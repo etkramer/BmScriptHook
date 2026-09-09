@@ -82,8 +82,8 @@ If you want to play script mods, getting started is simple:
 
 Keep in mind that script mods can potentially harm your computer. Make sure you only download and install scripts from trusted sources.
 
-### ⚠️ Notice for Steam or GOG users:
-If you have a Steam or GOG copy of the game, you'll have to install a compatibility patch. You can download it [here](../../releases/download/v0.15.1/CompatibilityPatch.zip), just replace the `BatmanAC.exe` from your game folder (see below) with the one provided. You may have to start the game from the `Binaries\Win32\BatmanAC.exe` instead of the Steam UI now.
+### ⚠️ Notice for GOG users:
+Only Steam and Epic copies of Arkham City are supported currently. GOG support is being considered, but BmSDK unfortunately does not work on this platform for the time being.
 
 ## 🧩 Setting Up for Mod Development
 Follow these steps to set up your environment for building, running, and debugging script mods:
