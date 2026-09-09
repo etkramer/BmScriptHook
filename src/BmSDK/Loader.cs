@@ -17,7 +17,8 @@ internal static class Loader
 
     private static GameFunctions.EngineTickDelegate? _EngineTickDetourBase = null;
     private static GameFunctions.ProcessInternalDelegate? _ProcessInternalDetourBase = null;
-    private static GameFunctions.ProcessDeferredMessageDelegate? _ProcessDeferredMessageDetourBase = null;
+    private static GameFunctions.ProcessDeferredMessageDelegate? _ProcessDeferredMessageDetourBase =
+        null;
     private static GameFunctions.AddObjectDelegate? _AddObjectDelegateDetourBase = null;
     private static GameFunctions.ConditionalPostLoadDelegate? _ConditionalPostLoadDetourBase = null;
     private static GameFunctions.ConditionalDestroyDelegate? _ConditionalDestroyDetourBase = null;
@@ -33,11 +34,8 @@ internal static class Loader
     {
         EngineSynchronizationContext.InitOnThread();
 
+        Debug.InitFileLog();
         Debug.Log($"Detected {GameDefine.Current.Name} build");
-
-        // Environment.CurrentDirectory gets unreliable once we start
-        // running code in detours, so let's store it early.
-        FileUtils.Init();
 
         // Perform static init (before engine load)
         StaticInit.StaticInitClasses();

@@ -8,6 +8,19 @@ public static class Debug
     private static readonly Stack<string> s_senderStack = new();
     private static readonly ConsoleColor s_defaultColor = Console.ForegroundColor;
 
+    /// <summary>
+    /// Mirrors log output to BmSDK.log.
+    /// </summary>
+    internal static void InitFileLog()
+    {
+        var writer = new StreamWriter(Path.Combine(FileUtils.GetBinariesPath(), "BmSDK.log"))
+        {
+            AutoFlush = true,
+        };
+
+        Trace.Listeners.Add(new TextWriterTraceListener(writer));
+    }
+
     public static void Log(
         object? msg,
         bool skipSender = false,
