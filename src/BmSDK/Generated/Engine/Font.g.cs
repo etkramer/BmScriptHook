@@ -81,10 +81,11 @@ public partial class Font : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetStringHeightAndWidth
     /// </summary>
-    public unsafe virtual void GetStringHeightAndWidth(out BmSDK.FString InString, out int Height, out int Width)
+    public unsafe virtual void GetStringHeightAndWidth(BmSDK.FString InString, out int Height, out int Width)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Font.GetStringHeightAndWidth", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InString, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -93,7 +94,6 @@ public partial class Font : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InString = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         Height = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 12);
         Width = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 16);
         return;

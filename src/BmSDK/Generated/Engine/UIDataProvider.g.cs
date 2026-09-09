@@ -137,14 +137,14 @@ public partial class UIDataProvider : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: SetFieldValue
     /// </summary>
-    public unsafe virtual bool SetFieldValue(BmSDK.FString FieldName, out BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
+    public unsafe virtual bool SetFieldValue(BmSDK.FString FieldName, BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.SetFieldValue", true);
         byte* paramsPtr = stackalloc byte[104];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrayIndex, paramsPtr + 96);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        FieldValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 100);
     }
 

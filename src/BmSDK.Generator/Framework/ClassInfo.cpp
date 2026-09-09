@@ -101,7 +101,8 @@ PropertyInfo::PropertyInfo(UProperty* prop, bool isInStruct)
     IsBool = prop->IsA(UBoolProperty::StaticClass());
     IsParam = Flags & (uint64_t)EPropertyFlags::CPF_Parm;
     IsOptionalParam = Flags & (uint64_t)EPropertyFlags::CPF_OptionalParm;
-    IsOutParam = Flags & (uint64_t)EPropertyFlags::CPF_OutParm;
+    // Keep "const out" as regular input param
+    IsOutParam = (Flags & (uint64_t)EPropertyFlags::CPF_OutParm) && !(Flags & (uint64_t)EPropertyFlags::CPF_Const);
     IsReturnParam = Flags & (uint64_t)EPropertyFlags::CPF_ReturnParm;
     ShouldReturnByRef = prop->ShouldReturnByRef() && !IsInStruct;
 

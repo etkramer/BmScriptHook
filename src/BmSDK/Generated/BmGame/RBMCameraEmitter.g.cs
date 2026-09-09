@@ -76,10 +76,12 @@ public partial class RBMCameraEmitter : BmSDK.BmGame.REmitter, BmSDK.IGameObject
     /// <summary>
     /// Function: UpdateLocation
     /// </summary>
-    public unsafe virtual void UpdateLocation(out System.Numerics.Vector3 CamLoc, out BmSDK.Rotator CamRot, float CamFOVDeg)
+    public unsafe virtual void UpdateLocation(System.Numerics.Vector3 CamLoc, BmSDK.Rotator CamRot, float CamFOVDeg)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMCameraEmitter.UpdateLocation", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CamLoc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CamRot, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CamFOVDeg, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -89,8 +91,6 @@ public partial class RBMCameraEmitter : BmSDK.BmGame.REmitter, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        CamLoc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
-        CamRot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
         return;
     }
 
