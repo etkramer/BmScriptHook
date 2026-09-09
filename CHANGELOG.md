@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.18.0...v0.19.0) (2026-09-09)
+
+
+### Features
+
+* Support Steam copies of Arkham City ([#133](https://github.com/Team-BmSDK/BmSDK-AC/issues/133)) ([74048ab](https://github.com/Team-BmSDK/BmSDK-AC/commit/74048ab8aa7d38340451c28ffb1ea3af00d5636a))
+
 ## [0.18.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.17.2...v0.18.0) (2026-08-23)
 
 
