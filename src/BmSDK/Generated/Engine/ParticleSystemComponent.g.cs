@@ -160,11 +160,12 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
     /// <summary>
     /// Function: SetVectorArrayParameter
     /// </summary>
-    public unsafe virtual void SetVectorArrayParameter(BmSDK.FName ParameterName, out BmSDK.TArray<System.Numerics.Vector3> Param)
+    public unsafe virtual void SetVectorArrayParameter(BmSDK.FName ParameterName, BmSDK.TArray<System.Numerics.Vector3> Param)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.ParticleSystemComponent.SetVectorArrayParameter", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Param, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -173,7 +174,6 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Param = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<System.Numerics.Vector3>>(paramsPtr + 8);
         return;
     }
 
@@ -397,11 +397,13 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
     /// <summary>
     /// Function: SetVectorRandParameter
     /// </summary>
-    public unsafe virtual void SetVectorRandParameter(BmSDK.FName ParameterName, out System.Numerics.Vector3 Param, out System.Numerics.Vector3 ParamLow)
+    public unsafe virtual void SetVectorRandParameter(BmSDK.FName ParameterName, System.Numerics.Vector3 Param, System.Numerics.Vector3 ParamLow)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.ParticleSystemComponent.SetVectorRandParameter", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Param, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ParamLow, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -410,8 +412,6 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Param = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 8);
-        ParamLow = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 20);
         return;
     }
 
@@ -593,10 +593,11 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
     /// <summary>
     /// Function: DetermineLODLevelForLocation
     /// </summary>
-    public unsafe virtual int DetermineLODLevelForLocation(out System.Numerics.Vector3 EffectLocation)
+    public unsafe virtual int DetermineLODLevelForLocation(System.Numerics.Vector3 EffectLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.ParticleSystemComponent.DetermineLODLevelForLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EffectLocation, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -605,7 +606,6 @@ public partial class ParticleSystemComponent : BmSDK.Engine.PrimitiveComponent, 
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        EffectLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 12);
     }
 

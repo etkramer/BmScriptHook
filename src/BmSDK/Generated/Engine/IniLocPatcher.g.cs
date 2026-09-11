@@ -100,11 +100,12 @@ public partial class IniLocPatcher : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ProcessIniLocFile
     /// </summary>
-    public unsafe virtual void ProcessIniLocFile(BmSDK.FString Filename, out BmSDK.TArray<byte> FileData)
+    public unsafe virtual void ProcessIniLocFile(BmSDK.FString Filename, BmSDK.TArray<byte> FileData)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.IniLocPatcher.ProcessIniLocFile", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Filename, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FileData, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -113,7 +114,6 @@ public partial class IniLocPatcher : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        FileData = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<byte>>(paramsPtr + 12);
         return;
     }
 

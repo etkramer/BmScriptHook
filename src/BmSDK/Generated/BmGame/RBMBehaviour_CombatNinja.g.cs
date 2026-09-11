@@ -174,10 +174,11 @@ public partial class RBMBehaviour_CombatNinja : BmSDK.BmGame.RBMBehaviour_Combat
     /// <summary>
     /// Function: IsPointEncroachedByNinjas
     /// </summary>
-    public unsafe virtual bool IsPointEncroachedByNinjas(out System.Numerics.Vector3 TestPos)
+    public unsafe virtual bool IsPointEncroachedByNinjas(System.Numerics.Vector3 TestPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_CombatNinja.IsPointEncroachedByNinjas", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TestPos, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -186,17 +187,19 @@ public partial class RBMBehaviour_CombatNinja : BmSDK.BmGame.RBMBehaviour_Combat
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        TestPos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
     }
 
     /// <summary>
     /// Function: RateSingleTeleportLocation
     /// </summary>
-    public unsafe virtual bool RateSingleTeleportLocation(out System.Numerics.Vector3 TestLoc, out System.Numerics.Vector3 camFuturePos, out System.Numerics.Vector3 camDirNorm, BmSDK.BmGame.RPlayerController PC, out float Score)
+    public unsafe virtual bool RateSingleTeleportLocation(System.Numerics.Vector3 TestLoc, System.Numerics.Vector3 camFuturePos, System.Numerics.Vector3 camDirNorm, BmSDK.BmGame.RPlayerController PC, out float Score)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_CombatNinja.RateSingleTeleportLocation", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TestLoc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(camFuturePos, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(camDirNorm, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PC, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -206,9 +209,6 @@ public partial class RBMBehaviour_CombatNinja : BmSDK.BmGame.RBMBehaviour_Combat
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        TestLoc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
-        camFuturePos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
-        camDirNorm = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 24);
         Score = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 40);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 44);
     }

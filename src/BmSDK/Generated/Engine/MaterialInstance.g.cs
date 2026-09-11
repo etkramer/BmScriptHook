@@ -153,11 +153,12 @@ public partial class MaterialInstance : BmSDK.Engine.MaterialInterface, BmSDK.IG
     /// <summary>
     /// Function: SetScalarCurveParameterValue
     /// </summary>
-    public unsafe virtual void SetScalarCurveParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FInterpCurveFloat Value)
+    public unsafe virtual void SetScalarCurveParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FInterpCurveFloat Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstance.SetScalarCurveParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -166,7 +167,6 @@ public partial class MaterialInstance : BmSDK.Engine.MaterialInterface, BmSDK.IG
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FInterpCurveFloat>(paramsPtr + 8);
         return;
     }
 
@@ -193,11 +193,12 @@ public partial class MaterialInstance : BmSDK.Engine.MaterialInterface, BmSDK.IG
     /// <summary>
     /// Function: SetVectorParameterValue
     /// </summary>
-    public unsafe virtual void SetVectorParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FLinearColor Value)
+    public unsafe virtual void SetVectorParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FLinearColor Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstance.SetVectorParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -206,7 +207,6 @@ public partial class MaterialInstance : BmSDK.Engine.MaterialInterface, BmSDK.IG
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FLinearColor>(paramsPtr + 8);
         return;
     }
 

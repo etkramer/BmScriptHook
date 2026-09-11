@@ -189,12 +189,12 @@ public partial class CameraModifier_CameraShake : BmSDK.Engine.CameraModifier, B
     /// <summary>
     /// Function: InitializeOffset
     /// </summary>
-    public unsafe static float InitializeOffset(out BmSDK.Engine.CameraShake.FFOscillator Param)
+    public unsafe static float InitializeOffset(BmSDK.Engine.CameraShake.FFOscillator Param)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier_CameraShake.InitializeOffset", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Param, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        Param = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.CameraShake.FFOscillator>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 12);
     }
 

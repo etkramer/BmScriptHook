@@ -367,26 +367,26 @@ public partial class Camera : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: FillCameraCache
     /// </summary>
-    public unsafe virtual void FillCameraCache(out BmSDK.GameObject.FTPOV NewPOV)
+    public unsafe virtual void FillCameraCache(BmSDK.GameObject.FTPOV NewPOV)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Camera.FillCameraCache", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NewPOV, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        NewPOV = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FTPOV>(paramsPtr + 0);
         return;
     }
 
     /// <summary>
     /// Function: BlendViewTargets
     /// </summary>
-    public unsafe virtual BmSDK.GameObject.FTPOV BlendViewTargets(out BmSDK.Engine.Camera.FTViewTarget A, out BmSDK.Engine.Camera.FTViewTarget B, float Alpha)
+    public unsafe virtual BmSDK.GameObject.FTPOV BlendViewTargets(BmSDK.Engine.Camera.FTViewTarget A, BmSDK.Engine.Camera.FTViewTarget B, float Alpha)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Camera.BlendViewTargets", true);
         byte* paramsPtr = stackalloc byte[148];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(A, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(B, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Alpha, paramsPtr + 88);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        A = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Camera.FTViewTarget>(paramsPtr + 0);
-        B = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Camera.FTViewTarget>(paramsPtr + 44);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FTPOV>(paramsPtr + 92);
     }
 

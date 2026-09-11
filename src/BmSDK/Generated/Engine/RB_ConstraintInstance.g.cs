@@ -281,10 +281,11 @@ public partial class RB_ConstraintInstance : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetAngularPositionTarget
     /// </summary>
-    public unsafe virtual void SetAngularPositionTarget(out BmSDK.GameObject.FQuat InPosTarget)
+    public unsafe virtual void SetAngularPositionTarget(BmSDK.GameObject.FQuat InPosTarget)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.RB_ConstraintInstance.SetAngularPositionTarget", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InPosTarget, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -293,7 +294,6 @@ public partial class RB_ConstraintInstance : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InPosTarget = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FQuat>(paramsPtr + 0);
         return;
     }
 

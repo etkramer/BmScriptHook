@@ -397,7 +397,7 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: DrawText
     /// </summary>
-    public unsafe virtual void DrawText(BmSDK.FString Text, bool CR, float XScale, float YScale, out BmSDK.Engine.Canvas.FFontRenderInfo RenderInfo)
+    public unsafe virtual void DrawText(BmSDK.FString Text, bool CR = default, float XScale = default, float YScale = default, BmSDK.Engine.Canvas.FFontRenderInfo RenderInfo = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.DrawText", true);
         byte* paramsPtr = stackalloc byte[64];
@@ -405,6 +405,7 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CR, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(XScale, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(YScale, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RenderInfo, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -413,7 +414,6 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        RenderInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Canvas.FFontRenderInfo>(paramsPtr + 24);
         return;
     }
 
