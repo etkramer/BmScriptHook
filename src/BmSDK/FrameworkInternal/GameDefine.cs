@@ -1,6 +1,6 @@
 namespace BmSDK.Framework;
 
-internal abstract class GameDefine
+public abstract class GameDefine
 {
     private static GameDefine? s_current = null;
 
@@ -57,6 +57,13 @@ internal abstract class GameDefine
         public const IntPtr Object__Class = 36;
         public const IntPtr Struct__SuperStruct = 56;
         public const IntPtr Class__ClassFlags = 180;
+    }
+
+    // Identical across builds, so not per-define
+    public static class VTableOffsets
+    {
+        public const IntPtr DownloadableContentManager__InstallPackages = 340;
+        public const IntPtr DownloadableContentManager__InstallNonPackageFiles = 344;
     }
 
     // Identifies the build from the PE header's TimeDateStamp

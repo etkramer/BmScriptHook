@@ -105,6 +105,9 @@ internal static class Loader
             // Notify scripts of game init
             if (!s_hasGameInited && funcName == InitFuncName)
             {
+                // Install DLC bundles
+                DLCManager.Run();
+
                 // Preload packages and root keep-alive objects before any world loads
                 PreloadManager.Run();
 
