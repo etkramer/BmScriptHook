@@ -9,7 +9,10 @@ namespace BmSDK.Framework;
 internal static class DLCManager
 {
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void InstallBundleDelegate(IntPtr self, IntPtr dlcBundle);
+    private delegate void InstallBundleDelegate(
+        IntPtr self,
+        ref OnlineSubsystem.FOnlineContent dlcBundle
+    );
 
     public static unsafe void Run()
     {
@@ -35,7 +38,9 @@ internal static class DLCManager
         // Grab native functions from vtable (slightly more portable than regular offsets)
         var vtable = *(IntPtr*)manager.Ptr;
         var installPackages = Marshal.GetDelegateForFunctionPointer<InstallBundleDelegate>(
-            *(IntPtr*)(vtable + GameDefine.VTableOffsets.DownloadableContentManager__InstallPackages)
+            *(IntPtr*)(
+                vtable + GameDefine.VTableOffsets.DownloadableContentManager__InstallPackages
+            )
         );
         var installNonPackageFiles = Marshal.GetDelegateForFunctionPointer<InstallBundleDelegate>(
             *(IntPtr*)(
@@ -43,16 +48,14 @@ internal static class DLCManager
             )
         );
 
-        var bundles = enumerator.DLCBundles;
-        for (var i = 0; i < bundles.Count; i++)
+        var bundles = enumerator.DLCBundles.AsSpan();
+        for (var i = 0; i < bundles.Length; i++)
         {
-            // The native element, not the managed copy the indexer hands back
-            var bundlePtr = bundles.Data.AllocatorInstance + (i * bundles.Stride);
             var name = bundles[i].FriendlyName.ToString() ?? string.Empty;
 
             Debug.Log($"Installing DLC bundle '{name}'");
-            installPackages(manager.Ptr, bundlePtr);
-            installNonPackageFiles(manager.Ptr, bundlePtr);
+            installPackages(manager.Ptr, ref bundles[i]);
+            installNonPackageFiles(manager.Ptr, ref bundles[i]);
 
             manager.InstalledDLC.Push(name);
         }
