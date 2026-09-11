@@ -1,6 +1,6 @@
 namespace BmSDK.Framework;
 
-internal sealed class GameDefineEpic : GameDefine
+public sealed class GameDefineEpic : GameDefine
 {
     public const uint TimeDateStamp = 0x5D9F84DF;
 
