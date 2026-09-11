@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.20.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.19.0...v0.20.0) (2026-09-11)
+
+
+### Features
+
+* Add TArray.AsSpan() for ref access ([#138](https://github.com/Team-BmSDK/BmSDK-AC/issues/138)) ([cf2dd7c](https://github.com/Team-BmSDK/BmSDK-AC/commit/cf2dd7cc9252ab0b127913b1a323e2fb17485d62))
+* Load DLC bundles on startup ([#136](https://github.com/Team-BmSDK/BmSDK-AC/issues/136)) ([35ba46b](https://github.com/Team-BmSDK/BmSDK-AC/commit/35ba46b46c7ce09e89945a0ac8de31eaf06a9c0c))
+
 ## [0.19.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.18.0...v0.19.0) (2026-09-09)
 
 
