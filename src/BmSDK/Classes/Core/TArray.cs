@@ -278,3 +278,16 @@ public unsafe class TArray<TManaged> : IArray, IList<TManaged>, IDisposable
         }
     }
 }
+
+public static unsafe class TArrayExtensions
+{
+    /// <summary>
+    /// Creates a new Span over the array's native elements.
+    /// </summary>
+    public static Span<T> AsSpan<T>(this TArray<T> array)
+        where T : unmanaged
+    {
+        Guard.Require(array.Stride == sizeof(T), "Managed and unmanaged element sizes disagree");
+        return new Span<T>((void*)array.Data.AllocatorInstance, array.Count);
+    }
+}
