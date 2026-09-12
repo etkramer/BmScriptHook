@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.0...v0.20.1) (2026-09-12)
+
+
+### Bug Fixes
+
+* Load .inis from DLC bundles ([#139](https://github.com/Team-BmSDK/BmSDK-AC/issues/139)) ([2ff034e](https://github.com/Team-BmSDK/BmSDK-AC/commit/2ff034e64f36b8b4500d55ca728cb3cb38d8f409))
+
 ## [0.20.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.19.0...v0.20.0) (2026-09-11)
 
 
