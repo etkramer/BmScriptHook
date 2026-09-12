@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.21.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.2...v0.21.0) (2026-09-12)
+
+
+### Features
+
+* Generate UE3's "out" keyword as "ref" ([#143](https://github.com/Team-BmSDK/BmSDK-AC/issues/143)) ([03f828a](https://github.com/Team-BmSDK/BmSDK-AC/commit/03f828a7524e2f850fa739d71057ba448290276a))
+* Introduce and release an installer .exe for BmSDK ([#145](https://github.com/Team-BmSDK/BmSDK-AC/issues/145)) ([63f293c](https://github.com/Team-BmSDK/BmSDK-AC/commit/63f293c03a296fc55dadec2bf334514143ab5e5b))
+
 ## [0.20.2](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.1...v0.20.2) (2026-09-12)
 
 
