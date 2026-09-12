@@ -17,7 +17,7 @@ internal static class DLCManager
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate void UpdateObjectListsDelegate(IntPtr self);
 
-    public static unsafe void Run(bool rescan = true)
+    public static unsafe void Run(bool rescan)
     {
         var engine = Game.GetEngine();
 

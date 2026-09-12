@@ -108,7 +108,7 @@ internal static class Loader
             if (!s_hasGameInited && funcName == InitFuncName)
             {
                 // Install DLC bundles
-                DLCManager.Run();
+                DLCManager.Run(true);
 
                 // Preload packages and root keep-alive objects before any world loads
                 PreloadManager.Run();
@@ -122,7 +122,7 @@ internal static class Loader
             // The game's own DLC scan begins by clearing every bundle, so reinstall once it completes.
             if (funcName == DLCScanCompleteFuncName)
             {
-                DLCManager.Run(rescan: false);
+                DLCManager.Run(false);
             }
 
             // Notify scripts of game start
