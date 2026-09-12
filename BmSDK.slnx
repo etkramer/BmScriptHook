@@ -10,5 +10,8 @@
     <BuildType Project="Debug" />
   </Project>
   <Project Path="src/BmSDK.Host/BmSDK.Host.vcxproj" Id="bca40631-3e36-4227-a7d2-7cb604e26aa0" />
+  <Project Path="src/BmSDK.Installer/BmSDK.Installer.csproj">
+    <Build Project="false" />
+  </Project>
   <Project Path="src/BmSDK/BmSDK.csproj" />
 </Solution>

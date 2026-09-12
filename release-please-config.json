@@ -6,7 +6,8 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": false,
       "extra-files": [
-        "src/BmSDK/BmSDK.csproj"
+        "src/BmSDK/BmSDK.csproj",
+        "src/BmSDK.Installer/BmSDK.Installer.csproj"
       ],
 
       "changelog-path": "CHANGELOG.md",
