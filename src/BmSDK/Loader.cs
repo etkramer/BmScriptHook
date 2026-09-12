@@ -14,6 +14,8 @@ internal static class Loader
     private const string EnterMenuFuncName = "GFxUI.GFxMoviePlayer:Init";
     private const string EnterGameFuncName = "BmGame.RPlayerController:ClientReady";
     private const string TickFuncName = "BmGame.RGameInfo:Tick";
+    private const string DLCScanCompleteFuncName =
+        "Engine.DownloadableContentManager:RefreshDLCEnumComplete";
 
     private static GameFunctions.EngineTickDelegate? _EngineTickDetourBase = null;
     private static GameFunctions.ProcessInternalDelegate? _ProcessInternalDetourBase = null;
@@ -115,6 +117,12 @@ internal static class Loader
                     Debug.RunWithSender(script.Name, script.Main)
                 );
                 s_hasGameInited = true;
+            }
+
+            // The game's own DLC scan begins by clearing every bundle, so reinstall once it completes.
+            if (funcName == DLCScanCompleteFuncName)
+            {
+                DLCManager.Run(rescan: false);
             }
 
             // Notify scripts of game start
