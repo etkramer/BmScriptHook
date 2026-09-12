@@ -62,6 +62,7 @@ public abstract class GameDefine
     // Identical across builds, so not per-define
     public static class VTableOffsets
     {
+        public const IntPtr DownloadableContentManager__UpdateObjectLists = 336;
         public const IntPtr DownloadableContentManager__InstallPackages = 340;
         public const IntPtr DownloadableContentManager__InstallNonPackageFiles = 344;
     }
