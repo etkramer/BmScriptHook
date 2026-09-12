@@ -583,10 +583,11 @@ public partial class RPawnBossClayfaceCoup : BmSDK.BmGame.RPawnBossClayfaceBase,
     /// <summary>
     /// Function: HitByFreezeGrenade
     /// </summary>
-    public unsafe override bool HitByFreezeGrenade(out int bPlayEffect)
+    public unsafe override bool HitByFreezeGrenade(ref int bPlayEffect)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossClayfaceCoup.HitByFreezeGrenade", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bPlayEffect, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         bPlayEffect = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 4);

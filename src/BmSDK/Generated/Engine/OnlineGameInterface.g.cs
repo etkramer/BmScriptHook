@@ -43,7 +43,7 @@ public partial interface OnlineGameInterface : BmSDK.Interface
     /// <summary>
     /// Function: OnGameInviteAccepted
     /// </summary>
-    public unsafe void OnGameInviteAccepted(out BmSDK.Engine.OnlineGameSearch.FOnlineGameSearchResult InviteResult);
+    public unsafe void OnGameInviteAccepted(BmSDK.Engine.OnlineGameSearch.FOnlineGameSearchResult InviteResult);
 
     /// <summary>
     /// Function: ClearArbitrationRegistrationCompleteDelegate
@@ -128,7 +128,7 @@ public partial interface OnlineGameInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetResolvedConnectString
     /// </summary>
-    public unsafe bool GetResolvedConnectString(BmSDK.FName SessionName, out BmSDK.FString ConnectInfo);
+    public unsafe bool GetResolvedConnectString(BmSDK.FName SessionName, ref BmSDK.FString ConnectInfo);
 
     /// <summary>
     /// Function: ClearJoinOnlineGameCompleteDelegate
@@ -148,7 +148,7 @@ public partial interface OnlineGameInterface : BmSDK.Interface
     /// <summary>
     /// Function: JoinOnlineGame
     /// </summary>
-    public unsafe bool JoinOnlineGame(byte PlayerNum, BmSDK.FName SessionName, out BmSDK.Engine.OnlineGameSearch.FOnlineGameSearchResult DesiredGame);
+    public unsafe bool JoinOnlineGame(byte PlayerNum, BmSDK.FName SessionName, BmSDK.Engine.OnlineGameSearch.FOnlineGameSearchResult DesiredGame);
 
     /// <summary>
     /// Function: FreeSearchResults

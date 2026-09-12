@@ -76,10 +76,11 @@ public partial class RSeqAct_SpeechEventManagerBase : BmSDK.BmGame.RSeqAct_PlayS
     /// <summary>
     /// Function: QueueSpeechEvent
     /// </summary>
-    public unsafe virtual void QueueSpeechEvent(out BmSDK.BmGame.RSeqAct_SpeechEventManagerBase.FSpeechEvent CurrEvent, int OutputID, BmSDK.Engine.Actor Target)
+    public unsafe virtual void QueueSpeechEvent(ref BmSDK.BmGame.RSeqAct_SpeechEventManagerBase.FSpeechEvent CurrEvent, int OutputID, BmSDK.Engine.Actor Target)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSeqAct_SpeechEventManagerBase.QueueSpeechEvent", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CurrEvent, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OutputID, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Target, paramsPtr + 40);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);

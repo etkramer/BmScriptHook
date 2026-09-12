@@ -81,10 +81,11 @@ public partial class OnlineMatchmakingStats : BmSDK.GameObject, BmSDK.IGameObjec
     /// <summary>
     /// Function: StopTimer
     /// </summary>
-    public unsafe virtual void StopTimer(out BmSDK.Engine.OnlineMatchmakingStats.FMMStats_Timer Timer)
+    public unsafe virtual void StopTimer(ref BmSDK.Engine.OnlineMatchmakingStats.FMMStats_Timer Timer)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineMatchmakingStats.StopTimer", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Timer, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -100,10 +101,11 @@ public partial class OnlineMatchmakingStats : BmSDK.GameObject, BmSDK.IGameObjec
     /// <summary>
     /// Function: StartTimer
     /// </summary>
-    public unsafe virtual void StartTimer(out BmSDK.Engine.OnlineMatchmakingStats.FMMStats_Timer Timer)
+    public unsafe virtual void StartTimer(ref BmSDK.Engine.OnlineMatchmakingStats.FMMStats_Timer Timer)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineMatchmakingStats.StartTimer", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Timer, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

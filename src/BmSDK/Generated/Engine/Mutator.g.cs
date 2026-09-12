@@ -76,14 +76,16 @@ public partial class Mutator : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: NetDamage
     /// </summary>
-    public unsafe virtual void NetDamage(int OriginalDamage, out int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
+    public unsafe virtual void NetDamage(int OriginalDamage, ref int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Mutator.NetDamage", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OriginalDamage, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Damage, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(injured, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InstigatedBy, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Momentum, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 40);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageCauser, paramsPtr + 44);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -136,13 +138,14 @@ public partial class Mutator : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: OverridePickupQuery
     /// </summary>
-    public unsafe virtual bool OverridePickupQuery(BmSDK.Engine.Pawn Other, BmSDK.Class ItemClass, BmSDK.Engine.Actor Pickup, out byte bAllowPickup)
+    public unsafe virtual bool OverridePickupQuery(BmSDK.Engine.Pawn Other, BmSDK.Class ItemClass, BmSDK.Engine.Actor Pickup, ref byte bAllowPickup)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Mutator.OverridePickupQuery", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Other, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ItemClass, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Pickup, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bAllowPickup, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         bAllowPickup = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 16);
@@ -189,11 +192,12 @@ public partial class Mutator : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSeamlessTravelActorList
     /// </summary>
-    public unsafe virtual void GetSeamlessTravelActorList(bool bToEntry, out BmSDK.TArray<BmSDK.Engine.Actor> ActorList)
+    public unsafe virtual void GetSeamlessTravelActorList(bool bToEntry, ref BmSDK.TArray<BmSDK.Engine.Actor> ActorList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Mutator.GetSeamlessTravelActorList", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bToEntry, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActorList, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ActorList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor>>(paramsPtr + 4);
         return;
@@ -202,11 +206,12 @@ public partial class Mutator : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: InitMutator
     /// </summary>
-    public unsafe virtual void InitMutator(BmSDK.FString Options, out BmSDK.FString ErrorMessage)
+    public unsafe virtual void InitMutator(BmSDK.FString Options, ref BmSDK.FString ErrorMessage)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Mutator.InitMutator", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ErrorMessage, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ErrorMessage = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
         return;
@@ -350,10 +355,12 @@ public partial class Mutator : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: ModifyLogin
     /// </summary>
-    public unsafe virtual void ModifyLogin(out BmSDK.FString Portal, out BmSDK.FString Options)
+    public unsafe virtual void ModifyLogin(ref BmSDK.FString Portal, ref BmSDK.FString Options)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Mutator.ModifyLogin", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Portal, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Portal = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         Options = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);

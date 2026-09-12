@@ -87,10 +87,11 @@ public partial class RBatarangProjectile_Controllable : BmSDK.BmGame.RBatarangPr
     /// <summary>
     /// Function: TraceLaserSight
     /// </summary>
-    public unsafe virtual void TraceLaserSight(out System.Numerics.Vector3 ForwardCheckLocation)
+    public unsafe virtual void TraceLaserSight(ref System.Numerics.Vector3 ForwardCheckLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBatarangProjectile_Controllable.TraceLaserSight", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ForwardCheckLocation, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -255,10 +256,11 @@ public partial class RBatarangProjectile_Controllable : BmSDK.BmGame.RBatarangPr
     /// <summary>
     /// Function: GetLevelBorderHit
     /// </summary>
-    public unsafe virtual bool GetLevelBorderHit(out System.Numerics.Vector3 HitLocation, System.Numerics.Vector3 Loc, System.Numerics.Vector3 Dir, float Range)
+    public unsafe virtual bool GetLevelBorderHit(ref System.Numerics.Vector3 HitLocation, System.Numerics.Vector3 Loc, System.Numerics.Vector3 Dir, float Range)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBatarangProjectile_Controllable.GetLevelBorderHit", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Dir, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Range, paramsPtr + 36);

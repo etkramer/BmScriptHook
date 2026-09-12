@@ -1145,11 +1145,12 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: GetNumberOfCounterHits
     /// </summary>
-    public unsafe virtual int GetNumberOfCounterHits(BmSDK.Engine.AnimSequence StrikeAnimSequence, out BmSDK.TArray<float> SlowMoHitTimes)
+    public unsafe virtual int GetNumberOfCounterHits(BmSDK.Engine.AnimSequence StrikeAnimSequence, ref BmSDK.TArray<float> SlowMoHitTimes)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.GetNumberOfCounterHits", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StrikeAnimSequence, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SlowMoHitTimes, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1293,10 +1294,11 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: FindValidCloseStrikeTargets
     /// </summary>
-    public unsafe virtual void FindValidCloseStrikeTargets(out BmSDK.TArray<BmSDK.BmGame.RPawnVillain> PawnList, BmSDK.Class DamageType)
+    public unsafe virtual void FindValidCloseStrikeTargets(ref BmSDK.TArray<BmSDK.BmGame.RPawnVillain> PawnList, BmSDK.Class DamageType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.FindValidCloseStrikeTargets", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PawnList, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         PawnList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RPawnVillain>>(paramsPtr + 0);
@@ -1306,11 +1308,12 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: FindHighestPriorityClosePawn
     /// </summary>
-    public unsafe virtual bool FindHighestPriorityClosePawn(BmSDK.Class DamageType, out BmSDK.BmGame.RPawnVillain BestPawn, float MaxDist)
+    public unsafe virtual bool FindHighestPriorityClosePawn(BmSDK.Class DamageType, ref BmSDK.BmGame.RPawnVillain BestPawn, float MaxDist)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.FindHighestPriorityClosePawn", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BestPawn, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxDist, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         BestPawn = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnVillain>(paramsPtr + 4);
@@ -1320,11 +1323,13 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: FindClosestPawnForStrike
     /// </summary>
-    public unsafe virtual bool FindClosestPawnForStrike(BmSDK.Class DamageType, out float ClosestDist, out BmSDK.BmGame.RPawnVillain ClosestPawn)
+    public unsafe virtual bool FindClosestPawnForStrike(BmSDK.Class DamageType, ref float ClosestDist, ref BmSDK.BmGame.RPawnVillain ClosestPawn)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.FindClosestPawnForStrike", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ClosestDist, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ClosestPawn, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ClosestDist = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         ClosestPawn = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnVillain>(paramsPtr + 8);
@@ -1851,10 +1856,11 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: AssignTargetScores
     /// </summary>
-    public unsafe virtual void AssignTargetScores(out BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> TargetList, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType = default)
+    public unsafe virtual void AssignTargetScores(ref BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> TargetList, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.AssignTargetScores", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetList, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FacingDir, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
@@ -1872,10 +1878,11 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: RemoveTargetsOutsideTargetCone
     /// </summary>
-    public unsafe virtual void RemoveTargetsOutsideTargetCone(out BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> TargetList, float MaxDist, float MaxVenomDist, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType)
+    public unsafe virtual void RemoveTargetsOutsideTargetCone(ref BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> TargetList, float MaxDist, float MaxVenomDist, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.RemoveTargetsOutsideTargetCone", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetList, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxDist, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxVenomDist, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FacingDir, paramsPtr + 20);
@@ -1918,10 +1925,11 @@ public partial class RPawnPlayerCombat : BmSDK.BmGame.RPawnPlayerAnim, BmSDK.IGa
     /// <summary>
     /// Function: FindValidFacingActorsForStrike
     /// </summary>
-    public unsafe virtual void FindValidFacingActorsForStrike(out BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> ValidTargets, float MaxDist, float MaxVenomDist, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType)
+    public unsafe virtual void FindValidFacingActorsForStrike(ref BmSDK.TArray<BmSDK.BmGame.RPawnPlayerCombat.FStrikeTargetInfo> ValidTargets, float MaxDist, float MaxVenomDist, System.Numerics.Vector3 FacingDir, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnPlayerCombat.FindValidFacingActorsForStrike", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ValidTargets, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxDist, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxVenomDist, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FacingDir, paramsPtr + 20);

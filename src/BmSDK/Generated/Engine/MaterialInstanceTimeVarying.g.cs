@@ -158,11 +158,12 @@ public partial class MaterialInstanceTimeVarying : BmSDK.Engine.MaterialInstance
     /// <summary>
     /// Function: SetVectorCurveParameterValue
     /// </summary>
-    public unsafe virtual void SetVectorCurveParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FInterpCurveVector Value)
+    public unsafe virtual void SetVectorCurveParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FInterpCurveVector Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstanceTimeVarying.SetVectorCurveParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -171,18 +172,18 @@ public partial class MaterialInstanceTimeVarying : BmSDK.Engine.MaterialInstance
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FInterpCurveVector>(paramsPtr + 8);
         return;
     }
 
     /// <summary>
     /// Function: SetVectorParameterValue
     /// </summary>
-    public unsafe override void SetVectorParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FLinearColor Value)
+    public unsafe override void SetVectorParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FLinearColor Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstanceTimeVarying.SetVectorParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -191,7 +192,6 @@ public partial class MaterialInstanceTimeVarying : BmSDK.Engine.MaterialInstance
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FLinearColor>(paramsPtr + 8);
         return;
     }
 
@@ -257,11 +257,12 @@ public partial class MaterialInstanceTimeVarying : BmSDK.Engine.MaterialInstance
     /// <summary>
     /// Function: SetScalarCurveParameterValue
     /// </summary>
-    public unsafe override void SetScalarCurveParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FInterpCurveFloat Value)
+    public unsafe override void SetScalarCurveParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FInterpCurveFloat Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstanceTimeVarying.SetScalarCurveParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -270,7 +271,6 @@ public partial class MaterialInstanceTimeVarying : BmSDK.Engine.MaterialInstance
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FInterpCurveFloat>(paramsPtr + 8);
         return;
     }
 

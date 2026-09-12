@@ -470,10 +470,11 @@ public partial class RLevelTransition : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllConnectedLevels
     /// </summary>
-    public unsafe virtual void GetAllConnectedLevels(out BmSDK.TArray<BmSDK.FName> Levels)
+    public unsafe virtual void GetAllConnectedLevels(ref BmSDK.TArray<BmSDK.FName> Levels)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RLevelTransition.GetAllConnectedLevels", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Levels, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

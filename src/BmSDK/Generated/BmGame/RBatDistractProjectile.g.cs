@@ -87,11 +87,12 @@ public partial class RBatDistractProjectile : BmSDK.BmGame.RBatarangProjectile, 
     /// <summary>
     /// Function: CanSeeTarget
     /// </summary>
-    public unsafe virtual bool CanSeeTarget(BmSDK.BmGame.RPawnVillain TargetVillain, out BmSDK.TArray<BmSDK.FName> CheckBoneNames)
+    public unsafe virtual bool CanSeeTarget(BmSDK.BmGame.RPawnVillain TargetVillain, BmSDK.TArray<BmSDK.FName> CheckBoneNames)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBatDistractProjectile.CanSeeTarget", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetVillain, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckBoneNames, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -100,7 +101,6 @@ public partial class RBatDistractProjectile : BmSDK.BmGame.RBatarangProjectile, 
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        CheckBoneNames = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.FName>>(paramsPtr + 4);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 16);
     }
 

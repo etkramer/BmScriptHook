@@ -76,11 +76,12 @@ public partial class UIRoot : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetDataStoreStringValue
     /// </summary>
-    public unsafe static bool GetDataStoreStringValue(BmSDK.FString InDataStoreMarkup, out BmSDK.FString OutStringValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
+    public unsafe static bool GetDataStoreStringValue(BmSDK.FString InDataStoreMarkup, ref BmSDK.FString OutStringValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIRoot.GetDataStoreStringValue", true);
         byte* paramsPtr = stackalloc byte[124];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InDataStoreMarkup, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutStringValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OwnerPlayer, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutStringValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
@@ -90,11 +91,12 @@ public partial class UIRoot : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetDataStoreFieldValue
     /// </summary>
-    public unsafe static bool GetDataStoreFieldValue(BmSDK.FString InDataStoreMarkup, out BmSDK.Engine.UIRoot.FUIProviderFieldValue OutFieldValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
+    public unsafe static bool GetDataStoreFieldValue(BmSDK.FString InDataStoreMarkup, ref BmSDK.Engine.UIRoot.FUIProviderFieldValue OutFieldValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIRoot.GetDataStoreFieldValue", true);
         byte* paramsPtr = stackalloc byte[108];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InDataStoreMarkup, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutFieldValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OwnerPlayer, paramsPtr + 100);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -125,11 +127,12 @@ public partial class UIRoot : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetDataStoreFieldValue
     /// </summary>
-    public unsafe static bool SetDataStoreFieldValue(BmSDK.FString InDataStoreMarkup, out BmSDK.Engine.UIRoot.FUIProviderFieldValue InFieldValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
+    public unsafe static bool SetDataStoreFieldValue(BmSDK.FString InDataStoreMarkup, BmSDK.Engine.UIRoot.FUIProviderFieldValue InFieldValue, BmSDK.Engine.LocalPlayer OwnerPlayer = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIRoot.SetDataStoreFieldValue", true);
         byte* paramsPtr = stackalloc byte[108];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InDataStoreMarkup, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InFieldValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OwnerPlayer, paramsPtr + 100);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -139,7 +142,6 @@ public partial class UIRoot : BmSDK.StateObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InFieldValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.UIRoot.FUIProviderFieldValue>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 104);
     }
 

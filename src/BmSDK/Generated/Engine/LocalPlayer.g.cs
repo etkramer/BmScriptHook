@@ -103,11 +103,13 @@ public partial class LocalPlayer : BmSDK.Engine.Player, BmSDK.IGameObject
     /// <summary>
     /// Function: ProjectStaticMeshBounds
     /// </summary>
-    public unsafe virtual bool ProjectStaticMeshBounds(BmSDK.Engine.StaticMeshComponent MeshComponent, out System.Numerics.Vector2 Min, out System.Numerics.Vector2 Max)
+    public unsafe virtual bool ProjectStaticMeshBounds(BmSDK.Engine.StaticMeshComponent MeshComponent, ref System.Numerics.Vector2 Min, ref System.Numerics.Vector2 Max)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.LocalPlayer.ProjectStaticMeshBounds", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MeshComponent, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Min, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Max, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -124,11 +126,13 @@ public partial class LocalPlayer : BmSDK.Engine.Player, BmSDK.IGameObject
     /// <summary>
     /// Function: DeProject
     /// </summary>
-    public unsafe virtual void DeProject(System.Numerics.Vector2 RelativeScreenPos, out System.Numerics.Vector3 WorldOrigin, out System.Numerics.Vector3 WorldDirection)
+    public unsafe virtual void DeProject(System.Numerics.Vector2 RelativeScreenPos, ref System.Numerics.Vector3 WorldOrigin, ref System.Numerics.Vector3 WorldDirection)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.LocalPlayer.DeProject", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RelativeScreenPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldOrigin, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldDirection, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -346,11 +350,12 @@ public partial class LocalPlayer : BmSDK.Engine.Player, BmSDK.IGameObject
     /// <summary>
     /// Function: SpawnPlayActor
     /// </summary>
-    public unsafe virtual bool SpawnPlayActor(BmSDK.FString URL, out BmSDK.FString OutError)
+    public unsafe virtual bool SpawnPlayActor(BmSDK.FString URL, ref BmSDK.FString OutError)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.LocalPlayer.SpawnPlayActor", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(URL, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutError, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -120,10 +120,11 @@ public partial class OnlineSubsystemCommonImpl : BmSDK.Engine.OnlineSubsystem, B
     /// <summary>
     /// Function: GetInfocastFilename
     /// </summary>
-    public unsafe virtual void GetInfocastFilename(out BmSDK.FString Filename)
+    public unsafe virtual void GetInfocastFilename(ref BmSDK.FString Filename)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "IpDrv.OnlineSubsystemCommonImpl.GetInfocastFilename", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Filename, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -125,12 +125,13 @@ public partial class RCrowsBase : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: FindClosestVisibleSkelMesh
     /// </summary>
-    public unsafe virtual bool FindClosestVisibleSkelMesh(System.Numerics.Vector3 TestLoc, float Range, out System.Numerics.Vector3 CrowLoc)
+    public unsafe virtual bool FindClosestVisibleSkelMesh(System.Numerics.Vector3 TestLoc, float Range, ref System.Numerics.Vector3 CrowLoc)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCrowsBase.FindClosestVisibleSkelMesh", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestLoc, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Range, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CrowLoc, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -146,12 +147,14 @@ public partial class RCrowsBase : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: FindClosestCrowWithinRange
     /// </summary>
-    public unsafe static bool FindClosestCrowWithinRange(System.Numerics.Vector3 TestLoc, float Range, out System.Numerics.Vector3 CrowLoc, out BmSDK.BmGame.RCrowsBase Crow, bool IgnoreFlying, bool IgnoreIdle)
+    public unsafe static bool FindClosestCrowWithinRange(System.Numerics.Vector3 TestLoc, float Range, ref System.Numerics.Vector3 CrowLoc, ref BmSDK.BmGame.RCrowsBase Crow, bool IgnoreFlying, bool IgnoreIdle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCrowsBase.FindClosestCrowWithinRange", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestLoc, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Range, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CrowLoc, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Crow, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IgnoreFlying, paramsPtr + 32);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IgnoreIdle, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;

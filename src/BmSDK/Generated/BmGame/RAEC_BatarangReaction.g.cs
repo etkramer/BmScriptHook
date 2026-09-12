@@ -316,11 +316,12 @@ public partial class RAEC_BatarangReaction : BmSDK.BmGame.RAlertEventCoordinator
     /// <summary>
     /// Function: GetParamsFromReactionType
     /// </summary>
-    public unsafe virtual bool GetParamsFromReactionType(BmSDK.BmGame.RBMAIController.BRAECReactionType TestType, out float JumpRange)
+    public unsafe virtual bool GetParamsFromReactionType(BmSDK.BmGame.RBMAIController.BRAECReactionType TestType, ref float JumpRange)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_BatarangReaction.GetParamsFromReactionType", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestType, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(JumpRange, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         JumpRange = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 8);
@@ -366,10 +367,11 @@ public partial class RAEC_BatarangReaction : BmSDK.BmGame.RAlertEventCoordinator
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe override void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe override void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_BatarangReaction.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;

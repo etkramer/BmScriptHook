@@ -191,11 +191,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetRangedProfileSettingValue
     /// </summary>
-    public unsafe virtual bool GetRangedProfileSettingValue(int ProfileId, out float OutValue)
+    public unsafe virtual bool GetRangedProfileSettingValue(int ProfileId, ref float OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetRangedProfileSettingValue", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -231,11 +232,15 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingRange
     /// </summary>
-    public unsafe virtual bool GetProfileSettingRange(int ProfileId, out float OutMinValue, out float OutMaxValue, out float RangeIncrement, out byte bFormatAsInt)
+    public unsafe virtual bool GetProfileSettingRange(int ProfileId, ref float OutMinValue, ref float OutMaxValue, ref float RangeIncrement, ref byte bFormatAsInt)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingRange", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutMinValue, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutMaxValue, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RangeIncrement, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bFormatAsInt, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -254,11 +259,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingMappingIds
     /// </summary>
-    public unsafe static bool GetProfileSettingMappingIds(int ProfileId, out BmSDK.TArray<int> Ids)
+    public unsafe static bool GetProfileSettingMappingIds(int ProfileId, ref BmSDK.TArray<int> Ids)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingMappingIds", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Ids, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -274,11 +280,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingMappingType
     /// </summary>
-    public unsafe virtual bool GetProfileSettingMappingType(int ProfileId, out BmSDK.Engine.Settings.EPropertyValueMappingType OutType)
+    public unsafe virtual bool GetProfileSettingMappingType(int ProfileId, ref BmSDK.Engine.Settings.EPropertyValueMappingType OutType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingMappingType", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutType, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -354,11 +361,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValueFloat
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValueFloat(int ProfileSettingId, out float Value)
+    public unsafe virtual bool GetProfileSettingValueFloat(int ProfileSettingId, ref float Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValueFloat", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -374,11 +382,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValueInt
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValueInt(int ProfileSettingId, out int Value)
+    public unsafe virtual bool GetProfileSettingValueInt(int ProfileSettingId, ref int Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValueInt", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -394,12 +403,13 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValueFromListIndex
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValueFromListIndex(int ProfileSettingId, int ListIndex, out int Value)
+    public unsafe virtual bool GetProfileSettingValueFromListIndex(int ProfileSettingId, int ListIndex, ref int Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValueFromListIndex", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ListIndex, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -415,11 +425,13 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValueId
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValueId(int ProfileSettingId, out int ValueId, out int ListIndex)
+    public unsafe virtual bool GetProfileSettingValueId(int ProfileSettingId, ref int ValueId, ref int ListIndex)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValueId", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ValueId, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ListIndex, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -436,11 +448,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetProfileSettingValue
     /// </summary>
-    public unsafe virtual bool SetProfileSettingValue(int ProfileSettingId, out BmSDK.FString NewValue)
+    public unsafe virtual bool SetProfileSettingValue(int ProfileSettingId, BmSDK.FString NewValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.SetProfileSettingValue", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NewValue, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -449,18 +462,18 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        NewValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 4);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 16);
     }
 
     /// <summary>
     /// Function: SetProfileSettingValueByName
     /// </summary>
-    public unsafe virtual bool SetProfileSettingValueByName(BmSDK.FName ProfileSettingName, out BmSDK.FString NewValue)
+    public unsafe virtual bool SetProfileSettingValueByName(BmSDK.FName ProfileSettingName, BmSDK.FString NewValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.SetProfileSettingValueByName", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NewValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -469,18 +482,18 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        NewValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 8);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 20);
     }
 
     /// <summary>
     /// Function: GetProfileSettingValueByName
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValueByName(BmSDK.FName ProfileSettingName, out BmSDK.FString Value)
+    public unsafe virtual bool GetProfileSettingValueByName(BmSDK.FName ProfileSettingName, ref BmSDK.FString Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValueByName", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -496,11 +509,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValues
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValues(int ProfileSettingId, out BmSDK.TArray<BmSDK.FName> Values)
+    public unsafe virtual bool GetProfileSettingValues(int ProfileSettingId, ref BmSDK.TArray<BmSDK.FName> Values)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValues", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Values, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -535,11 +549,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingValue
     /// </summary>
-    public unsafe virtual bool GetProfileSettingValue(int ProfileSettingId, out BmSDK.FString Value, int ValueMapID = default)
+    public unsafe virtual bool GetProfileSettingValue(int ProfileSettingId, ref BmSDK.FString Value, int ValueMapID = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ValueMapID, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -689,11 +704,12 @@ public partial class OnlinePlayerStorage : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProfileSettingId
     /// </summary>
-    public unsafe virtual bool GetProfileSettingId(BmSDK.FName ProfileSettingName, out int ProfileSettingId)
+    public unsafe virtual bool GetProfileSettingId(BmSDK.FName ProfileSettingName, ref int ProfileSettingId)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlinePlayerStorage.GetProfileSettingId", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

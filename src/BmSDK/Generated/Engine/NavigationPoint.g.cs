@@ -134,13 +134,14 @@ public partial class NavigationPoint : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllNavInRadius
     /// </summary>
-    public unsafe static bool GetAllNavInRadius(BmSDK.Engine.Actor chkActor, System.Numerics.Vector3 ChkPoint, float Radius, out BmSDK.TArray<BmSDK.Engine.NavigationPoint> out_NavList, bool bSkipBlocked = default, int inNetworkID = default, BmSDK.GameObject.FCylinder MinSize = default)
+    public unsafe static bool GetAllNavInRadius(BmSDK.Engine.Actor chkActor, System.Numerics.Vector3 ChkPoint, float Radius, ref BmSDK.TArray<BmSDK.Engine.NavigationPoint> out_NavList, bool bSkipBlocked = default, int inNetworkID = default, BmSDK.GameObject.FCylinder MinSize = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.NavigationPoint.GetAllNavInRadius", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(chkActor, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ChkPoint, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Radius, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_NavList, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bSkipBlocked, paramsPtr + 32);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inNetworkID, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinSize, paramsPtr + 40);
@@ -267,10 +268,12 @@ public partial class NavigationPoint : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: GetBoundingCylinder
     /// </summary>
-    public unsafe override void GetBoundingCylinder(out float CollisionRadius, out float CollisionHeight)
+    public unsafe override void GetBoundingCylinder(ref float CollisionRadius, ref float CollisionHeight)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.NavigationPoint.GetBoundingCylinder", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionRadius, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionHeight, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

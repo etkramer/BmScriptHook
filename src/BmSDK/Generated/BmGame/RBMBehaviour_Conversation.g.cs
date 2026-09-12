@@ -126,10 +126,12 @@ public partial class RBMBehaviour_Conversation : BmSDK.BmGame.RBMBehaviour_Contr
     /// <summary>
     /// Function: SnapForFirstFrame
     /// </summary>
-    public unsafe virtual void SnapForFirstFrame(out System.Numerics.Vector3 Loc, out BmSDK.Rotator Rot, bool bForceLoc)
+    public unsafe virtual void SnapForFirstFrame(ref System.Numerics.Vector3 Loc, ref BmSDK.Rotator Rot, bool bForceLoc)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_Conversation.SnapForFirstFrame", true);
         byte* paramsPtr = stackalloc byte[56];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bForceLoc, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);

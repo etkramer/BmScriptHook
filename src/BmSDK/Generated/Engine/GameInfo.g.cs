@@ -308,10 +308,11 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: HandleSeamlessTravelPlayer
     /// </summary>
-    public unsafe virtual void HandleSeamlessTravelPlayer(out BmSDK.Engine.Controller C)
+    public unsafe virtual void HandleSeamlessTravelPlayer(ref BmSDK.Engine.Controller C)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.HandleSeamlessTravelPlayer", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(C, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         C = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Controller>(paramsPtr + 0);
         return;
@@ -362,11 +363,12 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSeamlessTravelActorList
     /// </summary>
-    public unsafe virtual void GetSeamlessTravelActorList(bool bToEntry, out BmSDK.TArray<BmSDK.Engine.Actor> ActorList)
+    public unsafe virtual void GetSeamlessTravelActorList(bool bToEntry, ref BmSDK.TArray<BmSDK.Engine.Actor> ActorList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.GetSeamlessTravelActorList", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bToEntry, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActorList, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ActorList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor>>(paramsPtr + 4);
         return;
@@ -807,13 +809,15 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: ReduceDamage
     /// </summary>
-    public unsafe virtual void ReduceDamage(out int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
+    public unsafe virtual void ReduceDamage(ref int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.ReduceDamage", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Damage, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(injured, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InstigatedBy, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Momentum, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageCauser, paramsPtr + 40);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -1108,13 +1112,14 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: Login
     /// </summary>
-    public unsafe virtual BmSDK.Engine.PlayerController Login(BmSDK.FString Portal, BmSDK.FString Options, BmSDK.Engine.OnlineSubsystem.FUniqueNetId UniqueId, out BmSDK.FString ErrorMessage)
+    public unsafe virtual BmSDK.Engine.PlayerController Login(BmSDK.FString Portal, BmSDK.FString Options, BmSDK.Engine.OnlineSubsystem.FUniqueNetId UniqueId, ref BmSDK.FString ErrorMessage)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.Login", true);
         byte* paramsPtr = stackalloc byte[120];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Portal, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(UniqueId, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ErrorMessage, paramsPtr + 32);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ErrorMessage = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 32);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.PlayerController>(paramsPtr + 44);
@@ -1166,10 +1171,11 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: ProcessClientTravel
     /// </summary>
-    public unsafe virtual BmSDK.Engine.PlayerController ProcessClientTravel(out BmSDK.FString URL, BmSDK.GameObject.FGuid NextMapGuid, bool bSeamless, bool bAbsolute)
+    public unsafe virtual BmSDK.Engine.PlayerController ProcessClientTravel(ref BmSDK.FString URL, BmSDK.GameObject.FGuid NextMapGuid, bool bSeamless, bool bAbsolute)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.ProcessClientTravel", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(URL, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NextMapGuid, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bSeamless, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bAbsolute, paramsPtr + 20);
@@ -1217,11 +1223,12 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: InitGame
     /// </summary>
-    public unsafe virtual void InitGame(BmSDK.FString Options, out BmSDK.FString ErrorMessage)
+    public unsafe virtual void InitGame(BmSDK.FString Options, ref BmSDK.FString ErrorMessage)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.InitGame", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ErrorMessage, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ErrorMessage = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
         return;
@@ -1298,11 +1305,13 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GetKeyValue
     /// </summary>
-    public unsafe static void GetKeyValue(BmSDK.FString Pair, out BmSDK.FString Key, out BmSDK.FString Value)
+    public unsafe static void GetKeyValue(BmSDK.FString Pair, ref BmSDK.FString Key, ref BmSDK.FString Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.GetKeyValue", true);
         byte* paramsPtr = stackalloc byte[36];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Pair, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Key, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Key = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
         Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 24);
@@ -1312,10 +1321,12 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GrabOption
     /// </summary>
-    public unsafe static bool GrabOption(out BmSDK.FString Options, out BmSDK.FString Result)
+    public unsafe static bool GrabOption(ref BmSDK.FString Options, ref BmSDK.FString Result)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.GrabOption", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Result, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Options = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         Result = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
@@ -1554,11 +1565,13 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
@@ -1590,10 +1603,12 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GetMapCommonPackageName
     /// </summary>
-    public unsafe virtual bool GetMapCommonPackageName(out BmSDK.FString InFilename, out BmSDK.FString OutCommonPackageName)
+    public unsafe virtual bool GetMapCommonPackageName(BmSDK.FString InFilename, ref BmSDK.FString OutCommonPackageName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.GetMapCommonPackageName", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InFilename, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutCommonPackageName, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1602,7 +1617,6 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InFilename = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         OutCommonPackageName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 24);
     }
@@ -1610,10 +1624,12 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSupportedGameTypes
     /// </summary>
-    public unsafe virtual bool GetSupportedGameTypes(out BmSDK.FString InFilename, out BmSDK.Engine.GameInfo.FGameTypePrefix OutGameType, bool bCheckExt = default)
+    public unsafe virtual bool GetSupportedGameTypes(BmSDK.FString InFilename, ref BmSDK.Engine.GameInfo.FGameTypePrefix OutGameType, bool bCheckExt = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameInfo.GetSupportedGameTypes", true);
         byte* paramsPtr = stackalloc byte[72];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InFilename, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutGameType, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCheckExt, paramsPtr + 64);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -1623,7 +1639,6 @@ public partial class GameInfo : BmSDK.Engine.Info, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InFilename = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         OutGameType = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.GameInfo.FGameTypePrefix>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 68);
     }

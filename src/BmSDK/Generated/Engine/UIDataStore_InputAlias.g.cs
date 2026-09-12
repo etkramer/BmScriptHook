@@ -120,10 +120,11 @@ public partial class UIDataStore_InputAlias : BmSDK.Engine.UIDataStore_StringBas
     /// <summary>
     /// Function: GetAliasInputKeyDataByIndex
     /// </summary>
-    public unsafe virtual bool GetAliasInputKeyDataByIndex(out BmSDK.Engine.UIRoot.FRawInputKeyEventData out_InputKeyData, int AliasIndex, BmSDK.Engine.UIRoot.EInputPlatformType OverridePlatform = default)
+    public unsafe virtual bool GetAliasInputKeyDataByIndex(ref BmSDK.Engine.UIRoot.FRawInputKeyEventData out_InputKeyData, int AliasIndex, BmSDK.Engine.UIRoot.EInputPlatformType OverridePlatform = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataStore_InputAlias.GetAliasInputKeyDataByIndex", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_InputKeyData, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AliasIndex, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OverridePlatform, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
@@ -141,10 +142,11 @@ public partial class UIDataStore_InputAlias : BmSDK.Engine.UIDataStore_StringBas
     /// <summary>
     /// Function: GetAliasInputKeyData
     /// </summary>
-    public unsafe virtual bool GetAliasInputKeyData(out BmSDK.Engine.UIRoot.FRawInputKeyEventData out_InputKeyData, BmSDK.FName DesiredAlias, BmSDK.Engine.UIRoot.EInputPlatformType OverridePlatform = default)
+    public unsafe virtual bool GetAliasInputKeyData(ref BmSDK.Engine.UIRoot.FRawInputKeyEventData out_InputKeyData, BmSDK.FName DesiredAlias, BmSDK.Engine.UIRoot.EInputPlatformType OverridePlatform = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataStore_InputAlias.GetAliasInputKeyData", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_InputKeyData, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DesiredAlias, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OverridePlatform, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;

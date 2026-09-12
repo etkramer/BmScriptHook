@@ -252,11 +252,12 @@ public partial class RProjectileGadgetBase : BmSDK.BmGame.RInventoryGadget, BmSD
     /// <summary>
     /// Function: GetProjectileThrowAnim
     /// </summary>
-    public unsafe virtual BmSDK.FName GetProjectileThrowAnim(BmSDK.Rotator ThrowDirection, out BmSDK.BmGame.RPawnPlayerAnim.AimingConfigDesc AimingConfig, bool Mirrored)
+    public unsafe virtual BmSDK.FName GetProjectileThrowAnim(BmSDK.Rotator ThrowDirection, ref BmSDK.BmGame.RPawnPlayerAnim.AimingConfigDesc AimingConfig, bool Mirrored)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RProjectileGadgetBase.GetProjectileThrowAnim", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ThrowDirection, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AimingConfig, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Mirrored, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         AimingConfig = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnPlayerAnim.AimingConfigDesc>(paramsPtr + 12);
@@ -266,10 +267,12 @@ public partial class RProjectileGadgetBase : BmSDK.BmGame.RInventoryGadget, BmSD
     /// <summary>
     /// Function: GetThrowFinishPose
     /// </summary>
-    public unsafe virtual BmSDK.FName GetThrowFinishPose(out BmSDK.BmGame.RInventoryGadget.PlayerWantsToCrouch StanceIsCrouched, out BmSDK.BmGame.RAnimUtil.EMirrorChoice MirroredNess)
+    public unsafe virtual BmSDK.FName GetThrowFinishPose(ref BmSDK.BmGame.RInventoryGadget.PlayerWantsToCrouch StanceIsCrouched, ref BmSDK.BmGame.RAnimUtil.EMirrorChoice MirroredNess)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RProjectileGadgetBase.GetThrowFinishPose", true);
         byte* paramsPtr = stackalloc byte[17];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StanceIsCrouched, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MirroredNess, paramsPtr + 1);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         StanceIsCrouched = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RInventoryGadget.PlayerWantsToCrouch>(paramsPtr + 0);
         MirroredNess = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RAnimUtil.EMirrorChoice>(paramsPtr + 1);
@@ -301,13 +304,14 @@ public partial class RProjectileGadgetBase : BmSDK.BmGame.RInventoryGadget, BmSD
     /// <summary>
     /// Function: GetTrajectory
     /// </summary>
-    public unsafe static void GetTrajectory(System.Numerics.Vector3 StartLoc, System.Numerics.Vector3 TargetLoc, float V, out System.Numerics.Vector3 iv, float G = default, bool getHighPath = default)
+    public unsafe static void GetTrajectory(System.Numerics.Vector3 StartLoc, System.Numerics.Vector3 TargetLoc, float V, ref System.Numerics.Vector3 iv, float G = default, bool getHighPath = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RProjectileGadgetBase.GetTrajectory", true);
         byte* paramsPtr = stackalloc byte[76];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartLoc, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetLoc, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(V, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(iv, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(G, paramsPtr + 40);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(getHighPath, paramsPtr + 44);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -318,10 +322,11 @@ public partial class RProjectileGadgetBase : BmSDK.BmGame.RInventoryGadget, BmSD
     /// <summary>
     /// Function: UpdateTrajectory
     /// </summary>
-    public unsafe virtual bool UpdateTrajectory(out System.Numerics.Vector3 V, bool bLockOnEnemy = default, bool bKeepTargetLocation = default)
+    public unsafe virtual bool UpdateTrajectory(ref System.Numerics.Vector3 V, bool bLockOnEnemy = default, bool bKeepTargetLocation = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RProjectileGadgetBase.UpdateTrajectory", true);
         byte* paramsPtr = stackalloc byte[124];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(V, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bLockOnEnemy, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bKeepTargetLocation, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);

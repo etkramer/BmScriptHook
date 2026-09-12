@@ -76,16 +76,16 @@ public partial class ParticleEventManager : BmSDK.Engine.Actor, BmSDK.IGameObjec
     /// <summary>
     /// Function: HandleParticleModuleEventSendToGame
     /// </summary>
-    public unsafe virtual void HandleParticleModuleEventSendToGame(BmSDK.Engine.ParticleModuleEventSendToGame InEvent, out System.Numerics.Vector3 InCollideDirection, out System.Numerics.Vector3 InHitLocation, out System.Numerics.Vector3 InHitNormal, out BmSDK.FName InBoneName)
+    public unsafe virtual void HandleParticleModuleEventSendToGame(BmSDK.Engine.ParticleModuleEventSendToGame InEvent, System.Numerics.Vector3 InCollideDirection, System.Numerics.Vector3 InHitLocation, System.Numerics.Vector3 InHitNormal, BmSDK.FName InBoneName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.ParticleEventManager.HandleParticleModuleEventSendToGame", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InEvent, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InCollideDirection, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InHitLocation, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InHitNormal, paramsPtr + 28);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InBoneName, paramsPtr + 40);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        InCollideDirection = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
-        InHitLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 16);
-        InHitNormal = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 28);
-        InBoneName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 40);
         return;
     }
 }

@@ -450,10 +450,12 @@ public partial class RCombatMove_BatmanStrike : BmSDK.BmGame.RCombatMove_BatmanA
     /// <summary>
     /// Function: ShouldIncCombo
     /// </summary>
-    public unsafe virtual bool ShouldIncCombo(out int ComboIncrease, out int SpecialMoveCountIncrease)
+    public unsafe virtual bool ShouldIncCombo(ref int ComboIncrease, ref int SpecialMoveCountIncrease)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_BatmanStrike.ShouldIncCombo", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ComboIncrease, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SpecialMoveCountIncrease, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ComboIncrease = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         SpecialMoveCountIncrease = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);
@@ -463,10 +465,12 @@ public partial class RCombatMove_BatmanStrike : BmSDK.BmGame.RCombatMove_BatmanA
     /// <summary>
     /// Function: GetComboIncrease
     /// </summary>
-    public unsafe virtual void GetComboIncrease(out int ComboIncrease, out int SpecialMoveCountIncrease)
+    public unsafe virtual void GetComboIncrease(ref int ComboIncrease, ref int SpecialMoveCountIncrease)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_BatmanStrike.GetComboIncrease", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ComboIncrease, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SpecialMoveCountIncrease, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ComboIncrease = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         SpecialMoveCountIncrease = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);

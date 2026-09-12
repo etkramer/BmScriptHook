@@ -97,11 +97,13 @@ public partial class RPawnCharacter : BmSDK.BmGame.RPawn, BmSDK.IGameObject
     /// <summary>
     /// Function: NavMeshPointReachable
     /// </summary>
-    public unsafe virtual bool NavMeshPointReachable(System.Numerics.Vector3 TestPoint, out System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 HitNormal, bool bCheckForFloor = default, System.Numerics.Vector3 OverrideStartLocation = default)
+    public unsafe virtual bool NavMeshPointReachable(System.Numerics.Vector3 TestPoint, ref System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 HitNormal, bool bCheckForFloor = default, System.Numerics.Vector3 OverrideStartLocation = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnCharacter.NavMeshPointReachable", true);
         byte* paramsPtr = stackalloc byte[56];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestPoint, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitNormal, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCheckForFloor, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OverrideStartLocation, paramsPtr + 40);
         var oldFlags = funcManaged.FunctionFlags;
@@ -424,18 +426,18 @@ public partial class RPawnCharacter : BmSDK.BmGame.RPawn, BmSDK.IGameObject
     /// <summary>
     /// Function: RigidBodyCollision
     /// </summary>
-    public unsafe override void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, out BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
+    public unsafe override void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnCharacter.RigidBodyCollision", true);
         byte* paramsPtr = stackalloc byte[116];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitComponent, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OtherComponent, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RigidCollisionData, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ContactIndex, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 48);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index0, paramsPtr + 52);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index1, paramsPtr + 56);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        RigidCollisionData = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Actor.FCollisionImpactData>(paramsPtr + 8);
         return;
     }
 
@@ -821,11 +823,12 @@ public partial class RPawnCharacter : BmSDK.BmGame.RPawn, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAnimThoughts
     /// </summary>
-    public unsafe virtual void GetAnimThoughts(BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe virtual void GetAnimThoughts(BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnCharacter.GetAnimThoughts", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1948,11 +1951,12 @@ public partial class RPawnCharacter : BmSDK.BmGame.RPawn, BmSDK.IGameObject
     /// <summary>
     /// Function: IsInAnyAutomaticTransition
     /// </summary>
-    public unsafe virtual bool IsInAnyAutomaticTransition(BmSDK.BmGame.RAnimUtil.EFuzziness Fuzziness, out BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId Transition)
+    public unsafe virtual bool IsInAnyAutomaticTransition(BmSDK.BmGame.RAnimUtil.EFuzziness Fuzziness, ref BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId Transition)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnCharacter.IsInAnyAutomaticTransition", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Fuzziness, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Transition, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

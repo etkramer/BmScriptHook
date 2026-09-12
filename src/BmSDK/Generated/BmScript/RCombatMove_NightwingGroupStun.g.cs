@@ -223,10 +223,13 @@ public partial class RCombatMove_NightwingGroupStun : BmSDK.BmGame.RCombatMove_P
     /// <summary>
     /// Function: ProcessTargets
     /// </summary>
-    public unsafe virtual void ProcessTargets(out BmSDK.TArray<BmSDK.BmGame.RPawn> Targets, out BmSDK.TArray<float> Times, out BmSDK.TArray<System.Numerics.Vector3> locations, float TimeScale, bool isLeftList)
+    public unsafe virtual void ProcessTargets(ref BmSDK.TArray<BmSDK.BmGame.RPawn> Targets, ref BmSDK.TArray<float> Times, ref BmSDK.TArray<System.Numerics.Vector3> locations, float TimeScale, bool isLeftList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RCombatMove_NightwingGroupStun.ProcessTargets", true);
         byte* paramsPtr = stackalloc byte[100];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Targets, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Times, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(locations, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TimeScale, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(isLeftList, paramsPtr + 40);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -239,10 +242,13 @@ public partial class RCombatMove_NightwingGroupStun : BmSDK.BmGame.RCombatMove_P
     /// <summary>
     /// Function: SortTargetsOnTime
     /// </summary>
-    public unsafe virtual void SortTargetsOnTime(out BmSDK.TArray<BmSDK.BmGame.RPawn> Targets, out BmSDK.TArray<float> Times, out BmSDK.TArray<System.Numerics.Vector3> locations)
+    public unsafe virtual void SortTargetsOnTime(ref BmSDK.TArray<BmSDK.BmGame.RPawn> Targets, ref BmSDK.TArray<float> Times, ref BmSDK.TArray<System.Numerics.Vector3> locations)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RCombatMove_NightwingGroupStun.SortTargetsOnTime", true);
         byte* paramsPtr = stackalloc byte[64];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Targets, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Times, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(locations, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Targets = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RPawn>>(paramsPtr + 0);
         Times = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<float>>(paramsPtr + 12);

@@ -155,10 +155,12 @@ public partial class RInGameCinematicCam : BmSDK.BmGame.RCameraActor, BmSDK.IGam
     /// <summary>
     /// Function: IsCameraBlockedFromTarget
     /// </summary>
-    public unsafe virtual bool IsCameraBlockedFromTarget(out BmSDK.Engine.Actor BlockActor, out float BlockTime, System.Numerics.Vector3 TestTarget, float NormalisedTime)
+    public unsafe virtual bool IsCameraBlockedFromTarget(ref BmSDK.Engine.Actor BlockActor, ref float BlockTime, System.Numerics.Vector3 TestTarget, float NormalisedTime)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RInGameCinematicCam.IsCameraBlockedFromTarget", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BlockActor, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BlockTime, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestTarget, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NormalisedTime, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
@@ -177,10 +179,12 @@ public partial class RInGameCinematicCam : BmSDK.BmGame.RCameraActor, BmSDK.IGam
     /// <summary>
     /// Function: FindCameraLocationAtTime
     /// </summary>
-    public unsafe virtual bool FindCameraLocationAtTime(out System.Numerics.Vector3 CameraLocation, out BmSDK.Rotator CameraRotation, float NormalisedTime)
+    public unsafe virtual bool FindCameraLocationAtTime(ref System.Numerics.Vector3 CameraLocation, ref BmSDK.Rotator CameraRotation, float NormalisedTime)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RInGameCinematicCam.FindCameraLocationAtTime", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CameraLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CameraRotation, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NormalisedTime, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

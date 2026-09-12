@@ -227,11 +227,13 @@ public partial class PlayerReplicationInfo : BmSDK.Engine.ReplicationInfo, BmSDK
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float YL, out float YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float YL, ref float YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PlayerReplicationInfo.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

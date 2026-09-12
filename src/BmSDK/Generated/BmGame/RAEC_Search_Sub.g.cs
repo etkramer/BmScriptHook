@@ -81,10 +81,13 @@ public partial class RAEC_Search_Sub : BmSDK.BmGame.RAEC_Sub_Formation, BmSDK.IG
     /// <summary>
     /// Function: BuildLookAtList
     /// </summary>
-    public unsafe virtual void BuildLookAtList(out BmSDK.Engine.Pylon OutPylon, out BmSDK.TArray<int> OutUnchecked, out BmSDK.TArray<int> OutChecked)
+    public unsafe virtual void BuildLookAtList(ref BmSDK.Engine.Pylon OutPylon, ref BmSDK.TArray<int> OutUnchecked, ref BmSDK.TArray<int> OutChecked)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_Search_Sub.BuildLookAtList", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPylon, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutUnchecked, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutChecked, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutPylon = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Pylon>(paramsPtr + 0);
         OutUnchecked = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 4);
@@ -338,10 +341,11 @@ public partial class RAEC_Search_Sub : BmSDK.BmGame.RAEC_Sub_Formation, BmSDK.IG
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe override void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe override void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_Search_Sub.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;

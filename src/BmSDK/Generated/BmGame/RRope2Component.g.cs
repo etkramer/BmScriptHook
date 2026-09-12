@@ -81,10 +81,12 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, out System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
+    public unsafe virtual void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, ref System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtLocationOverride, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IndentString, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
@@ -95,10 +97,11 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: AddThought
     /// </summary>
-    public unsafe virtual void AddThought(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, BmSDK.FString Text, byte Red = default, byte Green = default, byte Blue = default, byte Alpha = default)
+    public unsafe virtual void AddThought(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, BmSDK.FString Text, byte Red = default, byte Green = default, byte Blue = default, byte Alpha = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.AddThought", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Text, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Red, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Green, paramsPtr + 25);
@@ -332,11 +335,12 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: GetEndAttachActors
     /// </summary>
-    public unsafe virtual void GetEndAttachActors(BmSDK.BmGame.RRope2Component.ERope2EndType RopeEnd, out BmSDK.TArray<BmSDK.Engine.Actor> OutAttachedActors)
+    public unsafe virtual void GetEndAttachActors(BmSDK.BmGame.RRope2Component.ERope2EndType RopeEnd, ref BmSDK.TArray<BmSDK.Engine.Actor> OutAttachedActors)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.GetEndAttachActors", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RopeEnd, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutAttachedActors, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -468,11 +472,12 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: GetNearestPointOnRopeToPoint
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToPoint(System.Numerics.Vector3 WorldSpacePos, out float OutRopePos)
+    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToPoint(System.Numerics.Vector3 WorldSpacePos, ref float OutRopePos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.GetNearestPointOnRopeToPoint", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldSpacePos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRopePos, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -488,12 +493,14 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: GetNearestPointOnRopeToRay
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToRay(System.Numerics.Vector3 RayStartPos, System.Numerics.Vector3 RayDirection, out float OutRopePos, out float OutRayPos, float BufferLength = default)
+    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToRay(System.Numerics.Vector3 RayStartPos, System.Numerics.Vector3 RayDirection, ref float OutRopePos, ref float OutRayPos, float BufferLength = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.GetNearestPointOnRopeToRay", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RayStartPos, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RayDirection, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRopePos, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRayPos, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(BufferLength, paramsPtr + 32);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -511,12 +518,14 @@ public partial class RRope2Component : BmSDK.Engine.PrimitiveComponent, BmSDK.IG
     /// <summary>
     /// Function: GetNearestPointOnRopeToLineSegment
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToLineSegment(System.Numerics.Vector3 LineSegmentStartPos, System.Numerics.Vector3 LineSegmentEndPos, out float OutRopePos, out float OutLineSegmentPos)
+    public unsafe virtual System.Numerics.Vector3 GetNearestPointOnRopeToLineSegment(System.Numerics.Vector3 LineSegmentStartPos, System.Numerics.Vector3 LineSegmentEndPos, ref float OutRopePos, ref float OutLineSegmentPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRope2Component.GetNearestPointOnRopeToLineSegment", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineSegmentStartPos, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineSegmentEndPos, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRopePos, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutLineSegmentPos, paramsPtr + 28);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

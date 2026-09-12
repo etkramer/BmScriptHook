@@ -286,7 +286,7 @@ public partial class RPhotoScanner : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: IsSelectedByCursor
     /// </summary>
-    public unsafe virtual bool IsSelectedByCursor(BmSDK.Engine.StaticMeshComponent testMesh, System.Numerics.Vector3 Origin, float Scale, BmSDK.Engine.Canvas Canvas, out System.Numerics.Vector2 cmin, out System.Numerics.Vector2 cmax)
+    public unsafe virtual bool IsSelectedByCursor(BmSDK.Engine.StaticMeshComponent testMesh, System.Numerics.Vector3 Origin, float Scale, BmSDK.Engine.Canvas Canvas, ref System.Numerics.Vector2 cmin, ref System.Numerics.Vector2 cmax)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPhotoScanner.IsSelectedByCursor", true);
         byte* paramsPtr = stackalloc byte[44];
@@ -294,6 +294,8 @@ public partial class RPhotoScanner : BmSDK.Engine.Actor, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Origin, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Scale, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Canvas, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(cmin, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(cmax, paramsPtr + 32);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

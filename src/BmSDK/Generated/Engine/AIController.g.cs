@@ -107,10 +107,12 @@ public partial class AIController : BmSDK.Engine.Controller, BmSDK.IGameObject
     /// <summary>
     /// Function: GetPlayerViewPoint
     /// </summary>
-    public unsafe override void GetPlayerViewPoint(out System.Numerics.Vector3 out_Location, out BmSDK.Rotator out_Rotation)
+    public unsafe override void GetPlayerViewPoint(ref System.Numerics.Vector3 out_Location, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AIController.GetPlayerViewPoint", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Location, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Location = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         out_Rotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -132,11 +134,13 @@ public partial class AIController : BmSDK.Engine.Controller, BmSDK.IGameObject
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AIController.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

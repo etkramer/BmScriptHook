@@ -28,7 +28,7 @@ public partial interface OnlineSuppliedUIInterface : BmSDK.Interface
     /// <summary>
     /// Function: ShowOnlineStatsUI
     /// </summary>
-    public unsafe bool ShowOnlineStatsUI(out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FUniqueNetId> Players, BmSDK.Engine.OnlineStatsRead StatsRead);
+    public unsafe bool ShowOnlineStatsUI(BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FUniqueNetId> Players, BmSDK.Engine.OnlineStatsRead StatsRead);
 
     /// <summary>
     /// Function: OnShowOnlineStatsUIComplete

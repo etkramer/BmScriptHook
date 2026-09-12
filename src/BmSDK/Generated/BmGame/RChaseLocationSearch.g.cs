@@ -105,11 +105,12 @@ public partial class RChaseLocationSearch : BmSDK.BmGame.RSearchTreeFinder, BmSD
     /// <summary>
     /// Function: RecursiveGetFurthestVisible
     /// </summary>
-    public unsafe virtual void RecursiveGetFurthestVisible(BmSDK.BmGame.RChasePoint TestSub, out BmSDK.TArray<BmSDK.BmGame.RChasePoint> UsableEnds)
+    public unsafe virtual void RecursiveGetFurthestVisible(BmSDK.BmGame.RChasePoint TestSub, ref BmSDK.TArray<BmSDK.BmGame.RChasePoint> UsableEnds)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChaseLocationSearch.RecursiveGetFurthestVisible", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestSub, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(UsableEnds, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         UsableEnds = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RChasePoint>>(paramsPtr + 4);
         return;
@@ -204,10 +205,11 @@ public partial class RChaseLocationSearch : BmSDK.BmGame.RSearchTreeFinder, BmSD
     /// <summary>
     /// Function: GetInternalPolys
     /// </summary>
-    public unsafe virtual void GetInternalPolys(out BmSDK.TArray<int> OutPolyList)
+    public unsafe virtual void GetInternalPolys(ref BmSDK.TArray<int> OutPolyList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChaseLocationSearch.GetInternalPolys", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPolyList, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -223,10 +225,11 @@ public partial class RChaseLocationSearch : BmSDK.BmGame.RSearchTreeFinder, BmSD
     /// <summary>
     /// Function: FindChaseStart
     /// </summary>
-    public unsafe virtual bool FindChaseStart(out System.Numerics.Vector3 ChaseStart)
+    public unsafe virtual bool FindChaseStart(ref System.Numerics.Vector3 ChaseStart)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChaseLocationSearch.FindChaseStart", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ChaseStart, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

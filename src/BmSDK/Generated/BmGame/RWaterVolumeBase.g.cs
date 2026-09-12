@@ -122,12 +122,14 @@ public partial class RWaterVolumeBase : BmSDK.BmGame.RWaterRescueVolumeBase, BmS
     /// <summary>
     /// Function: FindRelativeSurfacePosition
     /// </summary>
-    public unsafe virtual bool FindRelativeSurfacePosition(System.Numerics.Vector3 TestPosition, System.Numerics.Vector3 TestDirection, out System.Numerics.Vector3 OutSurfacePosition, out System.Numerics.Vector3 OutSurfaceNormal)
+    public unsafe virtual bool FindRelativeSurfacePosition(System.Numerics.Vector3 TestPosition, System.Numerics.Vector3 TestDirection, ref System.Numerics.Vector3 OutSurfacePosition, ref System.Numerics.Vector3 OutSurfaceNormal)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RWaterVolumeBase.FindRelativeSurfacePosition", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestPosition, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestDirection, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSurfacePosition, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSurfaceNormal, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

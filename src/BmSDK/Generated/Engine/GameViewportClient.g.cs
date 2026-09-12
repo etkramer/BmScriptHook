@@ -319,10 +319,12 @@ public partial class GameViewportClient : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSubtitleRegion
     /// </summary>
-    public unsafe virtual void GetSubtitleRegion(out System.Numerics.Vector2 MinPos, out System.Numerics.Vector2 MaxPos)
+    public unsafe virtual void GetSubtitleRegion(ref System.Numerics.Vector2 MinPos, ref System.Numerics.Vector2 MaxPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameViewportClient.GetSubtitleRegion", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MinPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         MinPos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector2>(paramsPtr + 0);
         MaxPos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector2>(paramsPtr + 8);
@@ -401,10 +403,11 @@ public partial class GameViewportClient : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: CreateInitialPlayer
     /// </summary>
-    public unsafe virtual bool CreateInitialPlayer(out BmSDK.FString OutError)
+    public unsafe virtual bool CreateInitialPlayer(ref BmSDK.FString OutError)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameViewportClient.CreateInitialPlayer", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutError, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutError = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -413,10 +416,11 @@ public partial class GameViewportClient : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: Init
     /// </summary>
-    public unsafe virtual bool Init(out BmSDK.FString OutError)
+    public unsafe virtual bool Init(ref BmSDK.FString OutError)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameViewportClient.Init", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutError, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutError = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -449,11 +453,12 @@ public partial class GameViewportClient : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: CreatePlayer
     /// </summary>
-    public unsafe virtual BmSDK.Engine.LocalPlayer CreatePlayer(int ControllerId, out BmSDK.FString OutError, bool bSpawnActor)
+    public unsafe virtual BmSDK.Engine.LocalPlayer CreatePlayer(int ControllerId, ref BmSDK.FString OutError, bool bSpawnActor)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameViewportClient.CreatePlayer", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ControllerId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutError, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bSpawnActor, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutError = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 4);
@@ -591,10 +596,11 @@ public partial class GameViewportClient : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetViewportSize
     /// </summary>
-    public unsafe virtual void GetViewportSize(out System.Numerics.Vector2 out_ViewportSize)
+    public unsafe virtual void GetViewportSize(ref System.Numerics.Vector2 out_ViewportSize)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameViewportClient.GetViewportSize", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_ViewportSize, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

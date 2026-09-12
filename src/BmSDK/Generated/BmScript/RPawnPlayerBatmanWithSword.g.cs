@@ -575,10 +575,11 @@ public partial class RPawnPlayerBatmanWithSword : BmSDK.BmScript.RPawnPlayerBm, 
     /// <summary>
     /// Function: GetPlayerConfig
     /// </summary>
-    public unsafe override BmSDK.BmGame.RAddContentPlayerCharacter GetPlayerConfig(out BmSDK.BmGame.RAddContentPlayerCharacterMesh MeshData)
+    public unsafe override BmSDK.BmGame.RAddContentPlayerCharacter GetPlayerConfig(ref BmSDK.BmGame.RAddContentPlayerCharacterMesh MeshData)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnPlayerBatmanWithSword.GetPlayerConfig", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MeshData, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         MeshData = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RAddContentPlayerCharacterMesh>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RAddContentPlayerCharacter>(paramsPtr + 4);

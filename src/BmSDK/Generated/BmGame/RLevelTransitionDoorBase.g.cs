@@ -93,11 +93,13 @@ public partial class RLevelTransitionDoorBase : BmSDK.BmGame.RLevelTransitionP, 
     /// <summary>
     /// Function: GetMotorActivationFXLocation
     /// </summary>
-    public unsafe virtual void GetMotorActivationFXLocation(BmSDK.Engine.PrimitiveComponent MotorComp, out System.Numerics.Vector3 Loc, out BmSDK.Rotator Rot)
+    public unsafe virtual void GetMotorActivationFXLocation(BmSDK.Engine.PrimitiveComponent MotorComp, ref System.Numerics.Vector3 Loc, ref BmSDK.Rotator Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RLevelTransitionDoorBase.GetMotorActivationFXLocation", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MotorComp, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 16);

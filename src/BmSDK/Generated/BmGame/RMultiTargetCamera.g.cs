@@ -81,10 +81,12 @@ public partial class RMultiTargetCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGame
     /// <summary>
     /// Function: CalculateViewSphere
     /// </summary>
-    public unsafe virtual void CalculateViewSphere(out System.Numerics.Vector3 OutCentre, out float OutRadius, System.Numerics.Vector3 CameraOrigin, System.Numerics.Vector3 Circle1Centre, float Circle1Radius, System.Numerics.Vector3 Circle2Centre, float Circle2Radius)
+    public unsafe virtual void CalculateViewSphere(ref System.Numerics.Vector3 OutCentre, ref float OutRadius, System.Numerics.Vector3 CameraOrigin, System.Numerics.Vector3 Circle1Centre, float Circle1Radius, System.Numerics.Vector3 Circle2Centre, float Circle2Radius)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMultiTargetCamera.CalculateViewSphere", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutCentre, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRadius, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CameraOrigin, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Circle1Centre, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Circle1Radius, paramsPtr + 40);

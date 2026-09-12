@@ -139,10 +139,12 @@ public partial class RSpecialMoveInstance_RobinPlaceStickyBomb : BmSDK.BmGame.RS
     /// <summary>
     /// Function: GetCombatAnimName
     /// </summary>
-    public unsafe virtual BmSDK.FName GetCombatAnimName(out BmSDK.Engine.AnimSet OutAnimSet, out int rearAttack)
+    public unsafe virtual BmSDK.FName GetCombatAnimName(ref BmSDK.Engine.AnimSet OutAnimSet, ref int rearAttack)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RSpecialMoveInstance_RobinPlaceStickyBomb.GetCombatAnimName", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutAnimSet, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(rearAttack, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutAnimSet = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.AnimSet>(paramsPtr + 0);
         rearAttack = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);

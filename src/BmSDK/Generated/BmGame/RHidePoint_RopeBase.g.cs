@@ -113,10 +113,12 @@ public partial class RHidePoint_RopeBase : BmSDK.BmGame.RHidePoint, BmSDK.IGameO
     /// <summary>
     /// Function: GetActorThoughts
     /// </summary>
-    public unsafe override void GetActorThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, out System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
+    public unsafe override void GetActorThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, ref System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RHidePoint_RopeBase.GetActorThoughts", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtLocationOverride, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IndentString, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
@@ -211,10 +213,11 @@ public partial class RHidePoint_RopeBase : BmSDK.BmGame.RHidePoint, BmSDK.IGameO
     /// <summary>
     /// Function: ProjectToRopePlane
     /// </summary>
-    public unsafe virtual void ProjectToRopePlane(out System.Numerics.Vector3 ProjLocation)
+    public unsafe virtual void ProjectToRopePlane(ref System.Numerics.Vector3 ProjLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RHidePoint_RopeBase.ProjectToRopePlane", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ProjLocation, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

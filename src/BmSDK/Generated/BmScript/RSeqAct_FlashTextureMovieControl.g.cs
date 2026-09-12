@@ -92,10 +92,12 @@ public partial class RSeqAct_FlashTextureMovieControl : BmSDK.Engine.SequenceAct
     /// <summary>
     /// Function: FetchAudioSource
     /// </summary>
-    public unsafe virtual void FetchAudioSource(out BmSDK.TArray<float> pos, out BmSDK.TArray<float> Rot)
+    public unsafe virtual void FetchAudioSource(ref BmSDK.TArray<float> pos, ref BmSDK.TArray<float> Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RSeqAct_FlashTextureMovieControl.FetchAudioSource", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(pos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         pos = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<float>>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<float>>(paramsPtr + 12);

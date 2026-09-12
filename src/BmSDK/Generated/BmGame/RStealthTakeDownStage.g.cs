@@ -76,10 +76,11 @@ public partial class RStealthTakeDownStage : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: FindVictimFreeRagdollZone
     /// </summary>
-    public unsafe virtual void FindVictimFreeRagdollZone(out System.Numerics.Vector3 ReferencePosition, BmSDK.Rotator ReferenceRotation, float maxOffset = default)
+    public unsafe virtual void FindVictimFreeRagdollZone(ref System.Numerics.Vector3 ReferencePosition, BmSDK.Rotator ReferenceRotation, float maxOffset = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RStealthTakeDownStage.FindVictimFreeRagdollZone", true);
         byte* paramsPtr = stackalloc byte[100];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferencePosition, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferenceRotation, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(maxOffset, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -254,10 +255,12 @@ public partial class RStealthTakeDownStage : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: GetReferencePosition
     /// </summary>
-    public unsafe virtual void GetReferencePosition(out System.Numerics.Vector3 ReferencePosition, out BmSDK.Rotator ReferenceRotation)
+    public unsafe virtual void GetReferencePosition(ref System.Numerics.Vector3 ReferencePosition, ref BmSDK.Rotator ReferenceRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RStealthTakeDownStage.GetReferencePosition", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferencePosition, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferenceRotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ReferencePosition = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         ReferenceRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -290,10 +293,11 @@ public partial class RStealthTakeDownStage : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: OverrideChosenAnim
     /// </summary>
-    public unsafe virtual void OverrideChosenAnim(out int Anim)
+    public unsafe virtual void OverrideChosenAnim(ref int Anim)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RStealthTakeDownStage.OverrideChosenAnim", true);
         byte* paramsPtr = stackalloc byte[4];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Anim, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Anim = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         return;
@@ -368,10 +372,11 @@ public partial class RStealthTakeDownStage : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: ResetCameraBehindBatman
     /// </summary>
-    public unsafe virtual bool ResetCameraBehindBatman(out BmSDK.Rotator out_ResetRotation)
+    public unsafe virtual bool ResetCameraBehindBatman(ref BmSDK.Rotator out_ResetRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RStealthTakeDownStage.ResetCameraBehindBatman", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_ResetRotation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_ResetRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -576,10 +581,12 @@ public partial class RStealthTakeDownStage : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: ModifyReferencePositionForSlope
     /// </summary>
-    public unsafe virtual void ModifyReferencePositionForSlope(out System.Numerics.Vector3 ReferencePosition, out BmSDK.Rotator ReferenceRotation)
+    public unsafe virtual void ModifyReferencePositionForSlope(ref System.Numerics.Vector3 ReferencePosition, ref BmSDK.Rotator ReferenceRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RStealthTakeDownStage.ModifyReferencePositionForSlope", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferencePosition, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReferenceRotation, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -81,10 +81,11 @@ public partial class RBMBehaviour_CombatRas : BmSDK.BmGame.RBMBehaviour_CombatAI
     /// <summary>
     /// Function: HitFinal
     /// </summary>
-    public unsafe virtual void HitFinal(out BmSDK.BmGame.RPawnCombat.FDamageInfo DmgInfo)
+    public unsafe virtual void HitFinal(ref BmSDK.BmGame.RPawnCombat.FDamageInfo DmgInfo)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_CombatRas.HitFinal", true);
         byte* paramsPtr = stackalloc byte[244];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DmgInfo, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DmgInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnCombat.FDamageInfo>(paramsPtr + 0);
         return;
@@ -305,11 +306,12 @@ public partial class RBMBehaviour_CombatRas : BmSDK.BmGame.RBMBehaviour_CombatAI
     /// <summary>
     /// Function: ModifyDamageAmount
     /// </summary>
-    public unsafe virtual void ModifyDamageAmount(BmSDK.Class dmgType, out float DmgAmount)
+    public unsafe virtual void ModifyDamageAmount(BmSDK.Class dmgType, ref float DmgAmount)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_CombatRas.ModifyDamageAmount", true);
         byte* paramsPtr = stackalloc byte[8];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DmgAmount, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DmgAmount = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         return;

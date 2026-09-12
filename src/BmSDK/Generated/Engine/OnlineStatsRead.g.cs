@@ -136,12 +136,13 @@ public partial class OnlineStatsRead : BmSDK.Engine.OnlineStats, BmSDK.IGameObje
     /// <summary>
     /// Function: GetFloatStatValueForPlayer
     /// </summary>
-    public unsafe virtual bool GetFloatStatValueForPlayer(BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID, int StatColumnNo, out float StatValue)
+    public unsafe virtual bool GetFloatStatValueForPlayer(BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID, int StatColumnNo, ref float StatValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineStatsRead.GetFloatStatValueForPlayer", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PlayerID, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StatColumnNo, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StatValue, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -178,12 +179,13 @@ public partial class OnlineStatsRead : BmSDK.Engine.OnlineStats, BmSDK.IGameObje
     /// <summary>
     /// Function: GetIntStatValueForPlayer
     /// </summary>
-    public unsafe virtual bool GetIntStatValueForPlayer(BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID, int StatColumnNo, out int StatValue)
+    public unsafe virtual bool GetIntStatValueForPlayer(BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID, int StatColumnNo, ref int StatValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineStatsRead.GetIntStatValueForPlayer", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PlayerID, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StatColumnNo, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StatValue, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

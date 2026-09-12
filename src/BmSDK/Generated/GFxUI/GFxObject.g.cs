@@ -1131,10 +1131,12 @@ public partial class GFxObject : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetPosition
     /// </summary>
-    public unsafe virtual bool GetPosition(out float X, out float Y)
+    public unsafe virtual bool GetPosition(ref float X, ref float Y)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxObject.GetPosition", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(X, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Y, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -98,11 +98,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVectorCurveParameterValue
     /// </summary>
-    public unsafe virtual bool GetVectorCurveParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FInterpCurveVector OutValue)
+    public unsafe virtual bool GetVectorCurveParameterValue(BmSDK.FName ParameterName, ref BmSDK.GameObject.FInterpCurveVector OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetVectorCurveParameterValue", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -118,11 +119,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVectorParameterValue
     /// </summary>
-    public unsafe virtual bool GetVectorParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FLinearColor OutValue)
+    public unsafe virtual bool GetVectorParameterValue(BmSDK.FName ParameterName, ref BmSDK.GameObject.FLinearColor OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetVectorParameterValue", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -138,11 +140,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetTextureParameterValue
     /// </summary>
-    public unsafe virtual bool GetTextureParameterValue(BmSDK.FName ParameterName, out BmSDK.Engine.Texture OutValue)
+    public unsafe virtual bool GetTextureParameterValue(BmSDK.FName ParameterName, ref BmSDK.Engine.Texture OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetTextureParameterValue", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -158,11 +161,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetScalarCurveParameterValue
     /// </summary>
-    public unsafe virtual bool GetScalarCurveParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FInterpCurveFloat OutValue)
+    public unsafe virtual bool GetScalarCurveParameterValue(BmSDK.FName ParameterName, ref BmSDK.GameObject.FInterpCurveFloat OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetScalarCurveParameterValue", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -178,11 +182,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetScalarParameterValue
     /// </summary>
-    public unsafe virtual bool GetScalarParameterValue(BmSDK.FName ParameterName, out float OutValue)
+    public unsafe virtual bool GetScalarParameterValue(BmSDK.FName ParameterName, ref float OutValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetScalarParameterValue", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutValue, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -198,11 +203,13 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetFontParameterValue
     /// </summary>
-    public unsafe virtual bool GetFontParameterValue(BmSDK.FName ParameterName, out BmSDK.Engine.Font OutFontValue, out int OutFontPage)
+    public unsafe virtual bool GetFontParameterValue(BmSDK.FName ParameterName, ref BmSDK.Engine.Font OutFontValue, ref int OutFontPage)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetFontParameterValue", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutFontValue, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutFontPage, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -219,11 +226,12 @@ public partial class MaterialInterface : BmSDK.Engine.Surface, BmSDK.IGameObject
     /// <summary>
     /// Function: GetParameterDesc
     /// </summary>
-    public unsafe virtual bool GetParameterDesc(BmSDK.FName ParameterName, out BmSDK.FString OutDesc)
+    public unsafe virtual bool GetParameterDesc(BmSDK.FName ParameterName, ref BmSDK.FString OutDesc)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInterface.GetParameterDesc", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutDesc, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

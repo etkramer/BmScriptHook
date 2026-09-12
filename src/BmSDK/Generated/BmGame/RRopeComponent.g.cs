@@ -81,11 +81,12 @@ public partial class RRopeComponent : BmSDK.BmGame.RRopeComponentBase, BmSDK.IGa
     /// <summary>
     /// Function: GetIsOverstretched
     /// </summary>
-    public unsafe virtual bool GetIsOverstretched(BmSDK.BmGame.RRopeComponentBase.ERopeEndType TestStartEnd, out float OutOverstretchPos, float OverstretchRatio)
+    public unsafe virtual bool GetIsOverstretched(BmSDK.BmGame.RRopeComponentBase.ERopeEndType TestStartEnd, ref float OutOverstretchPos, float OverstretchRatio)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRopeComponent.GetIsOverstretched", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestStartEnd, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutOverstretchPos, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OverstretchRatio, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -177,12 +178,13 @@ public partial class RRopeComponent : BmSDK.BmGame.RRopeComponentBase, BmSDK.IGa
     /// <summary>
     /// Function: SplitRope
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 SplitRope(float SplitPos, BmSDK.BmGame.RRopeComponentBase.ERopeEndType MeasurementRopeEnd, out BmSDK.BmGame.RRopeComponentBase.ERopeEndType ThisSplitEnd, BmSDK.BmGame.RRopeComponent InOutOtherSplitEnd)
+    public unsafe virtual System.Numerics.Vector3 SplitRope(float SplitPos, BmSDK.BmGame.RRopeComponentBase.ERopeEndType MeasurementRopeEnd, ref BmSDK.BmGame.RRopeComponentBase.ERopeEndType ThisSplitEnd, BmSDK.BmGame.RRopeComponent InOutOtherSplitEnd)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RRopeComponent.SplitRope", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SplitPos, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MeasurementRopeEnd, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThisSplitEnd, paramsPtr + 5);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InOutOtherSplitEnd, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

@@ -274,11 +274,13 @@ public partial class Controller : BmSDK.Engine.Actor, BmSDK.Engine.Interface_Nav
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Controller.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
@@ -448,10 +450,12 @@ public partial class Controller : BmSDK.Engine.Actor, BmSDK.Engine.Interface_Nav
     /// <summary>
     /// Function: GetActorEyesViewPoint
     /// </summary>
-    public unsafe override void GetActorEyesViewPoint(out System.Numerics.Vector3 out_Location, out BmSDK.Rotator out_Rotation)
+    public unsafe override void GetActorEyesViewPoint(ref System.Numerics.Vector3 out_Location, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Controller.GetActorEyesViewPoint", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Location, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Location = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         out_Rotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -461,10 +465,12 @@ public partial class Controller : BmSDK.Engine.Actor, BmSDK.Engine.Interface_Nav
     /// <summary>
     /// Function: GetPlayerViewPoint
     /// </summary>
-    public unsafe virtual void GetPlayerViewPoint(out System.Numerics.Vector3 out_Location, out BmSDK.Rotator out_Rotation)
+    public unsafe virtual void GetPlayerViewPoint(ref System.Numerics.Vector3 out_Location, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Controller.GetPlayerViewPoint", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Location, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Location = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         out_Rotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -867,11 +873,13 @@ public partial class Controller : BmSDK.Engine.Actor, BmSDK.Engine.Interface_Nav
     /// <summary>
     /// Function: PickTarget
     /// </summary>
-    public unsafe virtual BmSDK.Engine.Pawn PickTarget(BmSDK.Class TargetClass, out float bestAim, out float bestDist, System.Numerics.Vector3 FireDir, System.Numerics.Vector3 projStart, float MaxRange)
+    public unsafe virtual BmSDK.Engine.Pawn PickTarget(BmSDK.Class TargetClass, ref float bestAim, ref float bestDist, System.Numerics.Vector3 FireDir, System.Numerics.Vector3 projStart, float MaxRange)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Controller.PickTarget", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetClass, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bestAim, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bestDist, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FireDir, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(projStart, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxRange, paramsPtr + 36);

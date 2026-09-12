@@ -23,7 +23,7 @@ public partial interface OnlineContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetAvailableDownloadCounts
     /// </summary>
-    public unsafe void GetAvailableDownloadCounts(byte LocalUserNum, out int NewDownloads, out int TotalDownloads);
+    public unsafe void GetAvailableDownloadCounts(byte LocalUserNum, ref int NewDownloads, ref int TotalDownloads);
 
     /// <summary>
     /// Function: OnQueryAvailableDownloadsComplete
@@ -33,7 +33,7 @@ public partial interface OnlineContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetContentList
     /// </summary>
-    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetContentList(byte LocalUserNum, BmSDK.Engine.OnlineSubsystem.EOnlineContentType ContentType, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineContent> ContentList);
+    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetContentList(byte LocalUserNum, BmSDK.Engine.OnlineSubsystem.EOnlineContentType ContentType, ref BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineContent> ContentList);
 
     /// <summary>
     /// Function: ClearContentList

@@ -13,7 +13,7 @@ public partial interface OnlineAccountInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetLocalAccountNames
     /// </summary>
-    public unsafe bool GetLocalAccountNames(out BmSDK.TArray<BmSDK.FString> Accounts);
+    public unsafe bool GetLocalAccountNames(ref BmSDK.TArray<BmSDK.FString> Accounts);
 
     /// <summary>
     /// Function: DeleteLocalAccount

@@ -117,11 +117,12 @@ public partial class RCornerWallMarker : BmSDK.BmGame.RCornerWallMarkerBase, BmS
     /// <summary>
     /// Function: CanLock
     /// </summary>
-    public unsafe virtual bool CanLock(BmSDK.BmGame.RBMAIController TestLockedBy, out System.Numerics.Vector3 PredictedLockPoint)
+    public unsafe virtual bool CanLock(BmSDK.BmGame.RBMAIController TestLockedBy, ref System.Numerics.Vector3 PredictedLockPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCornerWallMarker.CanLock", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestLockedBy, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PredictedLockPoint, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         PredictedLockPoint = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 16);

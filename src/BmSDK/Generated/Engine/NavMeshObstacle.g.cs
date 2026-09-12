@@ -174,10 +174,11 @@ public partial class NavMeshObstacle : BmSDK.Engine.Actor, BmSDK.Engine.Interfac
     /// <summary>
     /// Function: GetObstacleBoudingShape
     /// </summary>
-    public unsafe virtual bool GetObstacleBoudingShape(out BmSDK.TArray<System.Numerics.Vector3> Shape)
+    public unsafe virtual bool GetObstacleBoudingShape(ref BmSDK.TArray<System.Numerics.Vector3> Shape)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.NavMeshObstacle.GetObstacleBoudingShape", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Shape, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Shape = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<System.Numerics.Vector3>>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

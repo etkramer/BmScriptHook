@@ -63,7 +63,7 @@ public partial interface OnlinePlayerInterfaceEx : BmSDK.Interface
     /// <summary>
     /// Function: GetDeviceSelectionResults
     /// </summary>
-    public unsafe int GetDeviceSelectionResults(byte LocalUserNum, out BmSDK.FString DeviceName);
+    public unsafe int GetDeviceSelectionResults(byte LocalUserNum, ref BmSDK.FString DeviceName);
 
     /// <summary>
     /// Function: ClearDeviceSelectionDoneDelegate

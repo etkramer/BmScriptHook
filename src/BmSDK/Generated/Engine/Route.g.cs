@@ -102,12 +102,14 @@ public partial class Route : BmSDK.Engine.Info, BmSDK.Engine.EditorLinkSelection
     /// <summary>
     /// Function: ResolveRouteIndex
     /// </summary>
-    public unsafe virtual int ResolveRouteIndex(int Idx, BmSDK.Engine.Route.ERouteDirection RouteDirection, out byte out_bComplete, out byte out_bReverse)
+    public unsafe virtual int ResolveRouteIndex(int Idx, BmSDK.Engine.Route.ERouteDirection RouteDirection, ref byte out_bComplete, ref byte out_bReverse)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Route.ResolveRouteIndex", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Idx, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RouteDirection, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_bComplete, paramsPtr + 5);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_bReverse, paramsPtr + 6);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

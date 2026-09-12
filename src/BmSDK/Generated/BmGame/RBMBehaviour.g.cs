@@ -296,10 +296,11 @@ public partial class RBMBehaviour : BmSDK.Engine.SeqAct_Latent, BmSDK.IGameObjec
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe virtual void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;
@@ -308,10 +309,12 @@ public partial class RBMBehaviour : BmSDK.Engine.SeqAct_Latent, BmSDK.IGameObjec
     /// <summary>
     /// Function: OverrideGetupStances
     /// </summary>
-    public unsafe virtual bool OverrideGetupStances(out BmSDK.FName MovementStance, out BmSDK.FName WeaponStance)
+    public unsafe virtual bool OverrideGetupStances(ref BmSDK.FName MovementStance, ref BmSDK.FName WeaponStance)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour.OverrideGetupStances", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MovementStance, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WeaponStance, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         MovementStance = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
         WeaponStance = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 8);
@@ -482,18 +485,18 @@ public partial class RBMBehaviour : BmSDK.Engine.SeqAct_Latent, BmSDK.IGameObjec
     /// <summary>
     /// Function: RigidBodyCollision
     /// </summary>
-    public unsafe virtual void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, out BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
+    public unsafe virtual void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour.RigidBodyCollision", true);
         byte* paramsPtr = stackalloc byte[60];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitComponent, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OtherComponent, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RigidCollisionData, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ContactIndex, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 48);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index0, paramsPtr + 52);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index1, paramsPtr + 56);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        RigidCollisionData = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Actor.FCollisionImpactData>(paramsPtr + 8);
         return;
     }
 
@@ -644,11 +647,12 @@ public partial class RBMBehaviour : BmSDK.Engine.SeqAct_Latent, BmSDK.IGameObjec
     /// <summary>
     /// Function: BehaviourFixedUpAnimatedAimDir
     /// </summary>
-    public unsafe virtual bool BehaviourFixedUpAnimatedAimDir(System.Numerics.Vector3 RawDir, out System.Numerics.Vector3 OutDir)
+    public unsafe virtual bool BehaviourFixedUpAnimatedAimDir(System.Numerics.Vector3 RawDir, ref System.Numerics.Vector3 OutDir)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour.BehaviourFixedUpAnimatedAimDir", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RawDir, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutDir, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutDir = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 24);

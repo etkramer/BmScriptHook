@@ -165,11 +165,12 @@ public partial class RBMBehaviour_StationaryTutorialThug : BmSDK.BmGame.RBMBehav
     /// <summary>
     /// Function: BehaviourFixedUpAnimatedAimDir
     /// </summary>
-    public unsafe override bool BehaviourFixedUpAnimatedAimDir(System.Numerics.Vector3 RawDir, out System.Numerics.Vector3 OutDir)
+    public unsafe override bool BehaviourFixedUpAnimatedAimDir(System.Numerics.Vector3 RawDir, ref System.Numerics.Vector3 OutDir)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMBehaviour_StationaryTutorialThug.BehaviourFixedUpAnimatedAimDir", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RawDir, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutDir, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutDir = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 24);

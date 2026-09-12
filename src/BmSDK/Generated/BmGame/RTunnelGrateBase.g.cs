@@ -81,10 +81,12 @@ public partial class RTunnelGrateBase : BmSDK.BmGame.RSpecialMoveEnvironmentObje
     /// <summary>
     /// Function: GetFinalGrateRotAndTrans
     /// </summary>
-    public unsafe virtual void GetFinalGrateRotAndTrans(out BmSDK.Rotator GrateRot, out System.Numerics.Vector3 GrateTrans)
+    public unsafe virtual void GetFinalGrateRotAndTrans(ref BmSDK.Rotator GrateRot, ref System.Numerics.Vector3 GrateTrans)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RTunnelGrateBase.GetFinalGrateRotAndTrans", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(GrateRot, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(GrateTrans, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -119,10 +121,11 @@ public partial class RTunnelGrateBase : BmSDK.BmGame.RSpecialMoveEnvironmentObje
     /// <summary>
     /// Function: GetCwClimbDownLocator
     /// </summary>
-    public unsafe virtual bool GetCwClimbDownLocator(out BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bRotateGrate = default, float YawOffset = default)
+    public unsafe virtual bool GetCwClimbDownLocator(ref BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bRotateGrate = default, float YawOffset = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RTunnelGrateBase.GetCwClimbDownLocator", true);
         byte* paramsPtr = stackalloc byte[128];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Locator, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Player, paramsPtr + 112);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRotateGrate, paramsPtr + 116);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(YawOffset, paramsPtr + 120);
@@ -134,10 +137,11 @@ public partial class RTunnelGrateBase : BmSDK.BmGame.RSpecialMoveEnvironmentObje
     /// <summary>
     /// Function: GetCwClimbUpLocator
     /// </summary>
-    public unsafe virtual bool GetCwClimbUpLocator(out BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bRotateGrate = default, float YawOffset = default)
+    public unsafe virtual bool GetCwClimbUpLocator(ref BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bRotateGrate = default, float YawOffset = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RTunnelGrateBase.GetCwClimbUpLocator", true);
         byte* paramsPtr = stackalloc byte[128];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Locator, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Player, paramsPtr + 112);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRotateGrate, paramsPtr + 116);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(YawOffset, paramsPtr + 120);
@@ -149,10 +153,11 @@ public partial class RTunnelGrateBase : BmSDK.BmGame.RSpecialMoveEnvironmentObje
     /// <summary>
     /// Function: GetCwClimbLocator
     /// </summary>
-    public unsafe virtual bool GetCwClimbLocator(out BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bCheckDown, bool bRotateGrate = default, float YawOffset = default)
+    public unsafe virtual bool GetCwClimbLocator(ref BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, BmSDK.BmGame.RPawnPlayer Player, bool bCheckDown, bool bRotateGrate = default, float YawOffset = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RTunnelGrateBase.GetCwClimbLocator", true);
         byte* paramsPtr = stackalloc byte[196];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Locator, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Player, paramsPtr + 112);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCheckDown, paramsPtr + 116);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRotateGrate, paramsPtr + 120);

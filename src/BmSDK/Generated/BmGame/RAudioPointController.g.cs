@@ -81,10 +81,11 @@ public partial class RAudioPointController : BmSDK.BmGame.RPawnCharacter, BmSDK.
     /// <summary>
     /// Function: GetInterceptHudLocation
     /// </summary>
-    public unsafe override bool GetInterceptHudLocation(out System.Numerics.Vector3 HudLocation)
+    public unsafe override bool GetInterceptHudLocation(ref System.Numerics.Vector3 HudLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAudioPointController.GetInterceptHudLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HudLocation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HudLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

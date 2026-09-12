@@ -122,7 +122,7 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: CheckCameraLocation
     /// </summary>
-    public unsafe virtual bool CheckCameraLocation(BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Loc, System.Numerics.Vector3 PlayerLocation, BmSDK.FName AnimName, bool bCamMirrored, int Index, out float BestCollisionDistance, out int BestIndex, out int BestMirroredNess, float CheckTime = default, BmSDK.BmGame.RInGameCinematicCam CustomCamera = default)
+    public unsafe virtual bool CheckCameraLocation(BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Loc, System.Numerics.Vector3 PlayerLocation, BmSDK.FName AnimName, bool bCamMirrored, int Index, ref float BestCollisionDistance, ref int BestIndex, ref int BestMirroredNess, float CheckTime = default, BmSDK.BmGame.RInGameCinematicCam CustomCamera = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_Interrogation.CheckCameraLocation", true);
         byte* paramsPtr = stackalloc byte[228];
@@ -131,6 +131,9 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AnimName, paramsPtr + 124);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCamMirrored, paramsPtr + 132);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 136);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BestCollisionDistance, paramsPtr + 140);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BestIndex, paramsPtr + 144);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BestMirroredNess, paramsPtr + 148);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckTime, paramsPtr + 152);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CustomCamera, paramsPtr + 156);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -160,10 +163,11 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: converge
     /// </summary>
-    public unsafe virtual void converge(out System.Numerics.Vector3 Value, System.Numerics.Vector3 targetv, float Speed, float tolerance = default)
+    public unsafe virtual void converge(ref System.Numerics.Vector3 Value, System.Numerics.Vector3 targetv, float Speed, float tolerance = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_Interrogation.converge", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(targetv, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(tolerance, paramsPtr + 28);
@@ -210,11 +214,12 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: GetCameraAnimName
     /// </summary>
-    public unsafe virtual bool GetCameraAnimName(BmSDK.FName CharacterAnim, out BmSDK.FName CameraAnim, BmSDK.Engine.AnimSet CustomAnimSet, int Index)
+    public unsafe virtual bool GetCameraAnimName(BmSDK.FName CharacterAnim, ref BmSDK.FName CameraAnim, BmSDK.Engine.AnimSet CustomAnimSet, int Index)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_Interrogation.GetCameraAnimName", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CharacterAnim, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CameraAnim, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CustomAnimSet, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
@@ -503,10 +508,11 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: GetInferredReferenceLocation
     /// </summary>
-    public unsafe virtual bool GetInferredReferenceLocation(out System.Numerics.Vector3 RefLocation)
+    public unsafe virtual bool GetInferredReferenceLocation(ref System.Numerics.Vector3 RefLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_Interrogation.GetInferredReferenceLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RefLocation, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -590,11 +596,12 @@ public partial class RSpecialMoveInstance_Interrogation : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: GetOuterRailingLocator
     /// </summary>
-    public unsafe virtual void GetOuterRailingLocator(BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator MoveLocation, out BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator OutLocation)
+    public unsafe virtual void GetOuterRailingLocator(BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator MoveLocation, ref BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator OutLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_Interrogation.GetOuterRailingLocator", true);
         byte* paramsPtr = stackalloc byte[224];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MoveLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutLocation, paramsPtr + 112);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutLocation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator>(paramsPtr + 112);
         return;

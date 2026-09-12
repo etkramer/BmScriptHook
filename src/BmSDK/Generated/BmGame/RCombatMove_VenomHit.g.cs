@@ -92,10 +92,13 @@ public partial class RCombatMove_VenomHit : BmSDK.BmGame.RCombatMove, BmSDK.IGam
     /// <summary>
     /// Function: GetRotatedStrikeHitReaction
     /// </summary>
-    public unsafe virtual void GetRotatedStrikeHitReaction(out BmSDK.FName Pose, out BmSDK.FName HitReaction, out int Yaw)
+    public unsafe virtual void GetRotatedStrikeHitReaction(ref BmSDK.FName Pose, ref BmSDK.FName HitReaction, ref int Yaw)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_VenomHit.GetRotatedStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[72];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Pose, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Yaw, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Pose = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 8);
@@ -106,10 +109,14 @@ public partial class RCombatMove_VenomHit : BmSDK.BmGame.RCombatMove, BmSDK.IGam
     /// <summary>
     /// Function: GetHitReaction
     /// </summary>
-    public unsafe virtual void GetHitReaction(out BmSDK.FName MovementStance, out BmSDK.FName WeaponStance, out BmSDK.FName HitReaction, out int Yaw)
+    public unsafe virtual void GetHitReaction(ref BmSDK.FName MovementStance, ref BmSDK.FName WeaponStance, ref BmSDK.FName HitReaction, ref int Yaw)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_VenomHit.GetHitReaction", true);
         byte* paramsPtr = stackalloc byte[88];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MovementStance, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WeaponStance, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Yaw, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         MovementStance = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
         WeaponStance = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 8);

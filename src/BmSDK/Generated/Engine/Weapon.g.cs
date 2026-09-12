@@ -256,12 +256,13 @@ public partial class Weapon : BmSDK.Engine.Inventory, BmSDK.IGameObject
     /// <summary>
     /// Function: CalcWeaponFire
     /// </summary>
-    public unsafe virtual BmSDK.Engine.Actor.FImpactInfo CalcWeaponFire(System.Numerics.Vector3 StartTrace, System.Numerics.Vector3 EndTrace, out BmSDK.TArray<BmSDK.Engine.Actor.FImpactInfo> ImpactList, System.Numerics.Vector3 Extent)
+    public unsafe virtual BmSDK.Engine.Actor.FImpactInfo CalcWeaponFire(System.Numerics.Vector3 StartTrace, System.Numerics.Vector3 EndTrace, ref BmSDK.TArray<BmSDK.Engine.Actor.FImpactInfo> ImpactList, System.Numerics.Vector3 Extent)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Weapon.CalcWeaponFire", true);
         byte* paramsPtr = stackalloc byte[316];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartTrace, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EndTrace, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ImpactList, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Extent, paramsPtr + 36);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ImpactList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FImpactInfo>>(paramsPtr + 24);
@@ -796,10 +797,11 @@ public partial class Weapon : BmSDK.Engine.Inventory, BmSDK.IGameObject
     /// <summary>
     /// Function: GetWeaponDebug
     /// </summary>
-    public unsafe virtual void GetWeaponDebug(out BmSDK.TArray<BmSDK.FString> DebugInfo)
+    public unsafe virtual void GetWeaponDebug(ref BmSDK.TArray<BmSDK.FString> DebugInfo)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Weapon.GetWeaponDebug", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DebugInfo, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DebugInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.FString>>(paramsPtr + 0);
         return;
@@ -808,11 +810,13 @@ public partial class Weapon : BmSDK.Engine.Inventory, BmSDK.IGameObject
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Weapon.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

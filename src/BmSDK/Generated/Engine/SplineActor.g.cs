@@ -105,10 +105,11 @@ public partial class SplineActor : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllConnectedSplineActors
     /// </summary>
-    public unsafe virtual void GetAllConnectedSplineActors(out BmSDK.TArray<BmSDK.Engine.SplineActor> OutSet)
+    public unsafe virtual void GetAllConnectedSplineActors(ref BmSDK.TArray<BmSDK.Engine.SplineActor> OutSet)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SplineActor.GetAllConnectedSplineActors", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSet, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -124,11 +125,12 @@ public partial class SplineActor : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: FindSplinePathTo
     /// </summary>
-    public unsafe virtual bool FindSplinePathTo(BmSDK.Engine.SplineActor Goal, out BmSDK.TArray<BmSDK.Engine.SplineActor> OutRoute)
+    public unsafe virtual bool FindSplinePathTo(BmSDK.Engine.SplineActor Goal, ref BmSDK.TArray<BmSDK.Engine.SplineActor> OutRoute)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SplineActor.FindSplinePathTo", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Goal, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutRoute, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

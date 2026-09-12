@@ -13,7 +13,7 @@ public partial interface OnlineTitleFileInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetTitleFileContents
     /// </summary>
-    public unsafe bool GetTitleFileContents(BmSDK.FString Filename, out BmSDK.TArray<byte> FileContents);
+    public unsafe bool GetTitleFileContents(BmSDK.FString Filename, ref BmSDK.TArray<byte> FileContents);
 
     /// <summary>
     /// Function: AddReadTitleFileCompleteDelegate

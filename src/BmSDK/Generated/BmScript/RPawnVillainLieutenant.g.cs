@@ -200,12 +200,14 @@ public partial class RPawnVillainLieutenant : BmSDK.BmGame.RPawnVillainCombat, B
     /// <summary>
     /// Function: GetOverrideStrikeInfo
     /// </summary>
-    public unsafe override void GetOverrideStrikeInfo(BmSDK.BmGame.RPawnVillain PrevTarget, float StrikeDamage, out BmSDK.BmGame.RPawnPlayerCombat.StrikeRange CurrRange, out BmSDK.BmGame.RPawnPlayerCombat.StrikeStrength CurrStrength)
+    public unsafe override void GetOverrideStrikeInfo(BmSDK.BmGame.RPawnVillain PrevTarget, float StrikeDamage, ref BmSDK.BmGame.RPawnPlayerCombat.StrikeRange CurrRange, ref BmSDK.BmGame.RPawnPlayerCombat.StrikeStrength CurrStrength)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainLieutenant.GetOverrideStrikeInfo", true);
         byte* paramsPtr = stackalloc byte[10];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PrevTarget, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StrikeDamage, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CurrRange, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CurrStrength, paramsPtr + 9);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CurrRange = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnPlayerCombat.StrikeRange>(paramsPtr + 8);
         CurrStrength = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPawnPlayerCombat.StrikeStrength>(paramsPtr + 9);
@@ -388,11 +390,12 @@ public partial class RPawnVillainLieutenant : BmSDK.BmGame.RPawnVillainCombat, B
     /// <summary>
     /// Function: ModifyDamageAmount
     /// </summary>
-    public unsafe override void ModifyDamageAmount(BmSDK.Class dmgType, out float DmgAmount)
+    public unsafe override void ModifyDamageAmount(BmSDK.Class dmgType, ref float DmgAmount)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainLieutenant.ModifyDamageAmount", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DmgAmount, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DmgAmount = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         return;

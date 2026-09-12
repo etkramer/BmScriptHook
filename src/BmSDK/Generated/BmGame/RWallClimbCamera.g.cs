@@ -114,10 +114,11 @@ public partial class RWallClimbCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameOb
     /// <summary>
     /// Function: convergei
     /// </summary>
-    public unsafe virtual void convergei(out int Value, int targetv, int Speed, int tolerance = default)
+    public unsafe virtual void convergei(ref int Value, int targetv, int Speed, int tolerance = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RWallClimbCamera.convergei", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(targetv, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(tolerance, paramsPtr + 12);
@@ -152,11 +153,12 @@ public partial class RWallClimbCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameOb
     /// <summary>
     /// Function: converger
     /// </summary>
-    public unsafe virtual void converger(float Delta, out BmSDK.Rotator Value, BmSDK.Rotator targetv, float Speed, float tolerance = default)
+    public unsafe virtual void converger(float Delta, ref BmSDK.Rotator Value, BmSDK.Rotator targetv, float Speed, float tolerance = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RWallClimbCamera.converger", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Delta, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(targetv, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(tolerance, paramsPtr + 32);
@@ -180,12 +182,14 @@ public partial class RWallClimbCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameOb
     /// <summary>
     /// Function: converge
     /// </summary>
-    public unsafe virtual void converge(float Delta, out System.Numerics.Vector3 Value, System.Numerics.Vector3 targetv, out System.Numerics.Vector3 LastSpeed, float Speed, float tolerance = default, bool bOvershoot = default)
+    public unsafe virtual void converge(float Delta, ref System.Numerics.Vector3 Value, System.Numerics.Vector3 targetv, ref System.Numerics.Vector3 LastSpeed, float Speed, float tolerance = default, bool bOvershoot = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RWallClimbCamera.converge", true);
         byte* paramsPtr = stackalloc byte[124];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Delta, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(targetv, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LastSpeed, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 40);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(tolerance, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bOvershoot, paramsPtr + 48);
@@ -209,10 +213,11 @@ public partial class RWallClimbCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameOb
     /// <summary>
     /// Function: GetWallTargetLocation
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 GetWallTargetLocation(out System.Numerics.Vector3 NextLoc)
+    public unsafe virtual System.Numerics.Vector3 GetWallTargetLocation(ref System.Numerics.Vector3 NextLoc)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RWallClimbCamera.GetWallTargetLocation", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NextLoc, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         NextLoc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);

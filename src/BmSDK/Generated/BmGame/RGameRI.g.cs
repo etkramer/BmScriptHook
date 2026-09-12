@@ -947,13 +947,14 @@ public partial class RGameRI : BmSDK.Engine.GameReplicationInfo, BmSDK.IGameObje
     /// <summary>
     /// Function: CheckCylinderCollisionWithPawns
     /// </summary>
-    public unsafe virtual bool CheckCylinderCollisionWithPawns(System.Numerics.Vector3 CheckPos, float CheckRadius, float CheckHeight, out BmSDK.BmGame.RPawnCombat HitPawn)
+    public unsafe virtual bool CheckCylinderCollisionWithPawns(System.Numerics.Vector3 CheckPos, float CheckRadius, float CheckHeight, ref BmSDK.BmGame.RPawnCombat HitPawn)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameRI.CheckCylinderCollisionWithPawns", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckPos, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckRadius, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckHeight, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitPawn, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -157,10 +157,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAudioThoughts
     /// </summary>
-    public unsafe virtual bool GetAudioThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, out System.Numerics.Vector3 ThoughtLocation, BmSDK.Engine.AkComponent akComp)
+    public unsafe virtual bool GetAudioThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, ref System.Numerics.Vector3 ThoughtLocation, BmSDK.Engine.AkComponent akComp)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetAudioThoughts", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtLocation, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(akComp, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -196,11 +198,13 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAudioSpatial
     /// </summary>
-    public unsafe virtual void GetAudioSpatial(BmSDK.Engine.AkComponent akComp, out System.Numerics.Vector3 SoundPosition, out BmSDK.Rotator SoundOrientation)
+    public unsafe virtual void GetAudioSpatial(BmSDK.Engine.AkComponent akComp, ref System.Numerics.Vector3 SoundPosition, ref BmSDK.Rotator SoundOrientation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetAudioSpatial", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(akComp, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundPosition, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundOrientation, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -400,10 +404,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StopLoopingEvent
     /// </summary>
-    public unsafe virtual void StopLoopingEvent(out BmSDK.Engine.AkWwise.FAkSoundLoop SoundLoop, bool QuickStop = default)
+    public unsafe virtual void StopLoopingEvent(ref BmSDK.Engine.AkWwise.FAkSoundLoop SoundLoop, bool QuickStop = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.StopLoopingEvent", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundLoop, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(QuickStop, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -420,10 +425,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StartLoopingEvent
     /// </summary>
-    public unsafe virtual bool StartLoopingEvent(out BmSDK.Engine.AkWwise.FAkSoundLoop SoundLoop, System.IntPtr SoundCallbackDelegate = default, int SoundCallbackFlags = default)
+    public unsafe virtual bool StartLoopingEvent(ref BmSDK.Engine.AkWwise.FAkSoundLoop SoundLoop, System.IntPtr SoundCallbackDelegate = default, int SoundCallbackFlags = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.StartLoopingEvent", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundLoop, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundCallbackDelegate, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundCallbackFlags, paramsPtr + 28);
         var oldFlags = funcManaged.FunctionFlags;
@@ -441,10 +447,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: IsSoundHandleValid
     /// </summary>
-    public unsafe virtual bool IsSoundHandleValid(out BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandleToTest)
+    public unsafe virtual bool IsSoundHandleValid(ref BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandleToTest)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.IsSoundHandleValid", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundHandleToTest, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -460,10 +467,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StopAudioEvent
     /// </summary>
-    public unsafe virtual void StopAudioEvent(out BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle, bool QuickStop = default)
+    public unsafe virtual void StopAudioEvent(ref BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle, bool QuickStop = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.StopAudioEvent", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundHandle, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(QuickStop, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -560,10 +568,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllAkComponents
     /// </summary>
-    public unsafe virtual void GetAllAkComponents(out BmSDK.TArray<BmSDK.Engine.AkComponent> akComps)
+    public unsafe virtual void GetAllAkComponents(ref BmSDK.TArray<BmSDK.Engine.AkComponent> akComps)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetAllAkComponents", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(akComps, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -634,7 +643,7 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: WillOverlap
     /// </summary>
-    public unsafe virtual bool WillOverlap(System.Numerics.Vector3 PosA, System.Numerics.Vector3 VelA, System.Numerics.Vector3 PosB, System.Numerics.Vector3 VelB, float StepSize, float Radius, out float Time)
+    public unsafe virtual bool WillOverlap(System.Numerics.Vector3 PosA, System.Numerics.Vector3 VelA, System.Numerics.Vector3 PosB, System.Numerics.Vector3 VelB, float StepSize, float Radius, ref float Time)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.WillOverlap", true);
         byte* paramsPtr = stackalloc byte[64];
@@ -644,6 +653,7 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(VelB, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StepSize, paramsPtr + 48);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Radius, paramsPtr + 52);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Time, paramsPtr + 56);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -659,10 +669,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAvoidanceVector
     /// </summary>
-    public unsafe virtual System.Numerics.Vector3 GetAvoidanceVector(out BmSDK.TArray<BmSDK.Engine.Actor> Obstacles, System.Numerics.Vector3 GoalLocation, float CollisionRadius, float MaxSpeed, int NumSamples = default, float VelocityStepRate = default, float MaxTimeTilOverlap = default)
+    public unsafe virtual System.Numerics.Vector3 GetAvoidanceVector(BmSDK.TArray<BmSDK.Engine.Actor> Obstacles, System.Numerics.Vector3 GoalLocation, float CollisionRadius, float MaxSpeed, int NumSamples = default, float VelocityStepRate = default, float MaxTimeTilOverlap = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetAvoidanceVector", true);
         byte* paramsPtr = stackalloc byte[56];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Obstacles, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(GoalLocation, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionRadius, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxSpeed, paramsPtr + 28);
@@ -677,7 +688,6 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Obstacles = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor>>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 44);
     }
 
@@ -776,11 +786,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SupportsKismetModification
     /// </summary>
-    public unsafe virtual bool SupportsKismetModification(BmSDK.Engine.SequenceOp AskingOp, out BmSDK.FString Reason)
+    public unsafe virtual bool SupportsKismetModification(BmSDK.Engine.SequenceOp AskingOp, ref BmSDK.FString Reason)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.SupportsKismetModification", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AskingOp, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Reason, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -928,11 +939,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: RootMotionExtracted
     /// </summary>
-    public unsafe virtual void RootMotionExtracted(BmSDK.Engine.SkeletalMeshComponent SkelComp, out BmSDK.GameObject.FBoneAtom ExtractedRootMotionDelta)
+    public unsafe virtual void RootMotionExtracted(BmSDK.Engine.SkeletalMeshComponent SkelComp, ref BmSDK.GameObject.FBoneAtom ExtractedRootMotionDelta)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.RootMotionExtracted", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SkelComp, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ExtractedRootMotionDelta, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ExtractedRootMotionDelta = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FBoneAtom>(paramsPtr + 16);
         return;
@@ -1009,18 +1021,18 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: RigidBodyCollision
     /// </summary>
-    public unsafe virtual void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, out BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
+    public unsafe virtual void RigidBodyCollision(BmSDK.Engine.PrimitiveComponent HitComponent, BmSDK.Engine.PrimitiveComponent OtherComponent, BmSDK.Engine.Actor.FCollisionImpactData RigidCollisionData, int ContactIndex, float Speed, int Index0, int Index1)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.RigidBodyCollision", true);
         byte* paramsPtr = stackalloc byte[60];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitComponent, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OtherComponent, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RigidCollisionData, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ContactIndex, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 48);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index0, paramsPtr + 52);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index1, paramsPtr + 56);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        RigidCollisionData = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Actor.FCollisionImpactData>(paramsPtr + 8);
         return;
     }
 
@@ -1113,11 +1125,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindGoodEndView
     /// </summary>
-    public unsafe virtual void FindGoodEndView(BmSDK.Engine.PlayerController PC, out BmSDK.Rotator GoodRotation)
+    public unsafe virtual void FindGoodEndView(BmSDK.Engine.PlayerController PC, ref BmSDK.Rotator GoodRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.FindGoodEndView", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PC, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(GoodRotation, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         GoodRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 4);
         return;
@@ -1195,10 +1208,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetActorEyesViewPoint
     /// </summary>
-    public unsafe virtual void GetActorEyesViewPoint(out System.Numerics.Vector3 out_Location, out BmSDK.Rotator out_Rotation)
+    public unsafe virtual void GetActorEyesViewPoint(ref System.Numerics.Vector3 out_Location, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetActorEyesViewPoint", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Location, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Location = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         out_Rotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -1605,11 +1620,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindEventsOfClass
     /// </summary>
-    public unsafe virtual bool FindEventsOfClass(BmSDK.Class EventClass, out BmSDK.TArray<BmSDK.Engine.SequenceEvent> out_EventList, bool bIncludeDisabled)
+    public unsafe virtual bool FindEventsOfClass(BmSDK.Class EventClass, ref BmSDK.TArray<BmSDK.Engine.SequenceEvent> out_EventList, bool bIncludeDisabled)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.FindEventsOfClass", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EventClass, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_EventList, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIncludeDisabled, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_EventList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.SequenceEvent>>(paramsPtr + 4);
@@ -1619,16 +1635,17 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ActivateEventClass
     /// </summary>
-    public unsafe virtual bool ActivateEventClass(BmSDK.Class InClass, BmSDK.Engine.Actor InInstigator, out BmSDK.TArray<BmSDK.Engine.SequenceEvent> EventList, out BmSDK.TArray<int> ActivateIndices, bool bTest, out BmSDK.TArray<BmSDK.Engine.SequenceEvent> ActivatedEvents)
+    public unsafe virtual bool ActivateEventClass(BmSDK.Class InClass, BmSDK.Engine.Actor InInstigator, BmSDK.TArray<BmSDK.Engine.SequenceEvent> EventList, BmSDK.TArray<int> ActivateIndices, bool bTest, ref BmSDK.TArray<BmSDK.Engine.SequenceEvent> ActivatedEvents)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.ActivateEventClass", true);
         byte* paramsPtr = stackalloc byte[56];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InClass, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InInstigator, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EventList, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActivateIndices, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bTest, paramsPtr + 32);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActivatedEvents, paramsPtr + 36);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        EventList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.SequenceEvent>>(paramsPtr + 8);
-        ActivateIndices = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 20);
         ActivatedEvents = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.SequenceEvent>>(paramsPtr + 36);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 48);
     }
@@ -1662,7 +1679,7 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: TriggerEventClass
     /// </summary>
-    public unsafe virtual bool TriggerEventClass(BmSDK.Class InEventClass, BmSDK.Engine.Actor InInstigator, int ActivateIndex, bool bTest, out BmSDK.TArray<BmSDK.Engine.SequenceEvent> ActivatedEvents)
+    public unsafe virtual bool TriggerEventClass(BmSDK.Class InEventClass, BmSDK.Engine.Actor InInstigator, int ActivateIndex, bool bTest, ref BmSDK.TArray<BmSDK.Engine.SequenceEvent> ActivatedEvents)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.TriggerEventClass", true);
         byte* paramsPtr = stackalloc byte[44];
@@ -1670,6 +1687,7 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InInstigator, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ActivateIndex, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bTest, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActivatedEvents, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ActivatedEvents = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.SequenceEvent>>(paramsPtr + 16);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 28);
@@ -1761,10 +1779,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetActorThoughts
     /// </summary>
-    public unsafe virtual void GetActorThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, out System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
+    public unsafe virtual void GetActorThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, ref System.Numerics.Vector3 ThoughtLocationOverride, BmSDK.FString IndentString = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetActorThoughts", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtLocationOverride, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IndentString, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
@@ -1775,11 +1795,13 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe virtual void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe virtual void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
@@ -1848,11 +1870,14 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: CalcCamera
     /// </summary>
-    public unsafe virtual bool CalcCamera(float fDeltaTime, out System.Numerics.Vector3 out_CamLoc, out BmSDK.Rotator out_CamRot, out float out_FOV)
+    public unsafe virtual bool CalcCamera(float fDeltaTime, ref System.Numerics.Vector3 out_CamLoc, ref BmSDK.Rotator out_CamRot, ref float out_FOV)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.CalcCamera", true);
         byte* paramsPtr = stackalloc byte[56];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(fDeltaTime, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_CamLoc, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_CamRot, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_FOV, paramsPtr + 28);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_CamLoc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
         out_CamRot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 16);
@@ -1928,12 +1953,14 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: CheckHitInfo
     /// </summary>
-    public unsafe virtual void CheckHitInfo(out BmSDK.Engine.Actor.FTraceHitInfo HitInfo, BmSDK.Engine.PrimitiveComponent FallBackComponent, System.Numerics.Vector3 Dir, out System.Numerics.Vector3 out_HitLocation)
+    public unsafe virtual void CheckHitInfo(ref BmSDK.Engine.Actor.FTraceHitInfo HitInfo, BmSDK.Engine.PrimitiveComponent FallBackComponent, System.Numerics.Vector3 Dir, ref System.Numerics.Vector3 out_HitLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.CheckHitInfo", true);
         byte* paramsPtr = stackalloc byte[148];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitInfo, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FallBackComponent, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Dir, paramsPtr + 40);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_HitLocation, paramsPtr + 52);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Actor.FTraceHitInfo>(paramsPtr + 0);
         out_HitLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 52);
@@ -2163,10 +2190,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: CalculateMinSpeedTrajectory
     /// </summary>
-    public unsafe virtual bool CalculateMinSpeedTrajectory(out System.Numerics.Vector3 out_Velocity, System.Numerics.Vector3 End, System.Numerics.Vector3 Start, float MaxTossSpeed, float MinTossSpeed, System.Numerics.Vector3 CollisionSize = default, float TerminalVelocity = default, float GravityZ = default, bool bOnlyTraceUp = default)
+    public unsafe virtual bool CalculateMinSpeedTrajectory(ref System.Numerics.Vector3 out_Velocity, System.Numerics.Vector3 End, System.Numerics.Vector3 Start, float MaxTossSpeed, float MinTossSpeed, System.Numerics.Vector3 CollisionSize = default, float TerminalVelocity = default, float GravityZ = default, bool bOnlyTraceUp = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.CalculateMinSpeedTrajectory", true);
         byte* paramsPtr = stackalloc byte[72];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Velocity, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(End, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Start, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxTossSpeed, paramsPtr + 36);
@@ -2190,10 +2218,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SuggestTossVelocity
     /// </summary>
-    public unsafe virtual bool SuggestTossVelocity(out System.Numerics.Vector3 TossVelocity, System.Numerics.Vector3 Destination, System.Numerics.Vector3 Start, float TossSpeed, float BaseTossZ = default, float DesiredZPct = default, System.Numerics.Vector3 CollisionSize = default, float TerminalVelocity = default, float OverrideGravityZ = default, bool bOnlyTraceUp = default)
+    public unsafe virtual bool SuggestTossVelocity(ref System.Numerics.Vector3 TossVelocity, System.Numerics.Vector3 Destination, System.Numerics.Vector3 Start, float TossSpeed, float BaseTossZ = default, float DesiredZPct = default, System.Numerics.Vector3 CollisionSize = default, float TerminalVelocity = default, float OverrideGravityZ = default, bool bOnlyTraceUp = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.SuggestTossVelocity", true);
         byte* paramsPtr = stackalloc byte[76];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TossVelocity, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Destination, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Start, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TossSpeed, paramsPtr + 36);
@@ -2561,10 +2590,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetBoundingCylinder
     /// </summary>
-    public unsafe virtual void GetBoundingCylinder(out float CollisionRadius, out float CollisionHeight)
+    public unsafe virtual void GetBoundingCylinder(ref float CollisionRadius, ref float CollisionHeight)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetBoundingCylinder", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionRadius, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionHeight, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -2581,10 +2612,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetComponentsBoundingBox
     /// </summary>
-    public unsafe virtual void GetComponentsBoundingBox(out BmSDK.GameObject.FBox ActorBox)
+    public unsafe virtual void GetComponentsBoundingBox(ref BmSDK.GameObject.FBox ActorBox)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.GetComponentsBoundingBox", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ActorBox, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -2638,11 +2670,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindSpot
     /// </summary>
-    public unsafe virtual bool FindSpot(System.Numerics.Vector3 BoxExtent, out System.Numerics.Vector3 SpotLocation, bool DontEaryOut = default)
+    public unsafe virtual bool FindSpot(System.Numerics.Vector3 BoxExtent, ref System.Numerics.Vector3 SpotLocation, bool DontEaryOut = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.FindSpot", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(BoxExtent, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SpotLocation, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DontEaryOut, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -2659,13 +2692,14 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: TraceAllPhysicsAssetInteractions
     /// </summary>
-    public unsafe virtual bool TraceAllPhysicsAssetInteractions(BmSDK.Engine.SkeletalMeshComponent SkelMeshComp, System.Numerics.Vector3 EndTrace, System.Numerics.Vector3 StartTrace, out BmSDK.TArray<BmSDK.Engine.Actor.FImpactInfo> out_Hits, System.Numerics.Vector3 Extent = default)
+    public unsafe virtual bool TraceAllPhysicsAssetInteractions(BmSDK.Engine.SkeletalMeshComponent SkelMeshComp, System.Numerics.Vector3 EndTrace, System.Numerics.Vector3 StartTrace, ref BmSDK.TArray<BmSDK.Engine.Actor.FImpactInfo> out_Hits, System.Numerics.Vector3 Extent = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.TraceAllPhysicsAssetInteractions", true);
         byte* paramsPtr = stackalloc byte[56];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SkelMeshComp, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EndTrace, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartTrace, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Hits, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Extent, paramsPtr + 40);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -2725,14 +2759,17 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: TraceComponent
     /// </summary>
-    public unsafe virtual bool TraceComponent(out System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 HitNormal, BmSDK.Engine.PrimitiveComponent InComponent, System.Numerics.Vector3 TraceEnd, System.Numerics.Vector3 TraceStart, System.Numerics.Vector3 Extent, out BmSDK.Engine.Actor.FTraceHitInfo HitInfo, bool bComplexCollision)
+    public unsafe virtual bool TraceComponent(ref System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 HitNormal, BmSDK.Engine.PrimitiveComponent InComponent, System.Numerics.Vector3 TraceEnd, System.Numerics.Vector3 TraceStart, System.Numerics.Vector3 Extent, ref BmSDK.Engine.Actor.FTraceHitInfo HitInfo, bool bComplexCollision)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.TraceComponent", true);
         byte* paramsPtr = stackalloc byte[108];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitNormal, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InComponent, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceEnd, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceStart, paramsPtr + 40);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Extent, paramsPtr + 52);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitInfo, paramsPtr + 64);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bComplexCollision, paramsPtr + 100);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -2751,14 +2788,17 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: Trace
     /// </summary>
-    public unsafe virtual BmSDK.Engine.Actor Trace(out System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 HitNormal, System.Numerics.Vector3 TraceEnd, System.Numerics.Vector3 TraceStart, bool bTraceActors, System.Numerics.Vector3 Extent, out BmSDK.Engine.Actor.FTraceHitInfo HitInfo, int ExtraTraceFlags)
+    public unsafe virtual BmSDK.Engine.Actor Trace(ref System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 HitNormal, System.Numerics.Vector3 TraceEnd, System.Numerics.Vector3 TraceStart, bool bTraceActors, System.Numerics.Vector3 Extent, ref BmSDK.Engine.Actor.FTraceHitInfo HitInfo, int ExtraTraceFlags)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.Trace", true);
         byte* paramsPtr = stackalloc byte[108];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitNormal, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceEnd, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceStart, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bTraceActors, paramsPtr + 48);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Extent, paramsPtr + 52);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitInfo, paramsPtr + 64);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ExtraTraceFlags, paramsPtr + 100);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -2824,10 +2864,12 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: OverRotated
     /// </summary>
-    public unsafe virtual bool OverRotated(out BmSDK.Rotator out_Desired, out BmSDK.Rotator out_Actual)
+    public unsafe virtual bool OverRotated(ref BmSDK.Rotator out_Desired, ref BmSDK.Rotator out_Actual)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.OverRotated", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Desired, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Actual, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Desired = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 0);
         out_Actual = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);
@@ -2837,10 +2879,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ClampRotation
     /// </summary>
-    public unsafe virtual bool ClampRotation(out BmSDK.Rotator out_Rot, BmSDK.Rotator rBase, BmSDK.Rotator rUpperLimits, BmSDK.Rotator rLowerLimits)
+    public unsafe virtual bool ClampRotation(ref BmSDK.Rotator out_Rot, BmSDK.Rotator rBase, BmSDK.Rotator rUpperLimits, BmSDK.Rotator rLowerLimits)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.ClampRotation", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rot, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(rBase, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(rUpperLimits, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(rLowerLimits, paramsPtr + 36);
@@ -3287,10 +3330,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: UnClock
     /// </summary>
-    public unsafe virtual void UnClock(out float Time)
+    public unsafe virtual void UnClock(ref float Time)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.UnClock", true);
         byte* paramsPtr = stackalloc byte[4];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Time, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -3306,10 +3350,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: Clock
     /// </summary>
-    public unsafe virtual void Clock(out float Time)
+    public unsafe virtual void Clock(ref float Time)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.Clock", true);
         byte* paramsPtr = stackalloc byte[4];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Time, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -3421,10 +3466,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: DrawDebugFrustrum
     /// </summary>
-    public unsafe static void DrawDebugFrustrum(out BmSDK.GameObject.FMatrix FrustumToWorld, byte R, byte G, byte B, bool bPersistentLines = default)
+    public unsafe static void DrawDebugFrustrum(BmSDK.GameObject.FMatrix FrustumToWorld, byte R, byte G, byte B, bool bPersistentLines = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.DrawDebugFrustrum", true);
         byte* paramsPtr = stackalloc byte[72];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FrustumToWorld, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(R, paramsPtr + 64);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(G, paramsPtr + 65);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(B, paramsPtr + 66);
@@ -3437,7 +3483,6 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        FrustumToWorld = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FMatrix>(paramsPtr + 0);
         return;
     }
 
@@ -3722,10 +3767,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetBasedPosition
     /// </summary>
-    public unsafe static void SetBasedPosition(out BmSDK.Engine.Actor.FBasedPosition BP, System.Numerics.Vector3 pos, BmSDK.Engine.Actor ForcedBase = default)
+    public unsafe static void SetBasedPosition(ref BmSDK.Engine.Actor.FBasedPosition BP, System.Numerics.Vector3 pos, BmSDK.Engine.Actor ForcedBase = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.SetBasedPosition", true);
         byte* paramsPtr = stackalloc byte[68];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BP, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(pos, paramsPtr + 52);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ForcedBase, paramsPtr + 64);
         var oldFlags = funcManaged.FunctionFlags;
@@ -3762,10 +3808,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: Vect2BP
     /// </summary>
-    public unsafe static void Vect2BP(out BmSDK.Engine.Actor.FBasedPosition BP, System.Numerics.Vector3 pos, BmSDK.Engine.Actor ForcedBase = default)
+    public unsafe static void Vect2BP(ref BmSDK.Engine.Actor.FBasedPosition BP, System.Numerics.Vector3 pos, BmSDK.Engine.Actor ForcedBase = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.Vect2BP", true);
         byte* paramsPtr = stackalloc byte[68];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BP, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(pos, paramsPtr + 52);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ForcedBase, paramsPtr + 64);
         var oldFlags = funcManaged.FunctionFlags;
@@ -4122,10 +4169,11 @@ public partial class Actor : BmSDK.StateObject, BmSDK.IGameObject
     /// <summary>
     /// Function: MovingWhichWay
     /// </summary>
-    public unsafe virtual BmSDK.Engine.Actor.EMoveDir MovingWhichWay(out float Amount)
+    public unsafe virtual BmSDK.Engine.Actor.EMoveDir MovingWhichWay(ref float Amount)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Actor.MovingWhichWay", true);
         byte* paramsPtr = stackalloc byte[5];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Amount, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

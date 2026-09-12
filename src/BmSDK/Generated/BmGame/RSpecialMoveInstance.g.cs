@@ -157,10 +157,11 @@ public partial class RSpecialMoveInstance : BmSDK.Engine.Actor, BmSDK.IGameObjec
     /// <summary>
     /// Function: OverrideGravityZ
     /// </summary>
-    public unsafe virtual bool OverrideGravityZ(out float Gravity)
+    public unsafe virtual bool OverrideGravityZ(ref float Gravity)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance.OverrideGravityZ", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Gravity, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Gravity = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 4);
@@ -213,10 +214,11 @@ public partial class RSpecialMoveInstance : BmSDK.Engine.Actor, BmSDK.IGameObjec
     /// <summary>
     /// Function: PredictEndLocation
     /// </summary>
-    public unsafe virtual bool PredictEndLocation(out System.Numerics.Vector3 EndLocation)
+    public unsafe virtual bool PredictEndLocation(ref System.Numerics.Vector3 EndLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance.PredictEndLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EndLocation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         EndLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

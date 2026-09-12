@@ -81,12 +81,14 @@ public partial class RSpecialMoveConfig_ActivePoseTransitionWithOffset : BmSDK.B
     /// <summary>
     /// Function: GetEndPositionAndYaw
     /// </summary>
-    public unsafe override void GetEndPositionAndYaw(BmSDK.Engine.Pawn Player, BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator MoveLocation, out System.Numerics.Vector3 EndPosition, out int EndYaw)
+    public unsafe override void GetEndPositionAndYaw(BmSDK.Engine.Pawn Player, BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator MoveLocation, ref System.Numerics.Vector3 EndPosition, ref int EndYaw)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveConfig_ActivePoseTransitionWithOffset.GetEndPositionAndYaw", true);
         byte* paramsPtr = stackalloc byte[132];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Player, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MoveLocation, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EndPosition, paramsPtr + 116);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EndYaw, paramsPtr + 128);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         EndPosition = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 116);
         EndYaw = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 128);

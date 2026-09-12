@@ -238,11 +238,13 @@ public partial class RForensicsInvestigator : BmSDK.GameObject, BmSDK.IGameObjec
     /// <summary>
     /// Function: SetInfoCursor
     /// </summary>
-    public unsafe virtual void SetInfoCursor(BmSDK.BmGame.RPlayerController RPC, out BmSDK.FString Title, out BmSDK.FString Message, bool bWarning, float ViewDepth)
+    public unsafe virtual void SetInfoCursor(BmSDK.BmGame.RPlayerController RPC, ref BmSDK.FString Title, ref BmSDK.FString Message, bool bWarning, float ViewDepth)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RForensicsInvestigator.SetInfoCursor", true);
         byte* paramsPtr = stackalloc byte[36];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RPC, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Title, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Message, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bWarning, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ViewDepth, paramsPtr + 32);
         var oldFlags = funcManaged.FunctionFlags;

@@ -117,11 +117,12 @@ public partial class RPawnBossGrundyBase : BmSDK.BmGame.RPawnVillain, BmSDK.BmGa
     /// <summary>
     /// Function: GetLandingNotifyTime
     /// </summary>
-    public unsafe virtual bool GetLandingNotifyTime(BmSDK.Engine.AnimSequence inAnim, out float landingTime)
+    public unsafe virtual bool GetLandingNotifyTime(BmSDK.Engine.AnimSequence inAnim, ref float landingTime)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossGrundyBase.GetLandingNotifyTime", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inAnim, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(landingTime, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -137,11 +138,15 @@ public partial class RPawnBossGrundyBase : BmSDK.BmGame.RPawnVillain, BmSDK.BmGa
     /// <summary>
     /// Function: GetChainSmashNotifyTimes
     /// </summary>
-    public unsafe virtual bool GetChainSmashNotifyTimes(BmSDK.BmGame.RAnimUtil.FNotifyAnim inAnim, out float beginExtendTime, out float endExtendTime, out float beginRetractTime, out float endRetractTime)
+    public unsafe virtual bool GetChainSmashNotifyTimes(BmSDK.BmGame.RAnimUtil.FNotifyAnim inAnim, ref float beginExtendTime, ref float endExtendTime, ref float beginRetractTime, ref float endRetractTime)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossGrundyBase.GetChainSmashNotifyTimes", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inAnim, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(beginExtendTime, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(endExtendTime, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(beginRetractTime, paramsPtr + 28);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(endRetractTime, paramsPtr + 32);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -160,11 +165,12 @@ public partial class RPawnBossGrundyBase : BmSDK.BmGame.RPawnVillain, BmSDK.BmGa
     /// <summary>
     /// Function: GetWeightToHandDir
     /// </summary>
-    public unsafe virtual void GetWeightToHandDir(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, out System.Numerics.Vector3 Dir)
+    public unsafe virtual void GetWeightToHandDir(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, ref System.Numerics.Vector3 Dir)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossGrundyBase.GetWeightToHandDir", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(applicationSide, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Dir, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -199,11 +205,12 @@ public partial class RPawnBossGrundyBase : BmSDK.BmGame.RPawnVillain, BmSDK.BmGa
     /// <summary>
     /// Function: GetGrundyWeightAttachPos
     /// </summary>
-    public unsafe virtual void GetGrundyWeightAttachPos(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, out System.Numerics.Vector3 pos)
+    public unsafe virtual void GetGrundyWeightAttachPos(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, ref System.Numerics.Vector3 pos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossGrundyBase.GetGrundyWeightAttachPos", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(applicationSide, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(pos, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -635,11 +642,12 @@ public partial class RPawnBossGrundyBase : BmSDK.BmGame.RPawnVillain, BmSDK.BmGa
     /// <summary>
     /// Function: GetWeightCoM
     /// </summary>
-    public unsafe virtual void GetWeightCoM(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, out System.Numerics.Vector3 CoM)
+    public unsafe virtual void GetWeightCoM(BmSDK.BmGame.RPawnBossGrundyBase.EGrundyWeightSide applicationSide, ref System.Numerics.Vector3 CoM)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossGrundyBase.GetWeightCoM", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(applicationSide, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CoM, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

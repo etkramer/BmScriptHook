@@ -81,10 +81,11 @@ public partial class RPawn : BmSDK.Engine.Pawn, BmSDK.IGameObject
     /// <summary>
     /// Function: GetInterceptHudLocation
     /// </summary>
-    public unsafe virtual bool GetInterceptHudLocation(out System.Numerics.Vector3 HudLocation)
+    public unsafe virtual bool GetInterceptHudLocation(ref System.Numerics.Vector3 HudLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawn.GetInterceptHudLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HudLocation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HudLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -250,11 +251,14 @@ public partial class RPawn : BmSDK.Engine.Pawn, BmSDK.IGameObject
     /// <summary>
     /// Function: SetColourForType
     /// </summary>
-    public unsafe virtual void SetColourForType(BmSDK.BmGame.RPawn.PawnHistoryType T, out byte R, out byte G, out byte B)
+    public unsafe virtual void SetColourForType(BmSDK.BmGame.RPawn.PawnHistoryType T, ref byte R, ref byte G, ref byte B)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawn.SetColourForType", true);
         byte* paramsPtr = stackalloc byte[4];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(T, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(R, paramsPtr + 1);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(G, paramsPtr + 2);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(B, paramsPtr + 3);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         R = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 1);
         G = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 2);
@@ -320,10 +324,11 @@ public partial class RPawn : BmSDK.Engine.Pawn, BmSDK.IGameObject
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe virtual void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawn.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;
@@ -437,13 +442,15 @@ public partial class RPawn : BmSDK.Engine.Pawn, BmSDK.IGameObject
     /// <summary>
     /// Function: FindFootstepSurface
     /// </summary>
-    public unsafe virtual bool FindFootstepSurface(BmSDK.BmGame.RAnimNotify_Footstep.EFootstepSurfaceFinder Type, BmSDK.BmGame.RAnimNotify_Footstep.EFoot Foot, BmSDK.BmGame.RAnimNotify_Footstep.EContactType Contact, out System.Numerics.Vector3 InOut_FootLocation, out BmSDK.Engine.PhysicalMaterial Out_Material)
+    public unsafe virtual bool FindFootstepSurface(BmSDK.BmGame.RAnimNotify_Footstep.EFootstepSurfaceFinder Type, BmSDK.BmGame.RAnimNotify_Footstep.EFoot Foot, BmSDK.BmGame.RAnimNotify_Footstep.EContactType Contact, ref System.Numerics.Vector3 InOut_FootLocation, ref BmSDK.Engine.PhysicalMaterial Out_Material)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawn.FindFootstepSurface", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Type, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Foot, paramsPtr + 1);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Contact, paramsPtr + 2);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InOut_FootLocation, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Out_Material, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

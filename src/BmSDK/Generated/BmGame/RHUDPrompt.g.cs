@@ -189,10 +189,12 @@ public partial class RHUDPrompt : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: HelpLinesMatch
     /// </summary>
-    public unsafe virtual bool HelpLinesMatch(out BmSDK.BmGame.RHUDPrompt.FHelpLine HL1, out BmSDK.BmGame.RHUDPrompt.FHelpLine HL2)
+    public unsafe virtual bool HelpLinesMatch(ref BmSDK.BmGame.RHUDPrompt.FHelpLine HL1, ref BmSDK.BmGame.RHUDPrompt.FHelpLine HL2)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RHUDPrompt.HelpLinesMatch", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HL1, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HL2, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

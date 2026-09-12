@@ -93,10 +93,11 @@ public partial class RSeqAct_ForceCharacterIntoRadioMode : BmSDK.Engine.SeqAct_L
     /// <summary>
     /// Function: GetDialoguePSC
     /// </summary>
-    public unsafe virtual bool GetDialoguePSC(out BmSDK.BmGame.RSeqAct_PlaySpeechCombined PSC)
+    public unsafe virtual bool GetDialoguePSC(ref BmSDK.BmGame.RSeqAct_PlaySpeechCombined PSC)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RSeqAct_ForceCharacterIntoRadioMode.GetDialoguePSC", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PSC, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         PSC = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RSeqAct_PlaySpeechCombined>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 4);

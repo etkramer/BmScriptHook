@@ -138,11 +138,12 @@ public partial class MaterialInstanceConstant : BmSDK.Engine.MaterialInstance, B
     /// <summary>
     /// Function: SetVectorParameterValue
     /// </summary>
-    public unsafe override void SetVectorParameterValue(BmSDK.FName ParameterName, out BmSDK.GameObject.FLinearColor Value)
+    public unsafe override void SetVectorParameterValue(BmSDK.FName ParameterName, BmSDK.GameObject.FLinearColor Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.MaterialInstanceConstant.SetVectorParameterValue", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ParameterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -151,7 +152,6 @@ public partial class MaterialInstanceConstant : BmSDK.Engine.MaterialInstance, B
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Value = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FLinearColor>(paramsPtr + 8);
         return;
     }
 

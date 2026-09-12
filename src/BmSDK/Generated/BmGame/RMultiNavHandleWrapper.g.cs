@@ -173,10 +173,12 @@ public partial class RMultiNavHandleWrapper : BmSDK.GameObject, BmSDK.IGameObjec
     /// <summary>
     /// Function: GetShortestPath
     /// </summary>
-    public unsafe virtual bool GetShortestPath(out float bestDist, out int BestPath)
+    public unsafe virtual bool GetShortestPath(ref float bestDist, ref int BestPath)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMultiNavHandleWrapper.GetShortestPath", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bestDist, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BestPath, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         bestDist = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 0);
         BestPath = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);

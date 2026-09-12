@@ -93,11 +93,13 @@ public partial class RCornerWallMarkerBase : BmSDK.Engine.Actor, BmSDK.IGameObje
     /// <summary>
     /// Function: GetBatmanCornerPositionAndRotation
     /// </summary>
-    public unsafe virtual void GetBatmanCornerPositionAndRotation(float CollisionRadius, out System.Numerics.Vector3 BatmanPosition, out BmSDK.Rotator BatmanCoverRotation)
+    public unsafe virtual void GetBatmanCornerPositionAndRotation(float CollisionRadius, ref System.Numerics.Vector3 BatmanPosition, ref BmSDK.Rotator BatmanCoverRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCornerWallMarkerBase.GetBatmanCornerPositionAndRotation", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionRadius, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BatmanPosition, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BatmanCoverRotation, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

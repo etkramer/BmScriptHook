@@ -338,10 +338,11 @@ public partial class PhysicsAssetInstance : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ForceAllBodiesBelowUnfixed
     /// </summary>
-    public unsafe virtual void ForceAllBodiesBelowUnfixed(out BmSDK.FName InBoneName, BmSDK.Engine.PhysicsAsset InAsset, BmSDK.Engine.SkeletalMeshComponent InSkelMesh, bool InbInstanceAlwaysFullAnimWeight)
+    public unsafe virtual void ForceAllBodiesBelowUnfixed(BmSDK.FName InBoneName, BmSDK.Engine.PhysicsAsset InAsset, BmSDK.Engine.SkeletalMeshComponent InSkelMesh, bool InbInstanceAlwaysFullAnimWeight)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PhysicsAssetInstance.ForceAllBodiesBelowUnfixed", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InBoneName, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InAsset, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InSkelMesh, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InbInstanceAlwaysFullAnimWeight, paramsPtr + 16);
@@ -353,7 +354,6 @@ public partial class PhysicsAssetInstance : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InBoneName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
         return;
     }
 

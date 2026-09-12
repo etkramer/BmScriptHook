@@ -111,12 +111,13 @@ public partial class Sequence : BmSDK.Engine.SequenceOp, BmSDK.IGameObject
     /// <summary>
     /// Function: FindSeqObjectsByName
     /// </summary>
-    public unsafe virtual void FindSeqObjectsByName(BmSDK.FString SeqObjName, bool bCheckComment, out BmSDK.TArray<BmSDK.Engine.SequenceObject> OutputObjects, bool bRecursive = default)
+    public unsafe virtual void FindSeqObjectsByName(BmSDK.FString SeqObjName, bool bCheckComment, ref BmSDK.TArray<BmSDK.Engine.SequenceObject> OutputObjects, bool bRecursive = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Sequence.FindSeqObjectsByName", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SeqObjName, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCheckComment, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutputObjects, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRecursive, paramsPtr + 28);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -133,12 +134,13 @@ public partial class Sequence : BmSDK.Engine.SequenceOp, BmSDK.IGameObject
     /// <summary>
     /// Function: FindSeqObjectsByClass
     /// </summary>
-    public unsafe virtual void FindSeqObjectsByClass(BmSDK.Class DesiredClass, bool bRecursive, out BmSDK.TArray<BmSDK.Engine.SequenceObject> OutputObjects)
+    public unsafe virtual void FindSeqObjectsByClass(BmSDK.Class DesiredClass, bool bRecursive, ref BmSDK.TArray<BmSDK.Engine.SequenceObject> OutputObjects)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Sequence.FindSeqObjectsByClass", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DesiredClass, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRecursive, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutputObjects, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

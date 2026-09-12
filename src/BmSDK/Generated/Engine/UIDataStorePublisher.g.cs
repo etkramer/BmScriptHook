@@ -13,5 +13,5 @@ public partial interface UIDataStorePublisher : BmSDK.Engine.UIDataStoreSubscrib
     /// <summary>
     /// Function: SaveSubscriberValue
     /// </summary>
-    public unsafe bool SaveSubscriberValue(out BmSDK.TArray<BmSDK.Engine.UIDataStore> out_BoundDataStores, int BindingIndex = default);
+    public unsafe bool SaveSubscriberValue(ref BmSDK.TArray<BmSDK.Engine.UIDataStore> out_BoundDataStores, int BindingIndex = default);
 }

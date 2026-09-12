@@ -108,10 +108,11 @@ public partial class RSpecialMoveInstance_RobinAreaStun : BmSDK.BmGame.RSpecialM
     /// <summary>
     /// Function: PredictEndLocation
     /// </summary>
-    public unsafe override bool PredictEndLocation(out System.Numerics.Vector3 EndLocation)
+    public unsafe override bool PredictEndLocation(ref System.Numerics.Vector3 EndLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RSpecialMoveInstance_RobinAreaStun.PredictEndLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EndLocation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         EndLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

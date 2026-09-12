@@ -162,10 +162,11 @@ public partial class RAEC_Attack_Outsider : BmSDK.BmGame.RAEC_SubGroup, BmSDK.IG
     /// <summary>
     /// Function: FindPerimStartPos
     /// </summary>
-    public unsafe virtual bool FindPerimStartPos(out System.Numerics.Vector3 StartPos)
+    public unsafe virtual bool FindPerimStartPos(ref System.Numerics.Vector3 StartPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_Attack_Outsider.FindPerimStartPos", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPos, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         StartPos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -200,10 +201,11 @@ public partial class RAEC_Attack_Outsider : BmSDK.BmGame.RAEC_SubGroup, BmSDK.IG
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe override void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe override void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_Attack_Outsider.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;

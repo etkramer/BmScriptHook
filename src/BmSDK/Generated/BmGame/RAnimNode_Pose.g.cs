@@ -642,11 +642,12 @@ public partial class RAnimNode_Pose : BmSDK.Engine.AnimNode, BmSDK.IGameObject
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, out BmSDK.TArray<BmSDK.Engine.Actor.FThought> OutThoughts)
+    public unsafe virtual void GetThoughts(BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> OutThoughts)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAnimNode_Pose.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutThoughts, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -791,7 +792,7 @@ public partial class RAnimNode_Pose : BmSDK.Engine.AnimNode, BmSDK.IGameObject
     /// <summary>
     /// Function: GetTransitionActorPosition
     /// </summary>
-    public unsafe virtual bool GetTransitionActorPosition(BmSDK.BmGame.RAnimConfig.FCustomAnimConfig Anim, float Time, System.Numerics.Vector3 WorldReferencePosition, int WorldReferenceYaw, bool Mirrored, out System.Numerics.Vector3 Out_Position, out BmSDK.Rotator out_Rotation)
+    public unsafe virtual bool GetTransitionActorPosition(BmSDK.BmGame.RAnimConfig.FCustomAnimConfig Anim, float Time, System.Numerics.Vector3 WorldReferencePosition, int WorldReferenceYaw, bool Mirrored, ref System.Numerics.Vector3 Out_Position, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAnimNode_Pose.GetTransitionActorPosition", true);
         byte* paramsPtr = stackalloc byte[92];
@@ -800,6 +801,8 @@ public partial class RAnimNode_Pose : BmSDK.Engine.AnimNode, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldReferencePosition, paramsPtr + 44);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldReferenceYaw, paramsPtr + 56);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Mirrored, paramsPtr + 60);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Out_Position, paramsPtr + 64);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 76);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1067,11 +1070,12 @@ public partial class RAnimNode_Pose : BmSDK.Engine.AnimNode, BmSDK.IGameObject
     /// <summary>
     /// Function: IsInAnyAutomaticTransition
     /// </summary>
-    public unsafe virtual bool IsInAnyAutomaticTransition(BmSDK.BmGame.RAnimUtil.EFuzziness Fuzziness, out BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId Transition)
+    public unsafe virtual bool IsInAnyAutomaticTransition(BmSDK.BmGame.RAnimUtil.EFuzziness Fuzziness, ref BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId Transition)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAnimNode_Pose.IsInAnyAutomaticTransition", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Fuzziness, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Transition, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

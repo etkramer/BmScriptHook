@@ -81,10 +81,12 @@ public partial class SeqAct_Teleport : BmSDK.Engine.SequenceAction, BmSDK.IGameO
     /// <summary>
     /// Function: GetDestination
     /// </summary>
-    public unsafe virtual bool GetDestination(out System.Numerics.Vector3 Loc, out BmSDK.Rotator Rot)
+    public unsafe virtual bool GetDestination(ref System.Numerics.Vector3 Loc, ref BmSDK.Rotator Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SeqAct_Teleport.GetDestination", true);
         byte* paramsPtr = stackalloc byte[72];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);

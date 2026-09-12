@@ -92,11 +92,12 @@ public partial class DebugCameraHUD : BmSDK.Engine.HUD, BmSDK.IGameObject
     /// <summary>
     /// Function: DisplayMaterials
     /// </summary>
-    public unsafe virtual bool DisplayMaterials(float X, out float Y, float DY, BmSDK.Engine.MeshComponent MeshComp)
+    public unsafe virtual bool DisplayMaterials(float X, ref float Y, float DY, BmSDK.Engine.MeshComponent MeshComp)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.DebugCameraHUD.DisplayMaterials", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(X, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Y, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DY, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MeshComp, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);

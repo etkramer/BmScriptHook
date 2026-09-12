@@ -236,10 +236,12 @@ public partial class RGFxMovie : BmSDK.GFxUI.GFxMoviePlayer, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSubAudioTrackID
     /// </summary>
-    public unsafe virtual void GetSubAudioTrackID(out int SubAudioTrackId, out int SubtitleTrackId)
+    public unsafe virtual void GetSubAudioTrackID(ref int SubAudioTrackId, ref int SubtitleTrackId)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxMovie.GetSubAudioTrackID", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SubAudioTrackId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SubtitleTrackId, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

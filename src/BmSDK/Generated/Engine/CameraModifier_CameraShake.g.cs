@@ -81,12 +81,13 @@ public partial class CameraModifier_CameraShake : BmSDK.Engine.CameraModifier, B
     /// <summary>
     /// Function: ModifyCamera
     /// </summary>
-    public unsafe override bool ModifyCamera(BmSDK.Engine.Camera Camera, float DeltaTime, out BmSDK.GameObject.FTPOV OutPOV)
+    public unsafe override bool ModifyCamera(BmSDK.Engine.Camera Camera, float DeltaTime, ref BmSDK.GameObject.FTPOV OutPOV)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier_CameraShake.ModifyCamera", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Camera, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPOV, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -102,11 +103,13 @@ public partial class CameraModifier_CameraShake : BmSDK.Engine.CameraModifier, B
     /// <summary>
     /// Function: UpdateCameraShake
     /// </summary>
-    public unsafe virtual void UpdateCameraShake(float DeltaTime, out BmSDK.Engine.CameraModifier_CameraShake.FCameraShakeInstance Shake, out BmSDK.GameObject.FTPOV OutPOV)
+    public unsafe virtual void UpdateCameraShake(float DeltaTime, ref BmSDK.Engine.CameraModifier_CameraShake.FCameraShakeInstance Shake, ref BmSDK.GameObject.FTPOV OutPOV)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier_CameraShake.UpdateCameraShake", true);
         byte* paramsPtr = stackalloc byte[188];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Shake, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPOV, paramsPtr + 160);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -189,12 +192,12 @@ public partial class CameraModifier_CameraShake : BmSDK.Engine.CameraModifier, B
     /// <summary>
     /// Function: InitializeOffset
     /// </summary>
-    public unsafe static float InitializeOffset(out BmSDK.Engine.CameraShake.FFOscillator Param)
+    public unsafe static float InitializeOffset(BmSDK.Engine.CameraShake.FFOscillator Param)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier_CameraShake.InitializeOffset", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Param, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        Param = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.CameraShake.FFOscillator>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 12);
     }
 

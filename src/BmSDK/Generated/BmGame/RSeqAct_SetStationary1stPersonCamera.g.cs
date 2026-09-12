@@ -93,10 +93,11 @@ public partial class RSeqAct_SetStationary1stPersonCamera : BmSDK.Engine.SeqAct_
     /// <summary>
     /// Function: AdjustCameraRot
     /// </summary>
-    public unsafe virtual void AdjustCameraRot(out BmSDK.Rotator CameraRot)
+    public unsafe virtual void AdjustCameraRot(ref BmSDK.Rotator CameraRot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSeqAct_SetStationary1stPersonCamera.AdjustCameraRot", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CameraRot, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CameraRot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 0);
         return;

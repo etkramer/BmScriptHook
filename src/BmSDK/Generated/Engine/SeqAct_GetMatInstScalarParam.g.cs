@@ -92,10 +92,11 @@ public partial class SeqAct_GetMatInstScalarParam : BmSDK.Engine.SequenceAction,
     /// <summary>
     /// Function: GetScalar
     /// </summary>
-    public unsafe virtual void GetScalar(out float Scalar)
+    public unsafe virtual void GetScalar(ref float Scalar)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SeqAct_GetMatInstScalarParam.GetScalar", true);
         byte* paramsPtr = stackalloc byte[4];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Scalar, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

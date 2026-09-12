@@ -254,10 +254,11 @@ public partial class RDebugMenuContent : BmSDK.BmGame.RDebugMenu, BmSDK.IGameObj
     /// <summary>
     /// Function: DoPerCharacterTypeAudioItems
     /// </summary>
-    public unsafe virtual void DoPerCharacterTypeAudioItems(out BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, BmSDK.FString CharacterName)
+    public unsafe virtual void DoPerCharacterTypeAudioItems(ref BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, BmSDK.FString CharacterName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDebugMenuContent.DoPerCharacterTypeAudioItems", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CharacterName, paramsPtr + 36);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Options = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug>(paramsPtr + 0);
@@ -267,10 +268,11 @@ public partial class RDebugMenuContent : BmSDK.BmGame.RDebugMenu, BmSDK.IGameObj
     /// <summary>
     /// Function: DoPerCharacterTypeAnimItems
     /// </summary>
-    public unsafe virtual void DoPerCharacterTypeAnimItems(out BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, BmSDK.FString CharacterName)
+    public unsafe virtual void DoPerCharacterTypeAnimItems(ref BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug Options, BmSDK.FString CharacterName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDebugMenuContent.DoPerCharacterTypeAnimItems", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Options, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CharacterName, paramsPtr + 36);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Options = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RPersistentDebugData.FPerCharacterTypeAnimDebug>(paramsPtr + 0);

@@ -138,7 +138,7 @@ public partial interface RDisruptableInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetDifficulty
     /// </summary>
-    public unsafe void GetDifficulty(out float Threshold, out float BuildUpTime, out float LeftMaxAngVelocity, out float RightMaxAngVelocity, int DifficultyMod = default);
+    public unsafe void GetDifficulty(ref float Threshold, ref float BuildUpTime, ref float LeftMaxAngVelocity, ref float RightMaxAngVelocity, int DifficultyMod = default);
 
     /// <summary>
     /// Enum: DisruptableObjectTargetType

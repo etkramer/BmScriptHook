@@ -92,10 +92,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetNewCloseBMCamValues
     /// </summary>
-    public unsafe virtual void GetNewCloseBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetNewCloseBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetNewCloseBMCamValues", true);
         byte* paramsPtr = stackalloc byte[76];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -105,10 +107,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetNewCloseCamValues
     /// </summary>
-    public unsafe virtual void GetNewCloseCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetNewCloseCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetNewCloseCamValues", true);
         byte* paramsPtr = stackalloc byte[76];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -140,10 +144,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetMaxGuardCamValues
     /// </summary>
-    public unsafe virtual void GetMaxGuardCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetMaxGuardCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetMaxGuardCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -153,10 +159,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetMaxGuardBMCamValues
     /// </summary>
-    public unsafe virtual void GetMaxGuardBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetMaxGuardBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetMaxGuardBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -177,10 +185,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewNoFovLeftDualCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewNoFovLeftDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewNoFovLeftDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewNoFovLeftDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -190,10 +200,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewNoFovLeftDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewNoFovLeftDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewNoFovLeftDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewNoFovLeftDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -225,10 +237,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewNoFovRightDualCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewNoFovRightDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewNoFovRightDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewNoFovRightDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -238,10 +252,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewNoFovRightDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewNoFovRightDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewNoFovRightDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewNoFovRightDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -273,10 +289,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewLeftDualCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewLeftDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewLeftDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewLeftDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -286,10 +304,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewLeftDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewLeftDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewLeftDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewLeftDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -321,10 +341,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewRightDualCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewRightDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewRightDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewRightDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -334,10 +356,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetChairViewRightDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetChairViewRightDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetChairViewRightDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetChairViewRightDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -369,10 +393,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseLeftDualCamValues
     /// </summary>
-    public unsafe virtual void GetCloseLeftDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseLeftDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseLeftDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -382,10 +408,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseLeftDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetCloseLeftDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseLeftDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseLeftDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -417,10 +445,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseRightDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetCloseRightDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseRightDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseRightDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -430,10 +460,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseRightDualCamValues
     /// </summary>
-    public unsafe virtual void GetCloseRightDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseRightDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseRightDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -465,10 +497,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetRightSideDualCamValues
     /// </summary>
-    public unsafe virtual void GetRightSideDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetRightSideDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetRightSideDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -478,10 +512,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetRightSideDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetRightSideDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetRightSideDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetRightSideDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -513,10 +549,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetLeftSideDualBMCamValues
     /// </summary>
-    public unsafe virtual void GetLeftSideDualBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetLeftSideDualBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetLeftSideDualBMCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -526,10 +564,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetLeftSideDualCamValues
     /// </summary>
-    public unsafe virtual void GetLeftSideDualCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetLeftSideDualCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetLeftSideDualCamValues", true);
         byte* paramsPtr = stackalloc byte[48];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -561,10 +601,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetSideRightCamValues
     /// </summary>
-    public unsafe virtual void GetSideRightCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetSideRightCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetSideRightCamValues", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -574,10 +616,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetSideRightBMCamValues
     /// </summary>
-    public unsafe virtual void GetSideRightBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetSideRightBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetSideRightBMCamValues", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -598,10 +642,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetSideLeftBMCamValues
     /// </summary>
-    public unsafe virtual void GetSideLeftBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetSideLeftBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetSideLeftBMCamValues", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -611,10 +657,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetSideLeftCamValues
     /// </summary>
-    public unsafe virtual void GetSideLeftCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetSideLeftCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetSideLeftCamValues", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -635,10 +683,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseLeftCamValues
     /// </summary>
-    public unsafe virtual void GetCloseLeftCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseLeftCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseLeftCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -648,10 +698,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseLeftBMCamValues
     /// </summary>
-    public unsafe virtual void GetCloseLeftBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseLeftBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseLeftBMCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -672,10 +724,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseRightBMCamValues
     /// </summary>
-    public unsafe virtual void GetCloseRightBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseRightBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseRightBMCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -685,10 +739,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetCloseRightCamValues
     /// </summary>
-    public unsafe virtual void GetCloseRightCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetCloseRightCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetCloseRightCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -709,10 +765,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetRightSideCamValues
     /// </summary>
-    public unsafe virtual void GetRightSideCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetRightSideCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetRightSideCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -722,10 +780,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetRightSideBMCamValues
     /// </summary>
-    public unsafe virtual void GetRightSideBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetRightSideBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetRightSideBMCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -746,10 +806,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetLeftSideBMCamValues
     /// </summary>
-    public unsafe virtual void GetLeftSideBMCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetLeftSideBMCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetLeftSideBMCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -759,10 +821,12 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: GetLeftSideCamValues
     /// </summary>
-    public unsafe virtual void GetLeftSideCamValues(out System.Numerics.Vector3 Loc, out System.Numerics.Vector3 Rot)
+    public unsafe virtual void GetLeftSideCamValues(ref System.Numerics.Vector3 Loc, ref System.Numerics.Vector3 Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.GetLeftSideCamValues", true);
         byte* paramsPtr = stackalloc byte[52];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
@@ -897,11 +961,13 @@ public partial class RDialogueCamera : BmSDK.BmGame.RCameraActor, BmSDK.IGameObj
     /// <summary>
     /// Function: DisplayDebug
     /// </summary>
-    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, out float out_YL, out float out_YPos)
+    public unsafe override void DisplayDebug(BmSDK.Engine.HUD HUD, ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueCamera.DisplayDebug", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HUD, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

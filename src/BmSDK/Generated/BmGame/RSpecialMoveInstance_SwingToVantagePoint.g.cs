@@ -171,11 +171,13 @@ public partial class RSpecialMoveInstance_SwingToVantagePoint : BmSDK.BmGame.RSp
     /// <summary>
     /// Function: UpdateTrajectory
     /// </summary>
-    public unsafe virtual float UpdateTrajectory(float DeltaTime, out System.Numerics.Vector3 Position, out BmSDK.Rotator PlayerRotation)
+    public unsafe virtual float UpdateTrajectory(float DeltaTime, ref System.Numerics.Vector3 Position, ref BmSDK.Rotator PlayerRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_SwingToVantagePoint.UpdateTrajectory", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Position, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PlayerRotation, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

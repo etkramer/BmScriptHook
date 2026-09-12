@@ -101,12 +101,14 @@ public partial class CameraModifier : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ProcessViewRotation
     /// </summary>
-    public unsafe virtual bool ProcessViewRotation(BmSDK.Engine.Actor ViewTarget, float DeltaTime, out BmSDK.Rotator out_ViewRotation, out BmSDK.Rotator out_DeltaRot)
+    public unsafe virtual bool ProcessViewRotation(BmSDK.Engine.Actor ViewTarget, float DeltaTime, ref BmSDK.Rotator out_ViewRotation, ref BmSDK.Rotator out_DeltaRot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier.ProcessViewRotation", true);
         byte* paramsPtr = stackalloc byte[36];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ViewTarget, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_ViewRotation, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DeltaRot, paramsPtr + 20);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_ViewRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 8);
         out_DeltaRot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 20);
@@ -158,12 +160,13 @@ public partial class CameraModifier : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ModifyCamera
     /// </summary>
-    public unsafe virtual bool ModifyCamera(BmSDK.Engine.Camera Camera, float DeltaTime, out BmSDK.GameObject.FTPOV OutPOV)
+    public unsafe virtual bool ModifyCamera(BmSDK.Engine.Camera Camera, float DeltaTime, ref BmSDK.GameObject.FTPOV OutPOV)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CameraModifier.ModifyCamera", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Camera, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPOV, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -306,10 +306,11 @@ public partial class AkWwise : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StopCustomAudioEvent
     /// </summary>
-    public unsafe static void StopCustomAudioEvent(out BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle)
+    public unsafe static void StopCustomAudioEvent(ref BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AkWwise.StopCustomAudioEvent", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundHandle, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -595,10 +596,11 @@ public partial class AkWwise : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: IsSoundHandleValid
     /// </summary>
-    public unsafe static bool IsSoundHandleValid(out BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandleToTest)
+    public unsafe static bool IsSoundHandleValid(ref BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandleToTest)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AkWwise.IsSoundHandleValid", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundHandleToTest, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -614,10 +616,11 @@ public partial class AkWwise : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StartContinuousCollisionAudioEvent
     /// </summary>
-    public unsafe static void StartContinuousCollisionAudioEvent(out BmSDK.Engine.AkWwise.FAkSoundLoop CollisionLoop, BmSDK.Engine.Actor CollidingActor, System.Numerics.Vector3 CollisionPosition, float CollisionVelocity, float CollisionStrength)
+    public unsafe static void StartContinuousCollisionAudioEvent(ref BmSDK.Engine.AkWwise.FAkSoundLoop CollisionLoop, BmSDK.Engine.Actor CollidingActor, System.Numerics.Vector3 CollisionPosition, float CollisionVelocity, float CollisionStrength)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AkWwise.StartContinuousCollisionAudioEvent", true);
         byte* paramsPtr = stackalloc byte[40];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionLoop, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CollidingActor, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionPosition, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CollisionVelocity, paramsPtr + 32);
@@ -764,10 +767,11 @@ public partial class AkWwise : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StopGlobalAudioEvent
     /// </summary>
-    public unsafe static void StopGlobalAudioEvent(out BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle, bool QuickStop = default)
+    public unsafe static void StopGlobalAudioEvent(ref BmSDK.Engine.AkWwise.FAkSoundHandle SoundHandle, bool QuickStop = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AkWwise.StopGlobalAudioEvent", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SoundHandle, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(QuickStop, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

@@ -166,7 +166,7 @@ public partial class RMagneticBlastReceiver : BmSDK.BmGame.RProjectile, BmSDK.IG
     /// <summary>
     /// Function: UpdateBeamInfo
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RMagneticBlastReceiver.FBeamInfo UpdateBeamInfo(BmSDK.BmGame.RMagneticBlastReceiver.FBeamInfo Info, System.Numerics.Vector3 MagLocation, float Str, bool bAffectedByGenerator, bool bSecondary, out float fEffectiveStrength)
+    public unsafe virtual BmSDK.BmGame.RMagneticBlastReceiver.FBeamInfo UpdateBeamInfo(BmSDK.BmGame.RMagneticBlastReceiver.FBeamInfo Info, System.Numerics.Vector3 MagLocation, float Str, bool bAffectedByGenerator, bool bSecondary, ref float fEffectiveStrength)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMagneticBlastReceiver.UpdateBeamInfo", true);
         byte* paramsPtr = stackalloc byte[196];
@@ -175,6 +175,7 @@ public partial class RMagneticBlastReceiver : BmSDK.BmGame.RProjectile, BmSDK.IG
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Str, paramsPtr + 96);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bAffectedByGenerator, paramsPtr + 100);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bSecondary, paramsPtr + 104);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(fEffectiveStrength, paramsPtr + 108);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -427,10 +428,12 @@ public partial class RMagneticBlastReceiver : BmSDK.BmGame.RProjectile, BmSDK.IG
     /// <summary>
     /// Function: GetChargeTime
     /// </summary>
-    public unsafe virtual void GetChargeTime(out float ChargeTimer, out float ChargeDuration)
+    public unsafe virtual void GetChargeTime(ref float ChargeTimer, ref float ChargeDuration)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMagneticBlastReceiver.GetChargeTime", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ChargeTimer, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ChargeDuration, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ChargeTimer = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 0);
         ChargeDuration = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);

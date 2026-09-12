@@ -127,7 +127,8 @@ public class DemoScript : Script
 
         var gameViewport = Game.GetGameViewportClient();
         gameViewport.DesiredSplitscreenType = GameViewportClient.ESplitScreenType.eSST_2P_VERTICAL;
-        gameViewport.CreatePlayer(1, out _, true);
+        FString error = default;
+        gameViewport.CreatePlayer(1, ref error, true);
     }
 }
 
