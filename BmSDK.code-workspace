@@ -167,7 +167,7 @@
         "type": "coreclr",
         "request": "launch",
         "preLaunchTask": "Build Installer",
-        "program": "${workspaceFolder}/src/BmSDK.Installer/bin/Debug/net10.0-windows7.0/win-x64/BmSDK-Installer.exe",
+        "program": "${workspaceFolder}/src/BmSDK.Installer/bin/Debug/net10.0-windows7.0/win-x64/BmSDK-AC-Installer.exe",
         "args": ["--target", "${workspaceFolder}/bin"],
         "cwd": "${workspaceFolder}/src/BmSDK.Installer/",
         "console": "internalConsole"

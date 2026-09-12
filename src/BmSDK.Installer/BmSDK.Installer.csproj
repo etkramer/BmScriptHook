@@ -2,7 +2,7 @@
   <!-- Project metadata -->
   <PropertyGroup>
     <Version>0.20.2</Version>  <!-- x-release-please-version -->
-    <AssemblyName>BmSDK-Installer</AssemblyName>
+    <AssemblyName>BmSDK-AC-Installer</AssemblyName>
     <ApplicationIcon>BmSDK.ico</ApplicationIcon>
   </PropertyGroup>
 
