@@ -14,6 +14,9 @@ internal static class DLCManager
         ref OnlineSubsystem.FOnlineContent dlcBundle
     );
 
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    private delegate void UpdateObjectListsDelegate(IntPtr self);
+
     public static unsafe void Run()
     {
         var engine = Game.GetEngine();
@@ -47,6 +50,11 @@ internal static class DLCManager
                 vtable + GameDefine.VTableOffsets.DownloadableContentManager__InstallNonPackageFiles
             )
         );
+        var updateObjectLists = Marshal.GetDelegateForFunctionPointer<UpdateObjectListsDelegate>(
+            *(IntPtr*)(
+                vtable + GameDefine.VTableOffsets.DownloadableContentManager__UpdateObjectLists
+            )
+        );
 
         var bundles = enumerator.DLCBundles.AsSpan();
         for (var i = 0; i < bundles.Length; i++)
@@ -59,5 +67,8 @@ internal static class DLCManager
 
             manager.InstalledDLC.Push(name);
         }
+
+        // Reloads config on every object the merged .inis touched
+        updateObjectLists(manager.Ptr);
     }
 }
