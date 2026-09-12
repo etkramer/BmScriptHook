@@ -44,12 +44,18 @@ jobs:
           path: '${{ github.workspace }}/publish/'
           skip-decompress: true
 
+      - name: "Get installer artifact"
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ needs.build-release.outputs.installer-artifact-id }}
+          path: '${{ github.workspace }}/publish/'
+
       - name: "Upload artifacts to release"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          files=("${{ steps.download-build.outputs.download-path }}"/*.zip)
+          files=("${{ steps.download-build.outputs.download-path }}"/*)
           gh release upload "${{ env.TAG_NAME }}" "${files[@]}"
           gh release edit "${{ env.TAG_NAME }}" --draft=false

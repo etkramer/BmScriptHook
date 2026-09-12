@@ -11,6 +11,9 @@ on:
       artifact-id:
         description: "Artifact ID of final binary"
         value: ${{ jobs.create-package.outputs.artifact-id }}
+      installer-artifact-id:
+        description: "Artifact ID of the installer executable"
+        value: ${{ jobs.build-installer.outputs.artifact-id }}
   workflow_dispatch:
 
 env:
@@ -141,3 +144,56 @@ jobs:
         path: ${{ env.STAGING_DIR }}
         if-no-files-found: error
         compression-level: 9
+
+  build-installer:
+    name: "Build the installer executable"
+    needs: create-package
+    outputs:
+      artifact-id: ${{ steps.upload-artifact.outputs.artifact-id }}
+    runs-on: windows-latest
+    env:
+      PROJ_PATH: '${{ github.workspace }}/src/BmSDK.Installer/BmSDK.Installer.csproj'
+      INSTALLER_DIR: '${{ github.workspace }}/publish/installer/'
+      PAYLOAD_DIR: '${{ github.workspace }}/publish/payload/'
+    steps:
+    - name: "Checkout target commit"
+      uses: actions/checkout@v7
+      with:
+        ref: ${{ env.TARGET_REF }}
+
+    - name: "Set up .NET SDK"
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: "10.0.x"
+
+    - name: "Get the packaged release ZIP"
+      uses: actions/download-artifact@v8
+      with:
+        artifact-ids: ${{ needs.create-package.outputs.artifact-id }}
+        path: ${{ env.PAYLOAD_DIR }}
+        skip-decompress: true
+
+    - name: "Build BmSDK.Installer in Release mode"
+      run: |
+        $payload = Get-ChildItem '${{ env.PAYLOAD_DIR }}/*.zip' | Select-Object -First 1
+        if (-not $payload) { throw "No release ZIP found to embed as the installer payload" }
+
+        dotnet publish '${{ env.PROJ_PATH }}' -c Release `
+          -o '${{ env.INSTALLER_DIR }}' --nologo `
+          -p:PayloadZip="$($payload.FullName)" `
+          -p:AssemblyName=BmSDK-Installer-${{ env.TARGET_REF }}
+
+    - name: "Verify the installer published as a single file"
+      run: |
+        $files = Get-ChildItem '${{ env.INSTALLER_DIR }}' -File
+        if ($files.Count -ne 1) {
+          throw "Expected one published file, got: $($files.Name -join ', ')"
+        }
+
+    - name: "Uploading installer"
+      id: upload-artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: "Installer"
+        path: ${{ env.INSTALLER_DIR }}
+        if-no-files-found: error

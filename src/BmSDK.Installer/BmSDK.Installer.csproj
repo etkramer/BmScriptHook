@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Project metadata -->
+  <PropertyGroup>
+    <Version>0.20.2</Version>  <!-- x-release-please-version -->
+    <AssemblyName>BmSDK-Installer</AssemblyName>
+    <ApplicationIcon>BmSDK.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <!-- Build options -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows7.0</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <!-- Publish as one self-contained exe. Trimming stays off, it's unsupported for WinForms -->
+  <PropertyGroup>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <!-- Language features -->
+  <PropertyGroup>
+    <LangVersion>14</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- ApplicationIcon only reaches the .exe itself, so embed a copy for the window icon too -->
+  <ItemGroup>
+    <EmbeddedResource Include="BmSDK.ico" LogicalName="BmSDK.Installer.icon.ico" />
+  </ItemGroup>
+
+  <!-- Release payload, pointed at by CI via -p:PayloadZip=... -->
+  <ItemGroup Condition="'$(PayloadZip)' != ''">
+    <EmbeddedResource Include="$(PayloadZip)" LogicalName="BmSDK.Installer.payload.zip" />
+  </ItemGroup>
+</Project>

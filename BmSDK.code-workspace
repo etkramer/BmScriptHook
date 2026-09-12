@@ -116,6 +116,19 @@
         "problemMatcher": "$msCompile",
         "presentation": {"echo": false, "clear": true},
         "group": {"kind": "build", "isDefault": true}
+      },
+      {
+        "label": "Build Installer",
+        "type": "shell",
+        "command": "dotnet",
+        "args": [
+          "build",
+          "${workspaceFolder}/src/BmSDK.Installer/BmSDK.Installer.csproj",
+          "-c", "Debug",
+          "--nologo"
+        ],
+        "problemMatcher": "$msCompile",
+        "presentation": {"echo": false, "clear": true}
       }
     ]
   },
@@ -147,6 +160,17 @@
           "exceptions": false,
           "moduleLoad": false
         }
+      },
+      {
+        // Add -p:PayloadZip=<path to a release ZIP> to the task to test extraction too
+        "name": "Launch Installer",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "Build Installer",
+        "program": "${workspaceFolder}/src/BmSDK.Installer/bin/Debug/net10.0-windows7.0/win-x64/BmSDK-Installer.exe",
+        "args": ["--target", "${workspaceFolder}/bin"],
+        "cwd": "${workspaceFolder}/src/BmSDK.Installer/",
+        "console": "internalConsole"
       }
     ]
   }
