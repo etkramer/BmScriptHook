@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.2...v0.21.0) (2026-09-12)
+
+
+### Features
+
+* Introduce and release an installer .exe for BmSDK ([#145](https://github.com/Team-BmSDK/BmSDK-AC/issues/145)) ([fa41f69](https://github.com/Team-BmSDK/BmSDK-AC/commit/fa41f69c0bbe6f3893e42f14f8749694af59b9df))
+
 ## [0.20.2](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.1...v0.20.2) (2026-09-12)
 
 
