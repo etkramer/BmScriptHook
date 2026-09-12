@@ -171,11 +171,12 @@ public partial class OnlineSubsystem : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StringToUniqueNetId
     /// </summary>
-    public unsafe static bool StringToUniqueNetId(BmSDK.FString UniqueNetIdString, out BmSDK.Engine.OnlineSubsystem.FUniqueNetId out_UniqueId)
+    public unsafe static bool StringToUniqueNetId(BmSDK.FString UniqueNetIdString, ref BmSDK.Engine.OnlineSubsystem.FUniqueNetId out_UniqueId)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineSubsystem.StringToUniqueNetId", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(UniqueNetIdString, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_UniqueId, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -191,10 +192,11 @@ public partial class OnlineSubsystem : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: UniqueNetIdToString
     /// </summary>
-    public unsafe static BmSDK.FString UniqueNetIdToString(out BmSDK.Engine.OnlineSubsystem.FUniqueNetId IdToConvert)
+    public unsafe static BmSDK.FString UniqueNetIdToString(BmSDK.Engine.OnlineSubsystem.FUniqueNetId IdToConvert)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineSubsystem.UniqueNetIdToString", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IdToConvert, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -203,7 +205,6 @@ public partial class OnlineSubsystem : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        IdToConvert = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.OnlineSubsystem.FUniqueNetId>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 8);
     }
 

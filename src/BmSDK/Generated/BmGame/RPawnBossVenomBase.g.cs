@@ -147,10 +147,12 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetRightStrikeHitReaction
     /// </summary>
-    public unsafe virtual void GetRightStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe virtual void GetRightStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetRightStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -161,10 +163,12 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetLeftStrikeHitReaction
     /// </summary>
-    public unsafe virtual void GetLeftStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe virtual void GetLeftStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetLeftStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -175,10 +179,12 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetRearStrikeHitReaction
     /// </summary>
-    public unsafe virtual void GetRearStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe virtual void GetRearStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetRearStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -189,10 +195,12 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetFrontStrikeHitReaction
     /// </summary>
-    public unsafe virtual void GetFrontStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe virtual void GetFrontStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetFrontStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -203,11 +211,13 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetRightExplosionHitReaction
     /// </summary>
-    public unsafe virtual void GetRightExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe virtual void GetRightExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetRightExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -217,11 +227,13 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetLeftExplosionHitReaction
     /// </summary>
-    public unsafe virtual void GetLeftExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe virtual void GetLeftExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetLeftExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -231,11 +243,13 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetRearExplosionHitReaction
     /// </summary>
-    public unsafe virtual void GetRearExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe virtual void GetRearExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetRearExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -245,11 +259,13 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetFrontExplosionHitReaction
     /// </summary>
-    public unsafe virtual void GetFrontExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe virtual void GetFrontExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetFrontExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -259,11 +275,13 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetWallHitReaction
     /// </summary>
-    public unsafe virtual void GetWallHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe virtual void GetWallHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetWallHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -700,13 +718,15 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: IsPathClear
     /// </summary>
-    public unsafe virtual bool IsPathClear(System.Numerics.Vector3 FromPoint, System.Numerics.Vector3 EndPoint, float Radius, out System.Numerics.Vector3 CollidePoint, out System.Numerics.Vector3 CollideNormal)
+    public unsafe virtual bool IsPathClear(System.Numerics.Vector3 FromPoint, System.Numerics.Vector3 EndPoint, float Radius, ref System.Numerics.Vector3 CollidePoint, ref System.Numerics.Vector3 CollideNormal)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.IsPathClear", true);
         byte* paramsPtr = stackalloc byte[56];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FromPoint, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EndPoint, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Radius, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollidePoint, paramsPtr + 28);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollideNormal, paramsPtr + 40);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -723,10 +743,11 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: GetCollideFreePosition
     /// </summary>
-    public unsafe virtual bool GetCollideFreePosition(out System.Numerics.Vector3 Position)
+    public unsafe virtual bool GetCollideFreePosition(ref System.Numerics.Vector3 Position)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.GetCollideFreePosition", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Position, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -742,11 +763,15 @@ public partial class RPawnBossVenomBase : BmSDK.BmGame.RPawnVillain, BmSDK.IGame
     /// <summary>
     /// Function: WillCollideWithWall
     /// </summary>
-    public unsafe virtual bool WillCollideWithWall(System.Numerics.Vector3 Heading, out System.Numerics.Vector3 CollidePoint, out System.Numerics.Vector3 Normal, out BmSDK.Engine.Actor HitActorL, out BmSDK.Engine.Actor HitActorR)
+    public unsafe virtual bool WillCollideWithWall(System.Numerics.Vector3 Heading, ref System.Numerics.Vector3 CollidePoint, ref System.Numerics.Vector3 Normal, ref BmSDK.Engine.Actor HitActorL, ref BmSDK.Engine.Actor HitActorR)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPawnBossVenomBase.WillCollideWithWall", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Heading, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollidePoint, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Normal, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitActorL, paramsPtr + 36);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitActorR, paramsPtr + 40);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

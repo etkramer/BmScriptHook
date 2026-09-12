@@ -624,10 +624,11 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: AddFlagsForNumberOfGargs
     /// </summary>
-    public unsafe virtual void AddFlagsForNumberOfGargs(out BmSDK.BmGame.RBarkFlagBase ContextFlags)
+    public unsafe virtual void AddFlagsForNumberOfGargs(ref BmSDK.BmGame.RBarkFlagBase ContextFlags)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.AddFlagsForNumberOfGargs", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ContextFlags, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ContextFlags = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RBarkFlagBase>(paramsPtr + 0);
         return;
@@ -636,10 +637,11 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: SetEnvironmentFlags
     /// </summary>
-    public unsafe virtual void SetEnvironmentFlags(out BmSDK.BmGame.RBarkFlagBase FB)
+    public unsafe virtual void SetEnvironmentFlags(ref BmSDK.BmGame.RBarkFlagBase FB)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.SetEnvironmentFlags", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FB, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         FB = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RBarkFlagBase>(paramsPtr + 0);
         return;
@@ -722,10 +724,11 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
+    public unsafe virtual void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[56];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ThoughtList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.Actor.FThought>>(paramsPtr + 0);
         return;
@@ -734,10 +737,11 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: AddThought
     /// </summary>
-    public unsafe virtual void AddThought(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, BmSDK.FString ThoughtText, int R = default, int G = default, int B = default)
+    public unsafe virtual void AddThought(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> ThoughtList, BmSDK.FString ThoughtText, int R = default, int G = default, int B = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.AddThought", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtList, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ThoughtText, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(R, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(G, paramsPtr + 28);
@@ -1388,11 +1392,15 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: GetLOSText
     /// </summary>
-    public unsafe virtual bool GetLOSText(BmSDK.Engine.Actor TestActor, out BmSDK.FString LOSString, out byte R, out byte G, out byte B)
+    public unsafe virtual bool GetLOSText(BmSDK.Engine.Actor TestActor, ref BmSDK.FString LOSString, ref byte R, ref byte G, ref byte B)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.GetLOSText", true);
         byte* paramsPtr = stackalloc byte[36];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestActor, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LOSString, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(R, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(G, paramsPtr + 17);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(B, paramsPtr + 18);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         LOSString = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 4);
         R = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 16);
@@ -1819,11 +1827,12 @@ public partial class RBMAIController : BmSDK.Engine.AIController, BmSDK.IGameObj
     /// <summary>
     /// Function: FindRailingForPoint
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RBMPathNode_FenceJump FindRailingForPoint(System.Numerics.Vector3 LockPoint, out System.Numerics.Vector3 LockPosition)
+    public unsafe virtual BmSDK.BmGame.RBMPathNode_FenceJump FindRailingForPoint(System.Numerics.Vector3 LockPoint, ref System.Numerics.Vector3 LockPosition)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RBMAIController.FindRailingForPoint", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LockPoint, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LockPosition, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

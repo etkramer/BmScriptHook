@@ -13,7 +13,7 @@ public partial interface OnlinePlayerInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetAchievements
     /// </summary>
-    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte LocalUserNum, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FAchievementDetails> Achievements, int TitleId = default);
+    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetAchievements(byte LocalUserNum, ref BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FAchievementDetails> Achievements, int TitleId = default);
 
     /// <summary>
     /// Function: ClearReadAchievementsCompleteDelegate
@@ -83,7 +83,7 @@ public partial interface OnlinePlayerInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetKeyboardInputResults
     /// </summary>
-    public unsafe BmSDK.FString GetKeyboardInputResults(out byte bWasCanceled);
+    public unsafe BmSDK.FString GetKeyboardInputResults(ref byte bWasCanceled);
 
     /// <summary>
     /// Function: ClearKeyboardInputDoneDelegate
@@ -108,12 +108,12 @@ public partial interface OnlinePlayerInterface : BmSDK.Interface
     /// <summary>
     /// Function: SetOnlineStatus
     /// </summary>
-    public unsafe void SetOnlineStatus(byte LocalUserNum, int StatusId, out BmSDK.TArray<BmSDK.Engine.Settings.FLocalizedStringSetting> LocalizedStringSettings, out BmSDK.TArray<BmSDK.Engine.Settings.FSettingsProperty> Properties);
+    public unsafe void SetOnlineStatus(byte LocalUserNum, int StatusId, BmSDK.TArray<BmSDK.Engine.Settings.FLocalizedStringSetting> LocalizedStringSettings, BmSDK.TArray<BmSDK.Engine.Settings.FSettingsProperty> Properties);
 
     /// <summary>
     /// Function: GetFriendsList
     /// </summary>
-    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineFriend> Friends, int Count = default, int StartingAt = default);
+    public unsafe BmSDK.Engine.OnlineSubsystem.EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, ref BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineFriend> Friends, int Count = default, int StartingAt = default);
 
     /// <summary>
     /// Function: ClearReadFriendsCompleteDelegate
@@ -288,7 +288,7 @@ public partial interface OnlinePlayerInterface : BmSDK.Interface
     /// <summary>
     /// Function: GetUniquePlayerId
     /// </summary>
-    public unsafe bool GetUniquePlayerId(byte LocalUserNum, out BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID);
+    public unsafe bool GetUniquePlayerId(byte LocalUserNum, ref BmSDK.Engine.OnlineSubsystem.FUniqueNetId PlayerID);
 
     /// <summary>
     /// Function: GetLoginStatus

@@ -81,12 +81,17 @@ public partial class RPhysicsGrabber : BmSDK.BmGame.RInventoryGadget, BmSDK.IGam
     /// <summary>
     /// Function: PhysObjectDetectorUpdate
     /// </summary>
-    public unsafe virtual bool PhysObjectDetectorUpdate(System.Numerics.Vector3 GrabberLocation, BmSDK.Rotator GrabberRotation, out float OutUnrealHitDistance, out BmSDK.Engine.Actor OutHitActor, out BmSDK.Engine.RB_BodyInstance OutHitBodyInstance, out System.Numerics.Vector3 OutHitShapeBoundsCentre, out System.Numerics.Vector3 OutHitShapeBoundsExtents)
+    public unsafe virtual bool PhysObjectDetectorUpdate(System.Numerics.Vector3 GrabberLocation, BmSDK.Rotator GrabberRotation, ref float OutUnrealHitDistance, ref BmSDK.Engine.Actor OutHitActor, ref BmSDK.Engine.RB_BodyInstance OutHitBodyInstance, ref System.Numerics.Vector3 OutHitShapeBoundsCentre, ref System.Numerics.Vector3 OutHitShapeBoundsExtents)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPhysicsGrabber.PhysObjectDetectorUpdate", true);
         byte* paramsPtr = stackalloc byte[64];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(GrabberLocation, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(GrabberRotation, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutUnrealHitDistance, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutHitActor, paramsPtr + 28);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutHitBodyInstance, paramsPtr + 32);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutHitShapeBoundsCentre, paramsPtr + 36);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutHitShapeBoundsExtents, paramsPtr + 48);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -206,10 +211,12 @@ public partial class RPhysicsGrabber : BmSDK.BmGame.RInventoryGadget, BmSDK.IGam
     /// <summary>
     /// Function: GetSurfaceType
     /// </summary>
-    public unsafe virtual BmSDK.Engine.Actor GetSurfaceType(out BmSDK.Engine.Actor.FTraceHitInfo HitInfo, out float Dist)
+    public unsafe virtual BmSDK.Engine.Actor GetSurfaceType(ref BmSDK.Engine.Actor.FTraceHitInfo HitInfo, ref float Dist)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPhysicsGrabber.GetSurfaceType", true);
         byte* paramsPtr = stackalloc byte[180];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitInfo, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Dist, paramsPtr + 36);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Actor.FTraceHitInfo>(paramsPtr + 0);
         Dist = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 36);
@@ -219,10 +226,12 @@ public partial class RPhysicsGrabber : BmSDK.BmGame.RInventoryGadget, BmSDK.IGam
     /// <summary>
     /// Function: GetStartEndTracePoints
     /// </summary>
-    public unsafe virtual void GetStartEndTracePoints(out System.Numerics.Vector3 TraceStart, out System.Numerics.Vector3 TraceEnd)
+    public unsafe virtual void GetStartEndTracePoints(ref System.Numerics.Vector3 TraceStart, ref System.Numerics.Vector3 TraceEnd)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPhysicsGrabber.GetStartEndTracePoints", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceStart, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceEnd, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         TraceStart = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         TraceEnd = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);

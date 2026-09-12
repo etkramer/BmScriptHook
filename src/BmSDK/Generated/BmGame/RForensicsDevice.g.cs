@@ -755,10 +755,11 @@ public partial class RForensicsDevice : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: SortVapourEntryList
     /// </summary>
-    public unsafe virtual void SortVapourEntryList(out BmSDK.TArray<BmSDK.BmGame.RForensicsDevice.FVapourEntry> Items)
+    public unsafe virtual void SortVapourEntryList(ref BmSDK.TArray<BmSDK.BmGame.RForensicsDevice.FVapourEntry> Items)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RForensicsDevice.SortVapourEntryList", true);
         byte* paramsPtr = stackalloc byte[64];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Items, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Items = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RForensicsDevice.FVapourEntry>>(paramsPtr + 0);
         return;
@@ -944,11 +945,12 @@ public partial class RForensicsDevice : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: CheckEvidenceScanable
     /// </summary>
-    public unsafe virtual bool CheckEvidenceScanable(BmSDK.BmGame.REvidenceInterface evidence, out float NotFullyVisible)
+    public unsafe virtual bool CheckEvidenceScanable(BmSDK.BmGame.REvidenceInterface evidence, ref float NotFullyVisible)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RForensicsDevice.CheckEvidenceScanable", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(evidence, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NotFullyVisible, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         NotFullyVisible = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

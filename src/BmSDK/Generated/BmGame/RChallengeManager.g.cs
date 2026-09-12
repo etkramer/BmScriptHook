@@ -81,10 +81,13 @@ public partial class RChallengeManager : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetCurrentInfo
     /// </summary>
-    public unsafe virtual void GetCurrentInfo(out BmSDK.BmGame.RChallengeManager.EPlayableCharacters outCharacter, out int outChallengeID, out byte bOutPredator)
+    public unsafe virtual void GetCurrentInfo(ref BmSDK.BmGame.RChallengeManager.EPlayableCharacters outCharacter, ref int outChallengeID, ref byte bOutPredator)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChallengeManager.GetCurrentInfo", true);
         byte* paramsPtr = stackalloc byte[9];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(outCharacter, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(outChallengeID, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bOutPredator, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         outCharacter = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RChallengeManager.EPlayableCharacters>(paramsPtr + 0);
         outChallengeID = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);
@@ -161,11 +164,12 @@ public partial class RChallengeManager : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetGoalTitles
     /// </summary>
-    public unsafe virtual void GetGoalTitles(int Round, out BmSDK.TArray<BmSDK.FString> GoalTitles)
+    public unsafe virtual void GetGoalTitles(int Round, ref BmSDK.TArray<BmSDK.FString> GoalTitles)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChallengeManager.GetGoalTitles", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Round, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(GoalTitles, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         GoalTitles = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.FString>>(paramsPtr + 4);
         return;

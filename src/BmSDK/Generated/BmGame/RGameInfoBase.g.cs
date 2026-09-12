@@ -145,13 +145,15 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: ReduceDamage
     /// </summary>
-    public unsafe override void ReduceDamage(out int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, out System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
+    public unsafe override void ReduceDamage(ref int Damage, BmSDK.Engine.Pawn injured, BmSDK.Engine.Controller InstigatedBy, System.Numerics.Vector3 HitLocation, ref System.Numerics.Vector3 Momentum, BmSDK.Class DamageType, BmSDK.Engine.Actor DamageCauser)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.ReduceDamage", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Damage, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(injured, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InstigatedBy, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(HitLocation, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Momentum, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageType, paramsPtr + 36);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageCauser, paramsPtr + 40);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -290,11 +292,12 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: GetURLOption
     /// </summary>
-    public unsafe virtual bool GetURLOption(BmSDK.FString Option, out BmSDK.FString Value, BmSDK.FString DefaultValue = default)
+    public unsafe virtual bool GetURLOption(BmSDK.FString Option, ref BmSDK.FString Value, BmSDK.FString DefaultValue = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.GetURLOption", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Option, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DefaultValue, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -332,11 +335,12 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllLevels
     /// </summary>
-    public unsafe virtual void GetAllLevels(BmSDK.TArray<BmSDK.FName> LevelNames, out BmSDK.TArray<BmSDK.FName> AllLevels, bool bIncludeLateLevels = default)
+    public unsafe virtual void GetAllLevels(BmSDK.TArray<BmSDK.FName> LevelNames, ref BmSDK.TArray<BmSDK.FName> AllLevels, bool bIncludeLateLevels = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.GetAllLevels", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LevelNames, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AllLevels, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIncludeLateLevels, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -353,12 +357,13 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSubAndPersistentLevels
     /// </summary>
-    public unsafe virtual void GetSubAndPersistentLevels(BmSDK.FString PMap, BmSDK.FString LevelName, out BmSDK.TArray<BmSDK.FName> SubLevels, bool bIncludeLateLevels = default)
+    public unsafe virtual void GetSubAndPersistentLevels(BmSDK.FString PMap, BmSDK.FString LevelName, ref BmSDK.TArray<BmSDK.FName> SubLevels, bool bIncludeLateLevels = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.GetSubAndPersistentLevels", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PMap, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LevelName, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SubLevels, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIncludeLateLevels, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -375,11 +380,12 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSubLevels
     /// </summary>
-    public unsafe virtual void GetSubLevels(BmSDK.FString LevelName, out BmSDK.TArray<BmSDK.FName> SubLevels, BmSDK.FString OnlyTheseLevels = default, bool bIncludeLateLevels = default)
+    public unsafe virtual void GetSubLevels(BmSDK.FString LevelName, ref BmSDK.TArray<BmSDK.FName> SubLevels, BmSDK.FString OnlyTheseLevels = default, bool bIncludeLateLevels = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.GetSubLevels", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LevelName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SubLevels, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OnlyTheseLevels, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIncludeLateLevels, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
@@ -397,12 +403,13 @@ public partial class RGameInfoBase : BmSDK.Engine.GameInfo, BmSDK.IGameObject
     /// <summary>
     /// Function: GetPersistentLevels
     /// </summary>
-    public unsafe virtual void GetPersistentLevels(BmSDK.FString PMap, BmSDK.FString Level, out BmSDK.TArray<BmSDK.FName> SubLevels, bool bIncludeLateLevels = default)
+    public unsafe virtual void GetPersistentLevels(BmSDK.FString PMap, BmSDK.FString Level, ref BmSDK.TArray<BmSDK.FName> SubLevels, bool bIncludeLateLevels = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfoBase.GetPersistentLevels", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PMap, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Level, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SubLevels, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIncludeLateLevels, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

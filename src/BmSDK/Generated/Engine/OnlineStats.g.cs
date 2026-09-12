@@ -95,11 +95,12 @@ public partial class OnlineStats : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetViewId
     /// </summary>
-    public unsafe virtual bool GetViewId(BmSDK.FName ViewName, out int ViewId)
+    public unsafe virtual bool GetViewId(BmSDK.FName ViewName, ref int ViewId)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineStats.GetViewId", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ViewName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ViewId, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

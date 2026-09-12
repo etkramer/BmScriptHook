@@ -754,10 +754,11 @@ public partial class RDialogueManager : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: SpeechReadyToStart
     /// </summary>
-    public unsafe virtual bool SpeechReadyToStart(out BmSDK.BmGame.RDialogueManager.FRPendingSpeech Speech)
+    public unsafe virtual bool SpeechReadyToStart(ref BmSDK.BmGame.RDialogueManager.FRPendingSpeech Speech)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueManager.SpeechReadyToStart", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Speech, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1021,11 +1022,12 @@ public partial class RDialogueManager : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: StopSpeaking
     /// </summary>
-    public unsafe virtual void StopSpeaking(BmSDK.Engine.Actor A, out BmSDK.Engine.AkWwise.FAkSoundHandle Handle, bool ActorDelete = default)
+    public unsafe virtual void StopSpeaking(BmSDK.Engine.Actor A, ref BmSDK.Engine.AkWwise.FAkSoundHandle Handle, bool ActorDelete = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDialogueManager.StopSpeaking", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(A, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Handle, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ActorDelete, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

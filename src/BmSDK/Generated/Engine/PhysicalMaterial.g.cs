@@ -104,10 +104,11 @@ public partial class PhysicalMaterial : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindFractureEffect
     /// </summary>
-    public unsafe virtual void FindFractureEffect(out BmSDK.Engine.ParticleSystem OutEffectExplosion)
+    public unsafe virtual void FindFractureEffect(ref BmSDK.Engine.ParticleSystem OutEffectExplosion)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PhysicalMaterial.FindFractureEffect", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutEffectExplosion, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutEffectExplosion = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.ParticleSystem>(paramsPtr + 0);
         return;
@@ -116,10 +117,12 @@ public partial class PhysicalMaterial : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindFractureSounds
     /// </summary>
-    public unsafe virtual void FindFractureSounds(out BmSDK.Engine.AkEvent OutSoundExplosion, out BmSDK.Engine.AkEvent OutSoundSingle)
+    public unsafe virtual void FindFractureSounds(ref BmSDK.Engine.AkEvent OutSoundExplosion, ref BmSDK.Engine.AkEvent OutSoundSingle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PhysicalMaterial.FindFractureSounds", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSoundExplosion, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSoundSingle, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutSoundExplosion = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.AkEvent>(paramsPtr + 0);
         OutSoundSingle = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.AkEvent>(paramsPtr + 4);

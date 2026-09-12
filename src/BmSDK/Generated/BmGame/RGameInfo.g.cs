@@ -216,11 +216,12 @@ public partial class RGameInfo : BmSDK.BmGame.RGameInfoBase, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSmokeScreenCoverValue
     /// </summary>
-    public unsafe virtual float GetSmokeScreenCoverValue(System.Numerics.Vector3 WorldPos, out byte bFireExtinguisher)
+    public unsafe virtual float GetSmokeScreenCoverValue(System.Numerics.Vector3 WorldPos, ref byte bFireExtinguisher)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfo.GetSmokeScreenCoverValue", true);
         byte* paramsPtr = stackalloc byte[36];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bFireExtinguisher, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         bFireExtinguisher = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 16);
@@ -351,10 +352,11 @@ public partial class RGameInfo : BmSDK.BmGame.RGameInfoBase, BmSDK.IGameObject
     /// <summary>
     /// Function: HandleSeamlessTravelPlayer
     /// </summary>
-    public unsafe override void HandleSeamlessTravelPlayer(out BmSDK.Engine.Controller C)
+    public unsafe override void HandleSeamlessTravelPlayer(ref BmSDK.Engine.Controller C)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfo.HandleSeamlessTravelPlayer", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(C, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         C = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Controller>(paramsPtr + 0);
         return;
@@ -1206,11 +1208,13 @@ public partial class RGameInfo : BmSDK.BmGame.RGameInfoBase, BmSDK.IGameObject
     /// <summary>
     /// Function: FindProjectileArc
     /// </summary>
-    public unsafe virtual bool FindProjectileArc(BmSDK.Engine.Actor TraceActor, out System.Numerics.Vector3 ThrowVelocity, out float FlightTime, System.Numerics.Vector3 StartPoint, System.Numerics.Vector3 Target)
+    public unsafe virtual bool FindProjectileArc(BmSDK.Engine.Actor TraceActor, ref System.Numerics.Vector3 ThrowVelocity, ref float FlightTime, System.Numerics.Vector3 StartPoint, System.Numerics.Vector3 Target)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfo.FindProjectileArc", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TraceActor, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThrowVelocity, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FlightTime, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPoint, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Target, paramsPtr + 32);
         var oldFlags = funcManaged.FunctionFlags;
@@ -1418,10 +1422,11 @@ public partial class RGameInfo : BmSDK.BmGame.RGameInfoBase, BmSDK.IGameObject
     /// <summary>
     /// Function: IsAStoryAvailable
     /// </summary>
-    public unsafe virtual bool IsAStoryAvailable(out int Count)
+    public unsafe virtual bool IsAStoryAvailable(ref int Count)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGameInfo.IsAStoryAvailable", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Count, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Count = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 4);

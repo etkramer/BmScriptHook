@@ -112,10 +112,18 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetSystemTime
     /// </summary>
-    public unsafe virtual void GetSystemTime(out int Year, out int Month, out int DayOfWeek, out int Day, out int Hour, out int Min, out int Sec, out int MSec)
+    public unsafe virtual void GetSystemTime(ref int Year, ref int Month, ref int DayOfWeek, ref int Day, ref int Hour, ref int Min, ref int Sec, ref int MSec)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetSystemTime", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Year, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Month, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DayOfWeek, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Day, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Hour, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Min, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Sec, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MSec, paramsPtr + 28);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -255,10 +263,11 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetAngularFromDotDist
     /// </summary>
-    public unsafe static void GetAngularFromDotDist(out System.Numerics.Vector2 OutAngDist, System.Numerics.Vector2 DotDist)
+    public unsafe static void GetAngularFromDotDist(ref System.Numerics.Vector2 OutAngDist, System.Numerics.Vector2 DotDist)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetAngularFromDotDist", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutAngDist, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DotDist, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -275,10 +284,11 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetAngularDistance
     /// </summary>
-    public unsafe static bool GetAngularDistance(out System.Numerics.Vector2 OutAngularDist, System.Numerics.Vector3 Direction, System.Numerics.Vector3 AxisX, System.Numerics.Vector3 AxisY, System.Numerics.Vector3 AxisZ)
+    public unsafe static bool GetAngularDistance(ref System.Numerics.Vector2 OutAngularDist, System.Numerics.Vector3 Direction, System.Numerics.Vector3 AxisX, System.Numerics.Vector3 AxisY, System.Numerics.Vector3 AxisZ)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetAngularDistance", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutAngularDist, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Direction, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AxisX, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AxisY, paramsPtr + 32);
@@ -298,10 +308,11 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetDotDistance
     /// </summary>
-    public unsafe static bool GetDotDistance(out System.Numerics.Vector2 OutDotDist, System.Numerics.Vector3 Direction, System.Numerics.Vector3 AxisX, System.Numerics.Vector3 AxisY, System.Numerics.Vector3 AxisZ)
+    public unsafe static bool GetDotDistance(ref System.Numerics.Vector2 OutDotDist, System.Numerics.Vector3 Direction, System.Numerics.Vector3 AxisX, System.Numerics.Vector3 AxisY, System.Numerics.Vector3 AxisZ)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetDotDistance", true);
         byte* paramsPtr = stackalloc byte[60];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutDotDist, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Direction, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AxisX, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(AxisY, paramsPtr + 32);
@@ -343,7 +354,7 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: SphereIntersectingLine
     /// </summary>
-    public unsafe virtual bool SphereIntersectingLine(System.Numerics.Vector3 SphereOrigin, float SphereRadius, System.Numerics.Vector3 LineOrigin, System.Numerics.Vector3 LineDir, out System.Numerics.Vector3 ClosestPoint1, out System.Numerics.Vector3 ClosestPoint2)
+    public unsafe virtual bool SphereIntersectingLine(System.Numerics.Vector3 SphereOrigin, float SphereRadius, System.Numerics.Vector3 LineOrigin, System.Numerics.Vector3 LineDir, ref System.Numerics.Vector3 ClosestPoint1, ref System.Numerics.Vector3 ClosestPoint2)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.SphereIntersectingLine", true);
         byte* paramsPtr = stackalloc byte[68];
@@ -351,6 +362,8 @@ public partial class GameObject : BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SphereRadius, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineOrigin, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineDir, paramsPtr + 28);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ClosestPoint1, paramsPtr + 40);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ClosestPoint2, paramsPtr + 52);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -430,13 +443,14 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: PointDistToSegment
     /// </summary>
-    public unsafe virtual float PointDistToSegment(System.Numerics.Vector3 Point, System.Numerics.Vector3 StartPoint, System.Numerics.Vector3 EndPoint, out System.Numerics.Vector3 OutClosestPoint)
+    public unsafe virtual float PointDistToSegment(System.Numerics.Vector3 Point, System.Numerics.Vector3 StartPoint, System.Numerics.Vector3 EndPoint, ref System.Numerics.Vector3 OutClosestPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.PointDistToSegment", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Point, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPoint, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EndPoint, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutClosestPoint, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -452,13 +466,14 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: PointDistToLine
     /// </summary>
-    public unsafe virtual float PointDistToLine(System.Numerics.Vector3 Point, System.Numerics.Vector3 Line, System.Numerics.Vector3 Origin, out System.Numerics.Vector3 OutClosestPoint)
+    public unsafe virtual float PointDistToLine(System.Numerics.Vector3 Point, System.Numerics.Vector3 Line, System.Numerics.Vector3 Origin, ref System.Numerics.Vector3 OutClosestPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.PointDistToLine", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Point, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Line, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Origin, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutClosestPoint, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -494,11 +509,12 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetPerObjectConfigSections
     /// </summary>
-    public unsafe static bool GetPerObjectConfigSections(BmSDK.Class SearchClass, out BmSDK.TArray<BmSDK.FString> out_SectionNames, BmSDK.GameObject ObjectOuter = default, int MaxResults = default)
+    public unsafe static bool GetPerObjectConfigSections(BmSDK.Class SearchClass, ref BmSDK.TArray<BmSDK.FString> out_SectionNames, BmSDK.GameObject ObjectOuter = default, int MaxResults = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetPerObjectConfigSections", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SearchClass, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_SectionNames, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ObjectOuter, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxResults, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
@@ -1483,11 +1499,12 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: ParseStringIntoArray
     /// </summary>
-    public unsafe static void ParseStringIntoArray(BmSDK.FString BaseString, out BmSDK.TArray<BmSDK.FString> Pieces, BmSDK.FString delim, bool bCullEmpty)
+    public unsafe static void ParseStringIntoArray(BmSDK.FString BaseString, ref BmSDK.TArray<BmSDK.FString> Pieces, BmSDK.FString delim, bool bCullEmpty)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.ParseStringIntoArray", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(BaseString, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Pieces, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(delim, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bCullEmpty, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
@@ -1949,11 +1966,14 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetUnAxes
     /// </summary>
-    public unsafe static void GetUnAxes(BmSDK.Rotator A, out System.Numerics.Vector3 X, out System.Numerics.Vector3 Y, out System.Numerics.Vector3 Z)
+    public unsafe static void GetUnAxes(BmSDK.Rotator A, ref System.Numerics.Vector3 X, ref System.Numerics.Vector3 Y, ref System.Numerics.Vector3 Z)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetUnAxes", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(A, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(X, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Y, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Z, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1971,11 +1991,14 @@ public partial class GameObject : BmSDK.IGameObject
     /// <summary>
     /// Function: GetAxes
     /// </summary>
-    public unsafe static void GetAxes(BmSDK.Rotator A, out System.Numerics.Vector3 X, out System.Numerics.Vector3 Y, out System.Numerics.Vector3 Z)
+    public unsafe static void GetAxes(BmSDK.Rotator A, ref System.Numerics.Vector3 X, ref System.Numerics.Vector3 Y, ref System.Numerics.Vector3 Z)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Core.Object.GetAxes", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(A, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(X, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Y, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Z, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

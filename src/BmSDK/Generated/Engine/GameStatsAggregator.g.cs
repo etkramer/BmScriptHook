@@ -81,11 +81,13 @@ public partial class GameStatsAggregator : BmSDK.Engine.GameplayEventsHandler, B
     /// <summary>
     /// Function: GetAggregateMappingIDs
     /// </summary>
-    public unsafe virtual bool GetAggregateMappingIDs(int EventID, out int AggregateID, out int TargetAggregateID)
+    public unsafe virtual bool GetAggregateMappingIDs(int EventID, ref int AggregateID, ref int TargetAggregateID)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameStatsAggregator.GetAggregateMappingIDs", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EventID, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AggregateID, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TargetAggregateID, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

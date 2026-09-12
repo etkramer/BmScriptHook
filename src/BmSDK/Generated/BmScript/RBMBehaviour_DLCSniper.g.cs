@@ -92,10 +92,12 @@ public partial class RBMBehaviour_DLCSniper : BmSDK.BmGame.RBMBehaviour_Sniper, 
     /// <summary>
     /// Function: GetDLCSniperPointInfo
     /// </summary>
-    public unsafe virtual bool GetDLCSniperPointInfo(out System.Numerics.Vector3 StandPos, out BmSDK.Rotator StandRotator)
+    public unsafe virtual bool GetDLCSniperPointInfo(ref System.Numerics.Vector3 StandPos, ref BmSDK.Rotator StandRotator)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RBMBehaviour_DLCSniper.GetDLCSniperPointInfo", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StandPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StandRotator, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         StandPos = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         StandRotator = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);

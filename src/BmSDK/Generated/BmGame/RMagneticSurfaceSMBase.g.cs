@@ -189,10 +189,11 @@ public partial class RMagneticSurfaceSMBase : BmSDK.Engine.Actor, BmSDK.BmGame.R
     /// <summary>
     /// Function: converge
     /// </summary>
-    public unsafe virtual void converge(out float Value, float Target, float Speed, float tolerance = default)
+    public unsafe virtual void converge(ref float Value, float Target, float Speed, float tolerance = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMagneticSurfaceSMBase.converge", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Target, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Speed, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(tolerance, paramsPtr + 12);
@@ -477,11 +478,14 @@ public partial class RMagneticSurfaceSMBase : BmSDK.Engine.Actor, BmSDK.BmGame.R
     /// <summary>
     /// Function: GetClosestTriangle
     /// </summary>
-    public unsafe virtual void GetClosestTriangle(System.Numerics.Vector3 P, out System.Numerics.Vector3 v0, out System.Numerics.Vector3 v1, out System.Numerics.Vector3 v2)
+    public unsafe virtual void GetClosestTriangle(System.Numerics.Vector3 P, ref System.Numerics.Vector3 v0, ref System.Numerics.Vector3 v1, ref System.Numerics.Vector3 v2)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RMagneticSurfaceSMBase.GetClosestTriangle", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(P, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(v0, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(v1, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(v2, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

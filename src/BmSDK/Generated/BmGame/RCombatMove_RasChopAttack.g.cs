@@ -139,12 +139,13 @@ public partial class RCombatMove_RasChopAttack : BmSDK.BmGame.RCombatMove_RasAtt
     /// <summary>
     /// Function: IsBMInDamageZone
     /// </summary>
-    public unsafe virtual bool IsBMInDamageZone(System.Numerics.Vector3 SwordLoc, BmSDK.Rotator SwordRot, out System.Numerics.Vector3 DamageImpulseOut)
+    public unsafe virtual bool IsBMInDamageZone(System.Numerics.Vector3 SwordLoc, BmSDK.Rotator SwordRot, ref System.Numerics.Vector3 DamageImpulseOut)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_RasChopAttack.IsBMInDamageZone", true);
         byte* paramsPtr = stackalloc byte[76];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SwordLoc, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SwordRot, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DamageImpulseOut, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DamageImpulseOut = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 24);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 36);

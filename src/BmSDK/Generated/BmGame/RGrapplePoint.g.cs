@@ -99,10 +99,12 @@ public partial class RGrapplePoint : BmSDK.BmGame.RSnapToPositionActor, BmSDK.IG
     /// <summary>
     /// Function: GetHighPriorityGrapplePointsInSphere
     /// </summary>
-    public unsafe static void GetHighPriorityGrapplePointsInSphere(out BmSDK.TArray<BmSDK.BmGame.RGrapplePoint> List, out System.Numerics.Vector3 centre, float Radius)
+    public unsafe static void GetHighPriorityGrapplePointsInSphere(ref BmSDK.TArray<BmSDK.BmGame.RGrapplePoint> List, ref System.Numerics.Vector3 centre, float Radius)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrapplePoint.GetHighPriorityGrapplePointsInSphere", true);
         byte* paramsPtr = stackalloc byte[28];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(List, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(centre, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Radius, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -120,10 +122,12 @@ public partial class RGrapplePoint : BmSDK.BmGame.RSnapToPositionActor, BmSDK.IG
     /// <summary>
     /// Function: GetGrappleEndPoints
     /// </summary>
-    public unsafe virtual void GetGrappleEndPoints(out System.Numerics.Vector3 OutPointA, out System.Numerics.Vector3 OutPointB)
+    public unsafe virtual void GetGrappleEndPoints(ref System.Numerics.Vector3 OutPointA, ref System.Numerics.Vector3 OutPointB)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrapplePoint.GetGrappleEndPoints", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPointA, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPointB, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

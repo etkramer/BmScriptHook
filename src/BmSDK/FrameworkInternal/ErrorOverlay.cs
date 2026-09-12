@@ -60,7 +60,7 @@ internal static class ErrorOverlay
         foreach (var line in lines)
         {
             canvas.SetPos(MarginX, y, 0f);
-            canvas.DrawText(line, CR: false, XScale: 1f, YScale: 1f, out _);
+            canvas.DrawText(line, CR: false, XScale: 1f, YScale: 1f);
             y += LineHeight;
         }
     }

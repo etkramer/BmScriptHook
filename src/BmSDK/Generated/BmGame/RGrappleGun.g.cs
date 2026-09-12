@@ -452,13 +452,14 @@ public partial class RGrappleGun : BmSDK.BmGame.RInventoryGadget, BmSDK.IGameObj
     /// <summary>
     /// Function: FindBestVantagePoint
     /// </summary>
-    public unsafe virtual float FindBestVantagePoint(System.Numerics.Vector3 CheckLocation, System.Numerics.Vector3 CheckDirection, float MaxHorizontalDistance, out BmSDK.BmGame.RGrappleGun.FAvailableVantagePoints VantagePointList, bool Zoomed)
+    public unsafe virtual float FindBestVantagePoint(System.Numerics.Vector3 CheckLocation, System.Numerics.Vector3 CheckDirection, float MaxHorizontalDistance, ref BmSDK.BmGame.RGrappleGun.FAvailableVantagePoints VantagePointList, bool Zoomed)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrappleGun.FindBestVantagePoint", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckLocation, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckDirection, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxHorizontalDistance, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(VantagePointList, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Zoomed, paramsPtr + 44);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -511,10 +512,11 @@ public partial class RGrappleGun : BmSDK.BmGame.RInventoryGadget, BmSDK.IGameObj
     /// <summary>
     /// Function: FindGrapplePointMultipleConesNative
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RGrapplePoint FindGrapplePointMultipleConesNative(out BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition> Cones, float MinAngle)
+    public unsafe virtual BmSDK.BmGame.RGrapplePoint FindGrapplePointMultipleConesNative(BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition> Cones, float MinAngle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrappleGun.FindGrapplePointMultipleConesNative", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Cones, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinAngle, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -524,17 +526,17 @@ public partial class RGrappleGun : BmSDK.BmGame.RInventoryGadget, BmSDK.IGameObj
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Cones = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition>>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RGrapplePoint>(paramsPtr + 16);
     }
 
     /// <summary>
     /// Function: FindGrapplePointMultipleCones
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RGrapplePoint FindGrapplePointMultipleCones(out BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition> Cones, float MinAngle)
+    public unsafe virtual BmSDK.BmGame.RGrapplePoint FindGrapplePointMultipleCones(ref BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition> Cones, float MinAngle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrappleGun.FindGrapplePointMultipleCones", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Cones, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinAngle, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Cones = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RGrappleGun.FGrappleConeDefinition>>(paramsPtr + 0);
@@ -578,10 +580,11 @@ public partial class RGrappleGun : BmSDK.BmGame.RInventoryGadget, BmSDK.IGameObj
     /// <summary>
     /// Function: FindBestCeilingClimbPoint
     /// </summary>
-    public unsafe virtual bool FindBestCeilingClimbPoint(out BmSDK.BmGame.RPawnPlayer.FCeilingClimbPoint CeilingClimbPoint)
+    public unsafe virtual bool FindBestCeilingClimbPoint(ref BmSDK.BmGame.RPawnPlayer.FCeilingClimbPoint CeilingClimbPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGrappleGun.FindBestCeilingClimbPoint", true);
         byte* paramsPtr = stackalloc byte[116];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CeilingClimbPoint, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

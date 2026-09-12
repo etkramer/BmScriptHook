@@ -980,11 +980,12 @@ public partial class RGFxMovieUI : BmSDK.BmGame.RGFxMovie, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSaveGameInfoArray
     /// </summary>
-    public unsafe virtual void GetSaveGameInfoArray(int Id, out BmSDK.TArray<BmSDK.FString> OutSaveInfo)
+    public unsafe virtual void GetSaveGameInfoArray(int Id, ref BmSDK.TArray<BmSDK.FString> OutSaveInfo)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxMovieUI.GetSaveGameInfoArray", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Id, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSaveInfo, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

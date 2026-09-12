@@ -241,11 +241,13 @@ public partial class RCombatMove_BatmanCounter : BmSDK.BmGame.RCombatMove_Batman
     /// <summary>
     /// Function: GetWindingStartTime
     /// </summary>
-    public unsafe virtual void GetWindingStartTime(BmSDK.FName CounterName, out float BatmanWindingTime, out float ThugWindingTime)
+    public unsafe virtual void GetWindingStartTime(BmSDK.FName CounterName, ref float BatmanWindingTime, ref float ThugWindingTime)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_BatmanCounter.GetWindingStartTime", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CounterName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BatmanWindingTime, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ThugWindingTime, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

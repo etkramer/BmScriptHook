@@ -476,10 +476,10 @@ void Printer::PrintFunction(const FunctionInfo& func, bool isInInterface, ostrea
     {
         auto& prop = func.Params[i];
 
-        // "out" keyword for out params
-        if (prop.IsOutParam)
+        // UE3 out params are read as well as written, so they map to "ref"
+        if (prop.IsRefParam)
         {
-            out << "out ";
+            out << "ref ";
         }
 
         // Print param declaration
@@ -521,13 +521,7 @@ void Printer::PrintFunction(const FunctionInfo& func, bool isInInterface, ostrea
         {
             auto& param = func.Params[i];
 
-            // Don't marshal in 'out' params
-            if (param.IsOutParam)
-            {
-                continue;
-            }
-
-            // Print
+            // ProcessEvent seeds the callee's locals from this buffer, so every param marshals in
             Printer::Indent(out) << "BmSDK.Framework.MarshalUtil.ToUnmanaged("
                 << param.ManagedName << ", paramsPtr + " << param.Offset
                 << ");" << endl;
@@ -555,12 +549,12 @@ void Printer::PrintFunction(const FunctionInfo& func, bool isInInterface, ostrea
             Printer::Indent(out) << "funcManaged.FunctionFlags = oldFlags;" << endl;
         }
 
-        // Marshal/assign out params
+        // Marshal/assign ref params
         for (auto i = 0u; i < func.Params.size(); i++)
         {
             auto& param = func.Params[i];
 
-            if (param.IsOutParam)
+            if (param.IsRefParam)
             {
                 Printer::Indent(out)
                     << param.ManagedName << " = BmSDK.Framework.MarshalUtil.ToManaged<"

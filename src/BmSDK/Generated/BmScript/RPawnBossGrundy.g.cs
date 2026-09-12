@@ -1941,11 +1941,12 @@ public partial class RPawnBossGrundy : BmSDK.BmGame.RPawnBossGrundyBase, BmSDK.I
     /// <summary>
     /// Function: GetClosestActivePadLocation
     /// </summary>
-    public unsafe virtual bool GetClosestActivePadLocation(System.Numerics.Vector3 TestLoc, out System.Numerics.Vector3 ResultLoc, bool bIgnoreIdlePads = default)
+    public unsafe virtual bool GetClosestActivePadLocation(System.Numerics.Vector3 TestLoc, ref System.Numerics.Vector3 ResultLoc, bool bIgnoreIdlePads = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossGrundy.GetClosestActivePadLocation", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestLoc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ResultLoc, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bIgnoreIdlePads, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ResultLoc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);

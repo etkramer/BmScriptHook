@@ -117,11 +117,12 @@ public partial class OnlineProfileSettings : BmSDK.Engine.OnlinePlayerStorage, B
     /// <summary>
     /// Function: GetProfileSettingDefaultFloat
     /// </summary>
-    public unsafe virtual bool GetProfileSettingDefaultFloat(int ProfileSettingId, out float DefaultFloat)
+    public unsafe virtual bool GetProfileSettingDefaultFloat(int ProfileSettingId, ref float DefaultFloat)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineProfileSettings.GetProfileSettingDefaultFloat", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DefaultFloat, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -137,11 +138,12 @@ public partial class OnlineProfileSettings : BmSDK.Engine.OnlinePlayerStorage, B
     /// <summary>
     /// Function: GetProfileSettingDefaultInt
     /// </summary>
-    public unsafe virtual bool GetProfileSettingDefaultInt(int ProfileSettingId, out int DefaultInt)
+    public unsafe virtual bool GetProfileSettingDefaultInt(int ProfileSettingId, ref int DefaultInt)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineProfileSettings.GetProfileSettingDefaultInt", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DefaultInt, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -157,11 +159,13 @@ public partial class OnlineProfileSettings : BmSDK.Engine.OnlinePlayerStorage, B
     /// <summary>
     /// Function: GetProfileSettingDefaultId
     /// </summary>
-    public unsafe virtual bool GetProfileSettingDefaultId(int ProfileSettingId, out int DefaultId, out int ListIndex)
+    public unsafe virtual bool GetProfileSettingDefaultId(int ProfileSettingId, ref int DefaultId, ref int ListIndex)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineProfileSettings.GetProfileSettingDefaultId", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ProfileSettingId, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DefaultId, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ListIndex, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

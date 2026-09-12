@@ -16,7 +16,8 @@ public class CameraScript : Script
             if (Game.GetGameRI().PlayerList.Count < 2)
             {
                 var gameViewport = Game.GetGameViewportClient();
-                gameViewport.CreatePlayer(1, out _, true);
+                FString error = default;
+                gameViewport.CreatePlayer(1, ref error, true);
             }
 
             var controller0 = Game.GetPlayerController(0) as RPlayerControllerCombat;

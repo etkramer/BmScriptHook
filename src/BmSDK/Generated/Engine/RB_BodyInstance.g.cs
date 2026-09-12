@@ -213,10 +213,11 @@ public partial class RB_BodyInstance : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetBoneSpringTarget
     /// </summary>
-    public unsafe virtual bool SetBoneSpringTarget(out BmSDK.GameObject.FMatrix InBoneTarget, bool bTeleport, BmSDK.Engine.PhysicsAssetInstance.EBoneSpringUsagePriority BoneSpringUsagePriority)
+    public unsafe virtual bool SetBoneSpringTarget(BmSDK.GameObject.FMatrix InBoneTarget, bool bTeleport, BmSDK.Engine.PhysicsAssetInstance.EBoneSpringUsagePriority BoneSpringUsagePriority)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.RB_BodyInstance.SetBoneSpringTarget", true);
         byte* paramsPtr = stackalloc byte[76];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InBoneTarget, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bTeleport, paramsPtr + 64);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(BoneSpringUsagePriority, paramsPtr + 68);
         var oldFlags = funcManaged.FunctionFlags;
@@ -227,7 +228,6 @@ public partial class RB_BodyInstance : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InBoneTarget = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FMatrix>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 72);
     }
 
@@ -256,12 +256,13 @@ public partial class RB_BodyInstance : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: EnableBoneSpring
     /// </summary>
-    public unsafe virtual bool EnableBoneSpring(bool bInEnableLinear, bool bInEnableAngular, out BmSDK.GameObject.FMatrix InBoneTarget, BmSDK.Engine.PhysicsAssetInstance.EBoneSpringUsagePriority NewBoneSpringUsagePriority, bool bInDisableLinearZ = default)
+    public unsafe virtual bool EnableBoneSpring(bool bInEnableLinear, bool bInEnableAngular, BmSDK.GameObject.FMatrix InBoneTarget, BmSDK.Engine.PhysicsAssetInstance.EBoneSpringUsagePriority NewBoneSpringUsagePriority, bool bInDisableLinearZ = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.RB_BodyInstance.EnableBoneSpring", true);
         byte* paramsPtr = stackalloc byte[92];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bInEnableLinear, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bInEnableAngular, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InBoneTarget, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NewBoneSpringUsagePriority, paramsPtr + 80);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bInDisableLinearZ, paramsPtr + 84);
         var oldFlags = funcManaged.FunctionFlags;
@@ -272,7 +273,6 @@ public partial class RB_BodyInstance : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        InBoneTarget = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FMatrix>(paramsPtr + 16);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 88);
     }
 

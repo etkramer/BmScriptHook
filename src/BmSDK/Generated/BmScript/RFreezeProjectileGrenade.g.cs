@@ -119,12 +119,13 @@ public partial class RFreezeProjectileGrenade : BmSDK.BmScript.RFreezeProjectile
     /// <summary>
     /// Function: GetGrenadeVelocity
     /// </summary>
-    public unsafe static System.Numerics.Vector3 GetGrenadeVelocity(System.Numerics.Vector3 Origin, System.Numerics.Vector3 Target, out float EstimatedTimeToTarget)
+    public unsafe static System.Numerics.Vector3 GetGrenadeVelocity(System.Numerics.Vector3 Origin, System.Numerics.Vector3 Target, ref float EstimatedTimeToTarget)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RFreezeProjectileGrenade.GetGrenadeVelocity", true);
         byte* paramsPtr = stackalloc byte[72];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Origin, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Target, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EstimatedTimeToTarget, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(StaticClass().DefaultObject.Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         EstimatedTimeToTarget = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 24);
         return BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 28);

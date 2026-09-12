@@ -418,11 +418,12 @@ public partial class GameplayEventsWriter : BmSDK.Engine.GameplayEvents, BmSDK.I
     /// <summary>
     /// Function: LogGamePositionEvent
     /// </summary>
-    public unsafe virtual void LogGamePositionEvent(int EventID, out System.Numerics.Vector3 Position, float Value)
+    public unsafe virtual void LogGamePositionEvent(int EventID, System.Numerics.Vector3 Position, float Value)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.GameplayEventsWriter.LogGamePositionEvent", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EventID, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Position, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -432,7 +433,6 @@ public partial class GameplayEventsWriter : BmSDK.Engine.GameplayEvents, BmSDK.I
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        Position = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
         return;
     }
 

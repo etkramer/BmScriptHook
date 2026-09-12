@@ -215,11 +215,12 @@ public partial class OnlineStatsWrite : BmSDK.Engine.OnlineStats, BmSDK.IGameObj
     /// <summary>
     /// Function: GetStatId
     /// </summary>
-    public unsafe virtual bool GetStatId(BmSDK.FName StatName, out int StatId)
+    public unsafe virtual bool GetStatId(BmSDK.FName StatName, ref int StatId)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.OnlineStatsWrite.GetStatId", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StatName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StatId, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

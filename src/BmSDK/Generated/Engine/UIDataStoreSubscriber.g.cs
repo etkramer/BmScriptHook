@@ -18,7 +18,7 @@ public partial interface UIDataStoreSubscriber : BmSDK.Interface
     /// <summary>
     /// Function: GetBoundDataStores
     /// </summary>
-    public unsafe void GetBoundDataStores(out BmSDK.TArray<BmSDK.Engine.UIDataStore> out_BoundDataStores);
+    public unsafe void GetBoundDataStores(ref BmSDK.TArray<BmSDK.Engine.UIDataStore> out_BoundDataStores);
 
     /// <summary>
     /// Function: NotifyDataStoreValueUpdated

@@ -397,10 +397,11 @@ public partial class RGFxMovieBackScreen : BmSDK.BmGame.RGFxMovie, BmSDK.IGameOb
     /// <summary>
     /// Function: PrepBatmanChallengeRequirements
     /// </summary>
-    public unsafe virtual void PrepBatmanChallengeRequirements(out BmSDK.TArray<int> AreNotPossible)
+    public unsafe virtual void PrepBatmanChallengeRequirements(ref BmSDK.TArray<int> AreNotPossible)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxMovieBackScreen.PrepBatmanChallengeRequirements", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AreNotPossible, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         AreNotPossible = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 0);
         return;
@@ -637,12 +638,14 @@ public partial class RGFxMovieBackScreen : BmSDK.BmGame.RGFxMovie, BmSDK.IGameOb
     /// <summary>
     /// Function: GetProgressCharacterList
     /// </summary>
-    public unsafe virtual void GetProgressCharacterList(BmSDK.BmGame.RPersistentData PData, BmSDK.BmGame.RPersistentShared PShared, out BmSDK.TArray<BmSDK.FString> CharList, out BmSDK.TArray<int> BioUnlockedList)
+    public unsafe virtual void GetProgressCharacterList(BmSDK.BmGame.RPersistentData PData, BmSDK.BmGame.RPersistentShared PShared, ref BmSDK.TArray<BmSDK.FString> CharList, ref BmSDK.TArray<int> BioUnlockedList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxMovieBackScreen.GetProgressCharacterList", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PData, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PShared, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CharList, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BioUnlockedList, paramsPtr + 20);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CharList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.FString>>(paramsPtr + 8);
         BioUnlockedList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 20);
@@ -895,10 +898,11 @@ public partial class RGFxMovieBackScreen : BmSDK.BmGame.RGFxMovie, BmSDK.IGameOb
     /// <summary>
     /// Function: GetBioCharacterList
     /// </summary>
-    public unsafe virtual void GetBioCharacterList(out BmSDK.TArray<BmSDK.FString> CharList)
+    public unsafe virtual void GetBioCharacterList(ref BmSDK.TArray<BmSDK.FString> CharList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxMovieBackScreen.GetBioCharacterList", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CharList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CharList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.FString>>(paramsPtr + 0);
         return;

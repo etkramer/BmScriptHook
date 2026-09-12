@@ -162,10 +162,11 @@ public partial class RCapeComponent : BmSDK.Engine.ActorComponent, BmSDK.IGameOb
     /// <summary>
     /// Function: GetAvailableStateNames
     /// </summary>
-    public unsafe virtual void GetAvailableStateNames(out BmSDK.TArray<BmSDK.FName> OutStateNames, bool bSorted = default)
+    public unsafe virtual void GetAvailableStateNames(ref BmSDK.TArray<BmSDK.FName> OutStateNames, bool bSorted = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCapeComponent.GetAvailableStateNames", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutStateNames, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bSorted, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -200,10 +201,11 @@ public partial class RCapeComponent : BmSDK.Engine.ActorComponent, BmSDK.IGameOb
     /// <summary>
     /// Function: GetThoughts
     /// </summary>
-    public unsafe virtual void GetThoughts(out BmSDK.TArray<BmSDK.Engine.Actor.FThought> OutThoughts)
+    public unsafe virtual void GetThoughts(ref BmSDK.TArray<BmSDK.Engine.Actor.FThought> OutThoughts)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCapeComponent.GetThoughts", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutThoughts, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -273,10 +275,11 @@ public partial class RCapeComponent : BmSDK.Engine.ActorComponent, BmSDK.IGameOb
     /// <summary>
     /// Function: CalculateWindProperties
     /// </summary>
-    public unsafe virtual void CalculateWindProperties(out BmSDK.BmGame.RCapeComponent.FCapeWindAudioProperties OutWindProperties)
+    public unsafe virtual void CalculateWindProperties(ref BmSDK.BmGame.RCapeComponent.FCapeWindAudioProperties OutWindProperties)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCapeComponent.CalculateWindProperties", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutWindProperties, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -292,11 +295,12 @@ public partial class RCapeComponent : BmSDK.Engine.ActorComponent, BmSDK.IGameOb
     /// <summary>
     /// Function: ApplyWind
     /// </summary>
-    public unsafe virtual void ApplyWind(BmSDK.BmGame.RGameInfo.FRWindConfig WindConfig, out BmSDK.BmGame.RGameInfo.FRWindState WindState)
+    public unsafe virtual void ApplyWind(BmSDK.BmGame.RGameInfo.FRWindConfig WindConfig, ref BmSDK.BmGame.RGameInfo.FRWindState WindState)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCapeComponent.ApplyWind", true);
         byte* paramsPtr = stackalloc byte[104];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(WindConfig, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WindState, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

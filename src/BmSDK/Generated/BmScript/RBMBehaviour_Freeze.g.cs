@@ -365,10 +365,11 @@ public partial class RBMBehaviour_Freeze : BmSDK.BmGame.RBMBehaviour, BmSDK.IGam
     /// <summary>
     /// Function: ShouldRerouteToFootPrint
     /// </summary>
-    public unsafe virtual bool ShouldRerouteToFootPrint(out int youngest_footprint)
+    public unsafe virtual bool ShouldRerouteToFootPrint(ref int youngest_footprint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RBMBehaviour_Freeze.ShouldRerouteToFootPrint", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(youngest_footprint, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         youngest_footprint = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 4);
@@ -1324,12 +1325,14 @@ public partial class RBMBehaviour_Freeze : BmSDK.BmGame.RBMBehaviour, BmSDK.IGam
     /// <summary>
     /// Function: GetFootprintCircleAngleTraversed
     /// </summary>
-    public unsafe virtual float GetFootprintCircleAngleTraversed(int starting_print, int ending_print, out System.Numerics.Vector3 CircleCentre, out System.Numerics.Vector3 CircleBounds)
+    public unsafe virtual float GetFootprintCircleAngleTraversed(int starting_print, int ending_print, ref System.Numerics.Vector3 CircleCentre, ref System.Numerics.Vector3 CircleBounds)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RBMBehaviour_Freeze.GetFootprintCircleAngleTraversed", true);
         byte* paramsPtr = stackalloc byte[76];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(starting_print, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ending_print, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CircleCentre, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CircleBounds, paramsPtr + 20);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CircleCentre = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 8);
         CircleBounds = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 20);

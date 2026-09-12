@@ -530,10 +530,11 @@ public partial class RCombatMove_RasBurlyAttackAndCounter : BmSDK.BmGame.RCombat
     /// <summary>
     /// Function: FillYawList
     /// </summary>
-    public unsafe virtual void FillYawList(out BmSDK.TArray<int> YawList)
+    public unsafe virtual void FillYawList(ref BmSDK.TArray<int> YawList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_RasBurlyAttackAndCounter.FillYawList", true);
         byte* paramsPtr = stackalloc byte[92];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(YawList, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         YawList = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 0);
         return;

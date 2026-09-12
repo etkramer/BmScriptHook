@@ -477,10 +477,11 @@ public partial class RDebugCameraController : BmSDK.Engine.DebugCameraController
     /// <summary>
     /// Function: Set360ShotFileName
     /// </summary>
-    public unsafe virtual void Set360ShotFileName(out int Series, int Index, bool bOrbit)
+    public unsafe virtual void Set360ShotFileName(ref int Series, int Index, bool bOrbit)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDebugCameraController.Set360ShotFileName", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Series, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bOrbit, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;

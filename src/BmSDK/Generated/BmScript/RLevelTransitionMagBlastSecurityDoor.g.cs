@@ -329,11 +329,13 @@ public partial class RLevelTransitionMagBlastSecurityDoor : BmSDK.BmScript.RLeve
     /// <summary>
     /// Function: GetMotorActivationFXLocation
     /// </summary>
-    public unsafe override void GetMotorActivationFXLocation(BmSDK.Engine.PrimitiveComponent MotorComp, out System.Numerics.Vector3 Loc, out BmSDK.Rotator Rot)
+    public unsafe override void GetMotorActivationFXLocation(BmSDK.Engine.PrimitiveComponent MotorComp, ref System.Numerics.Vector3 Loc, ref BmSDK.Rotator Rot)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RLevelTransitionMagBlastSecurityDoor.GetMotorActivationFXLocation", true);
         byte* paramsPtr = stackalloc byte[52];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MotorComp, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Loc, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Rot, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Loc = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 4);
         Rot = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 16);

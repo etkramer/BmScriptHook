@@ -137,25 +137,26 @@ public partial class UIDataProvider : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: SetFieldValue
     /// </summary>
-    public unsafe virtual bool SetFieldValue(BmSDK.FString FieldName, out BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
+    public unsafe virtual bool SetFieldValue(BmSDK.FString FieldName, BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.SetFieldValue", true);
         byte* paramsPtr = stackalloc byte[104];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrayIndex, paramsPtr + 96);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
-        FieldValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 100);
     }
 
     /// <summary>
     /// Function: GetFieldValue
     /// </summary>
-    public unsafe virtual bool GetFieldValue(BmSDK.FString FieldName, out BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
+    public unsafe virtual bool GetFieldValue(BmSDK.FString FieldName, ref BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue FieldValue, int ArrayIndex = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.GetFieldValue", true);
         byte* paramsPtr = stackalloc byte[104];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FieldValue, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrayIndex, paramsPtr + 96);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         FieldValue = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.UIRoot.FUIProviderScriptFieldValue>(paramsPtr + 12);
@@ -178,10 +179,11 @@ public partial class UIDataProvider : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSupportedScriptFields
     /// </summary>
-    public unsafe virtual void GetSupportedScriptFields(out BmSDK.TArray<BmSDK.Engine.UIDataProvider.FUIDataProviderField> out_Fields)
+    public unsafe virtual void GetSupportedScriptFields(ref BmSDK.TArray<BmSDK.Engine.UIDataProvider.FUIDataProviderField> out_Fields)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.GetSupportedScriptFields", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Fields, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_Fields = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Engine.UIDataProvider.FUIDataProviderField>>(paramsPtr + 0);
         return;
@@ -190,10 +192,11 @@ public partial class UIDataProvider : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: ParseArrayDelimiter
     /// </summary>
-    public unsafe virtual int ParseArrayDelimiter(out BmSDK.FString DataTag)
+    public unsafe virtual int ParseArrayDelimiter(ref BmSDK.FString DataTag)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.ParseArrayDelimiter", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DataTag, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -209,11 +212,12 @@ public partial class UIDataProvider : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: GetProviderFieldType
     /// </summary>
-    public unsafe virtual bool GetProviderFieldType(BmSDK.FString DataTag, out BmSDK.Engine.UIRoot.EUIDataProviderFieldType out_ProviderFieldType)
+    public unsafe virtual bool GetProviderFieldType(BmSDK.FString DataTag, ref BmSDK.Engine.UIRoot.EUIDataProviderFieldType out_ProviderFieldType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.UIDataProvider.GetProviderFieldType", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DataTag, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_ProviderFieldType, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

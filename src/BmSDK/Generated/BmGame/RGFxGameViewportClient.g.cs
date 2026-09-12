@@ -170,10 +170,11 @@ public partial class RGFxGameViewportClient : BmSDK.Engine.GameViewportClient, B
     /// <summary>
     /// Function: Init
     /// </summary>
-    public unsafe override bool Init(out BmSDK.FString OutError)
+    public unsafe override bool Init(ref BmSDK.FString OutError)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RGFxGameViewportClient.Init", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutError, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         OutError = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

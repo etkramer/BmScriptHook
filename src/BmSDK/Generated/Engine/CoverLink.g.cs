@@ -134,12 +134,13 @@ public partial class CoverLink : BmSDK.Engine.NavigationPoint, BmSDK.IGameObject
     /// <summary>
     /// Function: GetSwatTurnTarget
     /// </summary>
-    public unsafe virtual bool GetSwatTurnTarget(int SlotIdx, int Direction, out BmSDK.Engine.CoverLink.FCoverInfo out_Info)
+    public unsafe virtual bool GetSwatTurnTarget(int SlotIdx, int Direction, ref BmSDK.Engine.CoverLink.FCoverInfo out_Info)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CoverLink.GetSwatTurnTarget", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SlotIdx, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Direction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Info, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -264,12 +265,14 @@ public partial class CoverLink : BmSDK.Engine.NavigationPoint, BmSDK.IGameObject
     /// <summary>
     /// Function: FindSlots
     /// </summary>
-    public unsafe virtual bool FindSlots(System.Numerics.Vector3 CheckLocation, float MaxDistance, out int LeftSlotIdx, out int RightSlotIdx)
+    public unsafe virtual bool FindSlots(System.Numerics.Vector3 CheckLocation, float MaxDistance, ref int LeftSlotIdx, ref int RightSlotIdx)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CoverLink.FindSlots", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CheckLocation, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxDistance, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LeftSlotIdx, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RightSlotIdx, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -392,11 +395,15 @@ public partial class CoverLink : BmSDK.Engine.NavigationPoint, BmSDK.IGameObject
     /// <summary>
     /// Function: UnPackFireLinkInteractionInfo
     /// </summary>
-    public unsafe static void UnPackFireLinkInteractionInfo(byte PackedByte, out BmSDK.Engine.CoverLink.ECoverType SrcType, out BmSDK.Engine.CoverLink.ECoverAction SrcAction, out BmSDK.Engine.CoverLink.ECoverType DestType, out BmSDK.Engine.CoverLink.ECoverAction DestAction)
+    public unsafe static void UnPackFireLinkInteractionInfo(byte PackedByte, ref BmSDK.Engine.CoverLink.ECoverType SrcType, ref BmSDK.Engine.CoverLink.ECoverAction SrcAction, ref BmSDK.Engine.CoverLink.ECoverType DestType, ref BmSDK.Engine.CoverLink.ECoverAction DestAction)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CoverLink.UnPackFireLinkInteractionInfo", true);
         byte* paramsPtr = stackalloc byte[5];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PackedByte, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SrcType, paramsPtr + 1);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SrcAction, paramsPtr + 2);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DestType, paramsPtr + 3);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DestAction, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -437,12 +444,13 @@ public partial class CoverLink : BmSDK.Engine.NavigationPoint, BmSDK.IGameObject
     /// <summary>
     /// Function: GetFireLinkTargetCoverInfo
     /// </summary>
-    public unsafe virtual bool GetFireLinkTargetCoverInfo(int SlotIdx, int FireLinkIdx, out BmSDK.Engine.CoverLink.FCoverInfo out_Info, BmSDK.Engine.CoverLink.EFireLinkID ArrayID = default)
+    public unsafe virtual bool GetFireLinkTargetCoverInfo(int SlotIdx, int FireLinkIdx, ref BmSDK.Engine.CoverLink.FCoverInfo out_Info, BmSDK.Engine.CoverLink.EFireLinkID ArrayID = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.CoverLink.GetFireLinkTargetCoverInfo", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(SlotIdx, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(FireLinkIdx, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Info, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrayID, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;

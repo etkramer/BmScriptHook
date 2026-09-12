@@ -435,11 +435,12 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ItemFExp
     /// </summary>
-    public unsafe virtual bool ItemFExp(BmSDK.FString Label, out float Value, float MinValue, float MaxValue, float stepMult)
+    public unsafe virtual bool ItemFExp(BmSDK.FString Label, ref float Value, float MinValue, float MaxValue, float stepMult)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.ItemFExp", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Label, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(stepMult, paramsPtr + 24);
@@ -451,11 +452,12 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ItemF
     /// </summary>
-    public unsafe virtual bool ItemF(BmSDK.FString Label, out float Value, float MinValue, float MaxValue, float StepSize)
+    public unsafe virtual bool ItemF(BmSDK.FString Label, ref float Value, float MinValue, float MaxValue, float StepSize)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.ItemF", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Label, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StepSize, paramsPtr + 24);
@@ -467,11 +469,12 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ItemByte
     /// </summary>
-    public unsafe virtual bool ItemByte(BmSDK.FString Label, out byte Value, int MinValue, int MaxValue)
+    public unsafe virtual bool ItemByte(BmSDK.FString Label, ref byte Value, int MinValue, int MaxValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.ItemByte", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Label, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 20);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -482,11 +485,12 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ItemI
     /// </summary>
-    public unsafe virtual bool ItemI(BmSDK.FString Label, out int Value, int MinValue, int MaxValue, int Step = default)
+    public unsafe virtual bool ItemI(BmSDK.FString Label, ref int Value, int MinValue, int MaxValue, int Step = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.ItemI", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Label, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 20);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Step, paramsPtr + 24);
@@ -498,11 +502,12 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ItemL
     /// </summary>
-    public unsafe virtual bool ItemL(BmSDK.FString Label, out int Value, BmSDK.TArray<BmSDK.FString> List, BmSDK.TArray<BmSDK.FString> details = default)
+    public unsafe virtual bool ItemL(BmSDK.FString Label, ref int Value, BmSDK.TArray<BmSDK.FString> List, BmSDK.TArray<BmSDK.FString> details = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.ItemL", true);
         byte* paramsPtr = stackalloc byte[44];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Label, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(List, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(details, paramsPtr + 28);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -513,10 +518,11 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: UpdateItemL
     /// </summary>
-    public unsafe virtual bool UpdateItemL(out int Value, BmSDK.TArray<BmSDK.FString> List)
+    public unsafe virtual bool UpdateItemL(ref int Value, BmSDK.TArray<BmSDK.FString> List)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.UpdateItemL", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(List, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Value = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 0);
@@ -585,10 +591,11 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: NumberInputFExp
     /// </summary>
-    public unsafe virtual bool NumberInputFExp(out float Value, float MinValue, float MaxValue, float stepMult)
+    public unsafe virtual bool NumberInputFExp(ref float Value, float MinValue, float MaxValue, float stepMult)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.NumberInputFExp", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(stepMult, paramsPtr + 12);
@@ -600,10 +607,11 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: NumberInputF
     /// </summary>
-    public unsafe virtual bool NumberInputF(out float Value, float MinValue, float MaxValue, float StepSize)
+    public unsafe virtual bool NumberInputF(ref float Value, float MinValue, float MaxValue, float StepSize)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.NumberInputF", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StepSize, paramsPtr + 12);
@@ -615,10 +623,11 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: NumberInputB
     /// </summary>
-    public unsafe virtual bool NumberInputB(out byte Value, int MinValue, int MaxValue)
+    public unsafe virtual bool NumberInputB(ref byte Value, int MinValue, int MaxValue)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.NumberInputB", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -629,10 +638,11 @@ public partial class RDynamicMenu : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: NumberInputI
     /// </summary>
-    public unsafe virtual bool NumberInputI(out int Value, int MinValue, int MaxValue, int Step)
+    public unsafe virtual bool NumberInputI(ref int Value, int MinValue, int MaxValue, int Step)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDynamicMenu.NumberInputI", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Value, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinValue, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxValue, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Step, paramsPtr + 12);

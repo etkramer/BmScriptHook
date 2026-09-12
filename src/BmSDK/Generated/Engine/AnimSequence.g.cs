@@ -232,13 +232,15 @@ public partial class AnimSequence : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetNotifyTimeByClass
     /// </summary>
-    public unsafe virtual float GetNotifyTimeByClass(BmSDK.Class NotifyClass, float PlayRate, float StartPosition, out BmSDK.Engine.AnimNotify out_Notify, out float out_Duration)
+    public unsafe virtual float GetNotifyTimeByClass(BmSDK.Class NotifyClass, float PlayRate, float StartPosition, ref BmSDK.Engine.AnimNotify out_Notify, ref float out_Duration)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AnimSequence.GetNotifyTimeByClass", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NotifyClass, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PlayRate, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPosition, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Notify, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Duration, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

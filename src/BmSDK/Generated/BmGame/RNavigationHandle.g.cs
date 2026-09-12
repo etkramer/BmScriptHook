@@ -529,11 +529,12 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: GetReachableLocation
     /// </summary>
-    public unsafe static bool GetReachableLocation(System.Numerics.Vector3 NearLocation, out System.Numerics.Vector3 ReachableLocation)
+    public unsafe static bool GetReachableLocation(System.Numerics.Vector3 NearLocation, ref System.Numerics.Vector3 ReachableLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.GetReachableLocation", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NearLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ReachableLocation, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -569,11 +570,13 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: GetPylonAndVisibleVertsFromPos
     /// </summary>
-    public unsafe static void GetPylonAndVisibleVertsFromPos(System.Numerics.Vector3 TestPos, out BmSDK.Engine.Pylon BasePylon, out BmSDK.TArray<int> VertIDList)
+    public unsafe static void GetPylonAndVisibleVertsFromPos(System.Numerics.Vector3 TestPos, ref BmSDK.Engine.Pylon BasePylon, ref BmSDK.TArray<int> VertIDList)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.GetPylonAndVisibleVertsFromPos", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(BasePylon, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(VertIDList, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -590,12 +593,14 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: GetPathForNextXDist
     /// </summary>
-    public unsafe virtual void GetPathForNextXDist(float LookAheadDist, System.Numerics.Vector3 TestExtents, out BmSDK.TArray<System.Numerics.Vector3> PathPoints, out int bHitSpecialMoveEdge)
+    public unsafe virtual void GetPathForNextXDist(float LookAheadDist, System.Numerics.Vector3 TestExtents, ref BmSDK.TArray<System.Numerics.Vector3> PathPoints, ref int bHitSpecialMoveEdge)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.GetPathForNextXDist", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LookAheadDist, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestExtents, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PathPoints, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bHitSpecialMoveEdge, paramsPtr + 28);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -763,12 +768,14 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindNarrowestPointOnPath
     /// </summary>
-    public unsafe virtual void FindNarrowestPointOnPath(float LookAheadDist, float MaxWidth, out float NarrowestOnLeft, out float NarrowestOnRight)
+    public unsafe virtual void FindNarrowestPointOnPath(float LookAheadDist, float MaxWidth, ref float NarrowestOnLeft, ref float NarrowestOnRight)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindNarrowestPointOnPath", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LookAheadDist, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxWidth, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NarrowestOnLeft, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NarrowestOnRight, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -785,11 +792,12 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindVantagePointOnPath
     /// </summary>
-    public unsafe virtual bool FindVantagePointOnPath(float DistToCheck, out BmSDK.BmGame.RHidePoint HidePoint)
+    public unsafe virtual bool FindVantagePointOnPath(float DistToCheck, ref BmSDK.BmGame.RHidePoint HidePoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindVantagePointOnPath", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DistToCheck, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HidePoint, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -805,11 +813,12 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindPredatorPointOnPath
     /// </summary>
-    public unsafe virtual bool FindPredatorPointOnPath(float DistToCheck, out BmSDK.BmGame.RPredatorSpecialMovePointBase PredatorPoint)
+    public unsafe virtual bool FindPredatorPointOnPath(float DistToCheck, ref BmSDK.BmGame.RPredatorSpecialMovePointBase PredatorPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindPredatorPointOnPath", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DistToCheck, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PredatorPoint, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -825,11 +834,13 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindRailingOnPath
     /// </summary>
-    public unsafe virtual bool FindRailingOnPath(float DistToCheck, out System.Numerics.Vector3 PeekPosition, out BmSDK.BmGame.RBMPathNode_FenceJump FenceJumpNode)
+    public unsafe virtual bool FindRailingOnPath(float DistToCheck, ref System.Numerics.Vector3 PeekPosition, ref BmSDK.BmGame.RBMPathNode_FenceJump FenceJumpNode)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindRailingOnPath", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DistToCheck, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PeekPosition, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FenceJumpNode, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -846,11 +857,13 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindCornerPointOnPath
     /// </summary>
-    public unsafe virtual bool FindCornerPointOnPath(float DistToCheck, out BmSDK.BmGame.RCornerWallMarker StartPoint, out BmSDK.BmGame.RCornerWallMarker EndPoint)
+    public unsafe virtual bool FindCornerPointOnPath(float DistToCheck, ref BmSDK.BmGame.RCornerWallMarker StartPoint, ref BmSDK.BmGame.RCornerWallMarker EndPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindCornerPointOnPath", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DistToCheck, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPoint, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(EndPoint, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -867,11 +880,17 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindIntersectionInfo
     /// </summary>
-    public unsafe virtual bool FindIntersectionInfo(BmSDK.BmGame.RNavigationHandle OtherNavHandle, out System.Numerics.Vector3 IntersectionStart, out int IntersectionStartID, out System.Numerics.Vector3 IntersectionEnd, out int IntersectionEndID, out float IntersectionStartDist, out float IntersectionLength)
+    public unsafe virtual bool FindIntersectionInfo(BmSDK.BmGame.RNavigationHandle OtherNavHandle, ref System.Numerics.Vector3 IntersectionStart, ref int IntersectionStartID, ref System.Numerics.Vector3 IntersectionEnd, ref int IntersectionEndID, ref float IntersectionStartDist, ref float IntersectionLength)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindIntersectionInfo", true);
         byte* paramsPtr = stackalloc byte[48];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(OtherNavHandle, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionStart, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionStartID, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionEnd, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionEndID, paramsPtr + 32);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionStartDist, paramsPtr + 36);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(IntersectionLength, paramsPtr + 40);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -928,10 +947,11 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: GetNextMoveLocation
     /// </summary>
-    public unsafe override bool GetNextMoveLocation(out System.Numerics.Vector3 out_MoveDest, float ArrivalDistance)
+    public unsafe override bool GetNextMoveLocation(ref System.Numerics.Vector3 out_MoveDest, float ArrivalDistance)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.GetNextMoveLocation", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_MoveDest, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrivalDistance, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -1255,10 +1275,13 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: DoPathFinding
     /// </summary>
-    public unsafe virtual bool DoPathFinding(out BmSDK.Engine.Actor out_DestActor, out int out_DestItem, out int PathRequestsUsed)
+    public unsafe virtual bool DoPathFinding(ref BmSDK.Engine.Actor out_DestActor, ref int out_DestItem, ref int PathRequestsUsed)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.DoPathFinding", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DestActor, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DestItem, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PathRequestsUsed, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -1276,10 +1299,13 @@ public partial class RNavigationHandle : BmSDK.Engine.NavigationHandle, BmSDK.IG
     /// <summary>
     /// Function: FindPath
     /// </summary>
-    public unsafe override bool FindPath(out BmSDK.Engine.Actor out_DestActor, out int out_DestItem, out int PathRequestsUsed)
+    public unsafe override bool FindPath(ref BmSDK.Engine.Actor out_DestActor, ref int out_DestItem, ref int PathRequestsUsed)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RNavigationHandle.FindPath", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DestActor, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DestItem, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PathRequestsUsed, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -307,11 +307,13 @@ public partial class RHarpoonDragPhysicsBase : BmSDK.BmGame.RSmashableProp, BmSD
     /// <summary>
     /// Function: GetAnchorPointPositionAndRotation
     /// </summary>
-    public unsafe virtual bool GetAnchorPointPositionAndRotation(int I, out System.Numerics.Vector3 Out_Position, out BmSDK.Rotator out_Rotation)
+    public unsafe virtual bool GetAnchorPointPositionAndRotation(int I, ref System.Numerics.Vector3 Out_Position, ref BmSDK.Rotator out_Rotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RHarpoonDragPhysicsBase.GetAnchorPointPositionAndRotation", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(I, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Out_Position, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Rotation, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -76,10 +76,11 @@ public partial class RPawnVillainGunJammerBase : BmSDK.BmScript.RPawnVillainGun,
     /// <summary>
     /// Function: GetJammerLocation
     /// </summary>
-    public unsafe override bool GetJammerLocation(out System.Numerics.Vector3 JammerLocation)
+    public unsafe override bool GetJammerLocation(ref System.Numerics.Vector3 JammerLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainGunJammerBase.GetJammerLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(JammerLocation, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         JammerLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

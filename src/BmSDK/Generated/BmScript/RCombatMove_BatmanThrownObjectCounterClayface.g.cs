@@ -81,10 +81,11 @@ public partial class RCombatMove_BatmanThrownObjectCounterClayface : BmSDK.BmGam
     /// <summary>
     /// Function: FindFire
     /// </summary>
-    public unsafe virtual void FindFire(out System.Numerics.Vector3 TestThrowDir)
+    public unsafe virtual void FindFire(ref System.Numerics.Vector3 TestThrowDir)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RCombatMove_BatmanThrownObjectCounterClayface.FindFire", true);
         byte* paramsPtr = stackalloc byte[56];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TestThrowDir, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         TestThrowDir = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         return;

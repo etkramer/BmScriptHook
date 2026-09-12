@@ -218,11 +218,12 @@ public partial class RJokerTannoy : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: AddLocationFlags
     /// </summary>
-    public unsafe virtual void AddLocationFlags(BmSDK.Engine.Actor Subject, out BmSDK.BmGame.RBarkFlagBase ContextFlags)
+    public unsafe virtual void AddLocationFlags(BmSDK.Engine.Actor Subject, ref BmSDK.BmGame.RBarkFlagBase ContextFlags)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RJokerTannoy.AddLocationFlags", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Subject, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ContextFlags, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ContextFlags = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RBarkFlagBase>(paramsPtr + 4);
         return;

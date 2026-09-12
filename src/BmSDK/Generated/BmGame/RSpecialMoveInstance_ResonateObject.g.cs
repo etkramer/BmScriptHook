@@ -104,10 +104,12 @@ public partial class RSpecialMoveInstance_ResonateObject : BmSDK.BmGame.RSpecial
     /// <summary>
     /// Function: GetLeftAndRightAngles
     /// </summary>
-    public unsafe virtual void GetLeftAndRightAngles(out float LeftAngle, out float RightAngle, float RawLeftX, float RawLeftY, float RawRightX, float RawRightY)
+    public unsafe virtual void GetLeftAndRightAngles(ref float LeftAngle, ref float RightAngle, float RawLeftX, float RawLeftY, float RawRightX, float RawRightY)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_ResonateObject.GetLeftAndRightAngles", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LeftAngle, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RightAngle, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RawLeftX, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RawLeftY, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RawRightX, paramsPtr + 16);

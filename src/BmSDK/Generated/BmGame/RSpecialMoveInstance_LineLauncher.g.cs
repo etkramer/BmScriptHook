@@ -306,7 +306,7 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
     /// <summary>
     /// Function: GetGrabTarget
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RBMPawnAI GetGrabTarget(float GrabTime, float MinOffsetForGrab, float MaxSpeed, float LineLauncherAccel, bool bOnlyGrabHostage, out BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherGrabType GrabType, out BmSDK.BmGame.RBMPawnAI _PotentialGrabTarget)
+    public unsafe virtual BmSDK.BmGame.RBMPawnAI GetGrabTarget(float GrabTime, float MinOffsetForGrab, float MaxSpeed, float LineLauncherAccel, bool bOnlyGrabHostage, ref BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherGrabType GrabType, ref BmSDK.BmGame.RBMPawnAI _PotentialGrabTarget)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_LineLauncher.GetGrabTarget", true);
         byte* paramsPtr = stackalloc byte[32];
@@ -315,6 +315,8 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxSpeed, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineLauncherAccel, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bOnlyGrabHostage, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(GrabType, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(_PotentialGrabTarget, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -331,7 +333,7 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
     /// <summary>
     /// Function: GetKickTarget
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RPawnVillain GetKickTarget(float KickTime, float LeftKickTime, float RightKickTime, float MinOffsetForFwdKick, float MaxSpeed, float LineLauncherAccel, out BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherKickDirection KickDir)
+    public unsafe virtual BmSDK.BmGame.RPawnVillain GetKickTarget(float KickTime, float LeftKickTime, float RightKickTime, float MinOffsetForFwdKick, float MaxSpeed, float LineLauncherAccel, ref BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherKickDirection KickDir)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_LineLauncher.GetKickTarget", true);
         byte* paramsPtr = stackalloc byte[32];
@@ -341,6 +343,7 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinOffsetForFwdKick, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxSpeed, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(LineLauncherAccel, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(KickDir, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -356,10 +359,11 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
     /// <summary>
     /// Function: ShouldIDoLandAnim
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherDismountType ShouldIDoLandAnim(out BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, float MinLandHeight, float MaxLandHeight)
+    public unsafe virtual BmSDK.BmGame.RSpecialMoveInstance_LineLauncher.LineLauncherDismountType ShouldIDoLandAnim(ref BmSDK.BmGame.RPawnPlayer.FEnvironmentSpecialMoveLocator Locator, float MinLandHeight, float MaxLandHeight)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_LineLauncher.ShouldIDoLandAnim", true);
         byte* paramsPtr = stackalloc byte[121];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Locator, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MinLandHeight, paramsPtr + 112);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxLandHeight, paramsPtr + 116);
         var oldFlags = funcManaged.FunctionFlags;
@@ -411,10 +415,12 @@ public partial class RSpecialMoveInstance_LineLauncher : BmSDK.BmGame.RSpecialMo
     /// <summary>
     /// Function: GetGrabbedTargetReference
     /// </summary>
-    public unsafe virtual void GetGrabbedTargetReference(out System.Numerics.Vector3 RefLocation, out BmSDK.Rotator RefRotation)
+    public unsafe virtual void GetGrabbedTargetReference(ref System.Numerics.Vector3 RefLocation, ref BmSDK.Rotator RefRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSpecialMoveInstance_LineLauncher.GetGrabbedTargetReference", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RefLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RefRotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         RefLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         RefRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);

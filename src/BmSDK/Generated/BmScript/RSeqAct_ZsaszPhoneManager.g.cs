@@ -631,11 +631,12 @@ public partial class RSeqAct_ZsaszPhoneManager : BmSDK.Engine.SeqAct_Latent, BmS
     /// <summary>
     /// Function: dbgGetExclusionString
     /// </summary>
-    public unsafe virtual void dbgGetExclusionString(int exclusion, out BmSDK.FString Str)
+    public unsafe virtual void dbgGetExclusionString(int exclusion, ref BmSDK.FString Str)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RSeqAct_ZsaszPhoneManager.dbgGetExclusionString", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(exclusion, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Str, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Str = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FString>(paramsPtr + 4);
         return;

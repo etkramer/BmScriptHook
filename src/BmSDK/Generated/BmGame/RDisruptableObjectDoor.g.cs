@@ -145,11 +145,12 @@ public partial class RDisruptableObjectDoor : BmSDK.Engine.Actor, BmSDK.Engine.I
     /// <summary>
     /// Function: CalcCharge
     /// </summary>
-    public unsafe virtual float CalcCharge(System.Numerics.Vector3 InLoc, out float Dist)
+    public unsafe virtual float CalcCharge(System.Numerics.Vector3 InLoc, ref float Dist)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RDisruptableObjectDoor.CalcCharge", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InLoc, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Dist, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

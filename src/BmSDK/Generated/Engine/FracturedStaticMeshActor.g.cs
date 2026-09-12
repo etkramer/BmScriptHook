@@ -318,13 +318,14 @@ public partial class FracturedStaticMeshActor : BmSDK.Engine.Actor, BmSDK.IGameO
     /// <summary>
     /// Function: FindPartsInDirection
     /// </summary>
-    public unsafe virtual void FindPartsInDirection(System.Numerics.Vector3 Direction, int NumParts, bool bOnlyDestroyableParts, out BmSDK.TArray<int> OutPartIndices)
+    public unsafe virtual void FindPartsInDirection(System.Numerics.Vector3 Direction, int NumParts, bool bOnlyDestroyableParts, ref BmSDK.TArray<int> OutPartIndices)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.FracturedStaticMeshActor.FindPartsInDirection", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Direction, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(NumParts, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bOnlyDestroyableParts, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPartIndices, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -389,12 +390,13 @@ public partial class FracturedStaticMeshActor : BmSDK.Engine.Actor, BmSDK.IGameO
     /// <summary>
     /// Function: FractureEffectIsRelevant
     /// </summary>
-    public unsafe virtual bool FractureEffectIsRelevant(bool bForceDedicated, BmSDK.Engine.Pawn EffectInstigator, out byte bWantPhysChunksAndParticles)
+    public unsafe virtual bool FractureEffectIsRelevant(bool bForceDedicated, BmSDK.Engine.Pawn EffectInstigator, ref byte bWantPhysChunksAndParticles)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.FracturedStaticMeshActor.FractureEffectIsRelevant", true);
         byte* paramsPtr = stackalloc byte[60];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bForceDedicated, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(EffectInstigator, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(bWantPhysChunksAndParticles, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         bWantPhysChunksAndParticles = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 8);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);
@@ -444,11 +446,12 @@ public partial class FracturedStaticMeshActor : BmSDK.Engine.Actor, BmSDK.IGameO
     /// <summary>
     /// Function: BreakOffIsolatedIslandsFromComponent
     /// </summary>
-    public unsafe virtual void BreakOffIsolatedIslandsFromComponent(BmSDK.Engine.FracturedStaticMeshComponent Component, out BmSDK.TArray<byte> FragmentVis, BmSDK.TArray<int> IgnoreFrags, System.Numerics.Vector3 ChunkDir, BmSDK.TArray<BmSDK.Engine.FracturedStaticMeshPart> DisableCollWithPart, bool bWantPhysChunks, bool bAllowDamagedEventFiring = default)
+    public unsafe virtual void BreakOffIsolatedIslandsFromComponent(BmSDK.Engine.FracturedStaticMeshComponent Component, ref BmSDK.TArray<byte> FragmentVis, BmSDK.TArray<int> IgnoreFrags, System.Numerics.Vector3 ChunkDir, BmSDK.TArray<BmSDK.Engine.FracturedStaticMeshPart> DisableCollWithPart, bool bWantPhysChunks, bool bAllowDamagedEventFiring = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.FracturedStaticMeshActor.BreakOffIsolatedIslandsFromComponent", true);
         byte* paramsPtr = stackalloc byte[60];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Component, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FragmentVis, paramsPtr + 4);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IgnoreFrags, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ChunkDir, paramsPtr + 28);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DisableCollWithPart, paramsPtr + 40);
@@ -469,10 +472,11 @@ public partial class FracturedStaticMeshActor : BmSDK.Engine.Actor, BmSDK.IGameO
     /// <summary>
     /// Function: BreakOffIsolatedIslands
     /// </summary>
-    public unsafe virtual void BreakOffIsolatedIslands(out BmSDK.TArray<byte> FragmentVis, BmSDK.TArray<int> IgnoreFrags, System.Numerics.Vector3 ChunkDir, BmSDK.TArray<BmSDK.Engine.FracturedStaticMeshPart> DisableCollWithPart, bool bWantPhysChunks, bool bAllowDamagedEventFiring = default)
+    public unsafe virtual void BreakOffIsolatedIslands(ref BmSDK.TArray<byte> FragmentVis, BmSDK.TArray<int> IgnoreFrags, System.Numerics.Vector3 ChunkDir, BmSDK.TArray<BmSDK.Engine.FracturedStaticMeshPart> DisableCollWithPart, bool bWantPhysChunks, bool bAllowDamagedEventFiring = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.FracturedStaticMeshActor.BreakOffIsolatedIslands", true);
         byte* paramsPtr = stackalloc byte[56];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(FragmentVis, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(IgnoreFrags, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ChunkDir, paramsPtr + 24);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DisableCollWithPart, paramsPtr + 36);
@@ -511,10 +515,13 @@ public partial class FracturedStaticMeshActor : BmSDK.Engine.Actor, BmSDK.IGameO
     /// <summary>
     /// Function: FindMeshFractureSounds
     /// </summary>
-    public unsafe virtual void FindMeshFractureSounds(out BmSDK.Engine.AkEvent ExpFracSound, out BmSDK.Engine.AkEvent ChkFractureSound, out int NumChunksForExp)
+    public unsafe virtual void FindMeshFractureSounds(ref BmSDK.Engine.AkEvent ExpFracSound, ref BmSDK.Engine.AkEvent ChkFractureSound, ref int NumChunksForExp)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.FracturedStaticMeshActor.FindMeshFractureSounds", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ExpFracSound, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ChkFractureSound, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NumChunksForExp, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

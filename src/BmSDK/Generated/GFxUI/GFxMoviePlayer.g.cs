@@ -467,12 +467,13 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVariableStringArray
     /// </summary>
-    public unsafe virtual bool GetVariableStringArray(BmSDK.FString Path, int Index, out BmSDK.TArray<BmSDK.FString> Arg)
+    public unsafe virtual bool GetVariableStringArray(BmSDK.FString Path, int Index, ref BmSDK.TArray<BmSDK.FString> Arg)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.GetVariableStringArray", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Path, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Arg, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -488,12 +489,13 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVariableFloatArray
     /// </summary>
-    public unsafe virtual bool GetVariableFloatArray(BmSDK.FString Path, int Index, out BmSDK.TArray<float> Arg)
+    public unsafe virtual bool GetVariableFloatArray(BmSDK.FString Path, int Index, ref BmSDK.TArray<float> Arg)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.GetVariableFloatArray", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Path, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Arg, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -509,12 +511,13 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVariableIntArray
     /// </summary>
-    public unsafe virtual bool GetVariableIntArray(BmSDK.FString Path, int Index, out BmSDK.TArray<int> Arg)
+    public unsafe virtual bool GetVariableIntArray(BmSDK.FString Path, int Index, ref BmSDK.TArray<int> Arg)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.GetVariableIntArray", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Path, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Arg, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -530,12 +533,13 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVariableArray
     /// </summary>
-    public unsafe virtual bool GetVariableArray(BmSDK.FString Path, int Index, out BmSDK.TArray<BmSDK.GFxUI.GFxMoviePlayer.FASValue> Arg)
+    public unsafe virtual bool GetVariableArray(BmSDK.FString Path, int Index, ref BmSDK.TArray<BmSDK.GFxUI.GFxMoviePlayer.FASValue> Arg)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.GetVariableArray", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Path, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Arg, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -968,10 +972,11 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: SetPerspective3D
     /// </summary>
-    public unsafe virtual void SetPerspective3D(out BmSDK.GameObject.FMatrix matPersp)
+    public unsafe virtual void SetPerspective3D(BmSDK.GameObject.FMatrix matPersp)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.SetPerspective3D", true);
         byte* paramsPtr = stackalloc byte[64];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(matPersp, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -980,17 +985,17 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        matPersp = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FMatrix>(paramsPtr + 0);
         return;
     }
 
     /// <summary>
     /// Function: SetView3D
     /// </summary>
-    public unsafe virtual void SetView3D(out BmSDK.GameObject.FMatrix matView)
+    public unsafe virtual void SetView3D(BmSDK.GameObject.FMatrix matView)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.SetView3D", true);
         byte* paramsPtr = stackalloc byte[64];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(matView, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -999,17 +1004,20 @@ public partial class GFxMoviePlayer : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        matView = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.GameObject.FMatrix>(paramsPtr + 0);
         return;
     }
 
     /// <summary>
     /// Function: GetVisibleFrameRect
     /// </summary>
-    public unsafe virtual void GetVisibleFrameRect(out float x0, out float y0, out float X1, out float Y1)
+    public unsafe virtual void GetVisibleFrameRect(ref float x0, ref float y0, ref float X1, ref float Y1)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "GFxUI.GFxMoviePlayer.GetVisibleFrameRect", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(x0, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(y0, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(X1, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Y1, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

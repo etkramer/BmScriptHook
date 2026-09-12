@@ -76,10 +76,13 @@ public partial class PrimitiveComponent : BmSDK.Engine.ActorComponent, BmSDK.IGa
     /// <summary>
     /// Function: ClosestPointOnComponentToComponent
     /// </summary>
-    public unsafe virtual BmSDK.Engine.PrimitiveComponent.GJKResult ClosestPointOnComponentToComponent(out BmSDK.Engine.PrimitiveComponent OtherComponent, out System.Numerics.Vector3 PointOnComponentA, out System.Numerics.Vector3 PointOnComponentB)
+    public unsafe virtual BmSDK.Engine.PrimitiveComponent.GJKResult ClosestPointOnComponentToComponent(ref BmSDK.Engine.PrimitiveComponent OtherComponent, ref System.Numerics.Vector3 PointOnComponentA, ref System.Numerics.Vector3 PointOnComponentB)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PrimitiveComponent.ClosestPointOnComponentToComponent", true);
         byte* paramsPtr = stackalloc byte[29];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OtherComponent, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PointOnComponentA, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PointOnComponentB, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -97,10 +100,14 @@ public partial class PrimitiveComponent : BmSDK.Engine.ActorComponent, BmSDK.IGa
     /// <summary>
     /// Function: ClosestPointOnComponentToPoint
     /// </summary>
-    public unsafe virtual BmSDK.Engine.PrimitiveComponent.GJKResult ClosestPointOnComponentToPoint(out System.Numerics.Vector3 POI, out System.Numerics.Vector3 Extent, out System.Numerics.Vector3 OutPointA, out System.Numerics.Vector3 OutPointB)
+    public unsafe virtual BmSDK.Engine.PrimitiveComponent.GJKResult ClosestPointOnComponentToPoint(ref System.Numerics.Vector3 POI, ref System.Numerics.Vector3 Extent, ref System.Numerics.Vector3 OutPointA, ref System.Numerics.Vector3 OutPointB)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PrimitiveComponent.ClosestPointOnComponentToPoint", true);
         byte* paramsPtr = stackalloc byte[49];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(POI, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Extent, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPointA, paramsPtr + 24);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPointB, paramsPtr + 36);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

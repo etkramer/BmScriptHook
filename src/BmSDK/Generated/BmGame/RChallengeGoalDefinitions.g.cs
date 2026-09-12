@@ -92,12 +92,13 @@ public partial class RChallengeGoalDefinitions : BmSDK.Engine.Actor, BmSDK.IGame
     /// <summary>
     /// Function: FetchPredatorGoalInfo
     /// </summary>
-    public unsafe virtual int FetchPredatorGoalInfo(int ChallengeID, BmSDK.BmGame.RChallengeManager.EPlayableCharacters Character, out BmSDK.TArray<BmSDK.BmGame.RGameInfo.EGameAction> Goals)
+    public unsafe virtual int FetchPredatorGoalInfo(int ChallengeID, BmSDK.BmGame.RChallengeManager.EPlayableCharacters Character, ref BmSDK.TArray<BmSDK.BmGame.RGameInfo.EGameAction> Goals)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChallengeGoalDefinitions.FetchPredatorGoalInfo", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ChallengeID, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Character, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Goals, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Goals = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RGameInfo.EGameAction>>(paramsPtr + 8);
         return BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 20);
@@ -106,12 +107,13 @@ public partial class RChallengeGoalDefinitions : BmSDK.Engine.Actor, BmSDK.IGame
     /// <summary>
     /// Function: FetchCombatGoalInfo
     /// </summary>
-    public unsafe virtual int FetchCombatGoalInfo(int ChallengeID, BmSDK.BmGame.RChallengeManager.EPlayableCharacters Character, out BmSDK.TArray<int> Goals)
+    public unsafe virtual int FetchCombatGoalInfo(int ChallengeID, BmSDK.BmGame.RChallengeManager.EPlayableCharacters Character, ref BmSDK.TArray<int> Goals)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChallengeGoalDefinitions.FetchCombatGoalInfo", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ChallengeID, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Character, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Goals, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         Goals = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 8);
         return BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 20);

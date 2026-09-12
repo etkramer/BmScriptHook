@@ -561,10 +561,12 @@ public partial class RPersistentData : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: UpdateButtonBashDDA
     /// </summary>
-    public unsafe virtual void UpdateButtonBashDDA(out float TimeAtMinSpeed, out float TimeAtMaxSpeed)
+    public unsafe virtual void UpdateButtonBashDDA(ref float TimeAtMinSpeed, ref float TimeAtMaxSpeed)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RPersistentData.UpdateButtonBashDDA", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TimeAtMinSpeed, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TimeAtMaxSpeed, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         TimeAtMinSpeed = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 0);
         TimeAtMaxSpeed = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);

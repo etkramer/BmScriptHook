@@ -283,11 +283,13 @@ public partial class RSaveGameManager : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: LoadSavedGameInfo
     /// </summary>
-    public unsafe virtual void LoadSavedGameInfo(BmSDK.BmGame.RPlayerController RPC, out BmSDK.TArray<BmSDK.BmGame.RSaveGameManager.FRSaveGameSummaryInfo> SaveGames, out BmSDK.TArray<BmSDK.BmGame.RSaveGameManager.FRSaveGameSummaryInfo> StartPoints)
+    public unsafe virtual void LoadSavedGameInfo(BmSDK.BmGame.RPlayerController RPC, ref BmSDK.TArray<BmSDK.BmGame.RSaveGameManager.FRSaveGameSummaryInfo> SaveGames, ref BmSDK.TArray<BmSDK.BmGame.RSaveGameManager.FRSaveGameSummaryInfo> StartPoints)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RSaveGameManager.LoadSavedGameInfo", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(RPC, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SaveGames, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(StartPoints, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

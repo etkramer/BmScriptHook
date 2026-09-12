@@ -81,11 +81,12 @@ public partial class AITree : BmSDK.Engine.K2GraphBase, BmSDK.IGameObject
     /// <summary>
     /// Function: EvaluateTree
     /// </summary>
-    public unsafe virtual BmSDK.TArray<BmSDK.Class> EvaluateTree(BmSDK.Engine.AIController InAI, out BmSDK.Engine.AITree.FAITreeHandle Handle)
+    public unsafe virtual BmSDK.TArray<BmSDK.Class> EvaluateTree(BmSDK.Engine.AIController InAI, ref BmSDK.Engine.AITree.FAITreeHandle Handle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AITree.EvaluateTree", true);
         byte* paramsPtr = stackalloc byte[64];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InAI, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Handle, paramsPtr + 4);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -101,11 +102,12 @@ public partial class AITree : BmSDK.Engine.K2GraphBase, BmSDK.IGameObject
     /// <summary>
     /// Function: SetActiveRoot
     /// </summary>
-    public unsafe virtual bool SetActiveRoot(BmSDK.FName InName, out BmSDK.Engine.AITree.FAITreeHandle Handle)
+    public unsafe virtual bool SetActiveRoot(BmSDK.FName InName, ref BmSDK.Engine.AITree.FAITreeHandle Handle)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.AITree.SetActiveRoot", true);
         byte* paramsPtr = stackalloc byte[60];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Handle, paramsPtr + 8);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

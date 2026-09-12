@@ -120,10 +120,11 @@ public partial class RChasePoint : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: FindTipsFromCompletelyUncheckedBranches
     /// </summary>
-    public unsafe virtual void FindTipsFromCompletelyUncheckedBranches(out BmSDK.TArray<BmSDK.BmGame.RChasePoint> UncheckedTips)
+    public unsafe virtual void FindTipsFromCompletelyUncheckedBranches(ref BmSDK.TArray<BmSDK.BmGame.RChasePoint> UncheckedTips)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChasePoint.FindTipsFromCompletelyUncheckedBranches", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(UncheckedTips, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         UncheckedTips = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.BmGame.RChasePoint>>(paramsPtr + 0);
         return;
@@ -178,11 +179,12 @@ public partial class RChasePoint : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetRadiusFromCenter
     /// </summary>
-    public unsafe virtual void GetRadiusFromCenter(System.Numerics.Vector3 TreeLocation, out float MaxRadiusSq)
+    public unsafe virtual void GetRadiusFromCenter(System.Numerics.Vector3 TreeLocation, ref float MaxRadiusSq)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChasePoint.GetRadiusFromCenter", true);
         byte* paramsPtr = stackalloc byte[16];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TreeLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(MaxRadiusSq, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -198,10 +200,12 @@ public partial class RChasePoint : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAveragePointLocation
     /// </summary>
-    public unsafe virtual void GetAveragePointLocation(out System.Numerics.Vector3 TreeLocation, out int NumPoints)
+    public unsafe virtual void GetAveragePointLocation(ref System.Numerics.Vector3 TreeLocation, ref int NumPoints)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChasePoint.GetAveragePointLocation", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TreeLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(NumPoints, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -218,10 +222,12 @@ public partial class RChasePoint : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetTreeBounds
     /// </summary>
-    public unsafe virtual void GetTreeBounds(out System.Numerics.Vector3 TreeLocation, out float TreeRadius)
+    public unsafe virtual void GetTreeBounds(ref System.Numerics.Vector3 TreeLocation, ref float TreeRadius)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RChasePoint.GetTreeBounds", true);
         byte* paramsPtr = stackalloc byte[16];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TreeLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(TreeRadius, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

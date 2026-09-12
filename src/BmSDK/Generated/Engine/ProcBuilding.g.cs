@@ -122,10 +122,11 @@ public partial class ProcBuilding : BmSDK.Engine.Volume, BmSDK.IGameObject
     /// <summary>
     /// Function: GetAllGroupedProcBuildings
     /// </summary>
-    public unsafe virtual void GetAllGroupedProcBuildings(out BmSDK.TArray<BmSDK.Engine.ProcBuilding> OutSet)
+    public unsafe virtual void GetAllGroupedProcBuildings(ref BmSDK.TArray<BmSDK.Engine.ProcBuilding> OutSet)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.ProcBuilding.GetAllGroupedProcBuildings", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutSet, paramsPtr + 0);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

@@ -246,10 +246,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetFloatVars
     /// </summary>
-    public unsafe virtual void GetFloatVars(out BmSDK.TArray<float> floatVars, BmSDK.FString inDesc = default)
+    public unsafe virtual void GetFloatVars(ref BmSDK.TArray<float> floatVars, BmSDK.FString inDesc = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetFloatVars", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(floatVars, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inDesc, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -266,10 +267,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetBoolVars
     /// </summary>
-    public unsafe virtual void GetBoolVars(out BmSDK.TArray<byte> boolVars, BmSDK.FString inDesc = default)
+    public unsafe virtual void GetBoolVars(ref BmSDK.TArray<byte> boolVars, BmSDK.FString inDesc = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetBoolVars", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(boolVars, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inDesc, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -286,10 +288,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetInterpDataVars
     /// </summary>
-    public unsafe virtual void GetInterpDataVars(out BmSDK.TArray<BmSDK.Engine.InterpData> outIData, BmSDK.FString inDesc = default)
+    public unsafe virtual void GetInterpDataVars(ref BmSDK.TArray<BmSDK.Engine.InterpData> outIData, BmSDK.FString inDesc = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetInterpDataVars", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(outIData, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inDesc, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -306,10 +309,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetObjectVars
     /// </summary>
-    public unsafe virtual void GetObjectVars(out BmSDK.TArray<BmSDK.GameObject> ObjVars, BmSDK.FString inDesc = default)
+    public unsafe virtual void GetObjectVars(ref BmSDK.TArray<BmSDK.GameObject> ObjVars, BmSDK.FString inDesc = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetObjectVars", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ObjVars, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inDesc, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -326,10 +330,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetVectorVars
     /// </summary>
-    public unsafe virtual void GetVectorVars(out BmSDK.TArray<System.Numerics.Vector3> vecVars, BmSDK.FString inDesc = default)
+    public unsafe virtual void GetVectorVars(ref BmSDK.TArray<System.Numerics.Vector3> vecVars, BmSDK.FString inDesc = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetVectorVars", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(vecVars, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(inDesc, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
@@ -346,10 +351,11 @@ public partial class SequenceOp : BmSDK.Engine.SequenceObject, BmSDK.IGameObject
     /// <summary>
     /// Function: GetLinkedObjects
     /// </summary>
-    public unsafe virtual void GetLinkedObjects(out BmSDK.TArray<BmSDK.Engine.SequenceObject> out_Objects, BmSDK.Class ObjectType = default, bool bRecurse = default)
+    public unsafe virtual void GetLinkedObjects(ref BmSDK.TArray<BmSDK.Engine.SequenceObject> out_Objects, BmSDK.Class ObjectType = default, bool bRecurse = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.SequenceOp.GetLinkedObjects", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_Objects, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ObjectType, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bRecurse, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;

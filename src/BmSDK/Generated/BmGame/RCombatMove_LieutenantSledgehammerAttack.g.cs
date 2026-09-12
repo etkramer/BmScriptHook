@@ -125,10 +125,12 @@ public partial class RCombatMove_LieutenantSledgehammerAttack : BmSDK.BmGame.RCo
     /// <summary>
     /// Function: GetAnimInfo
     /// </summary>
-    public unsafe virtual void GetAnimInfo(out BmSDK.FName AnimName, out float DurationScale)
+    public unsafe virtual void GetAnimInfo(ref BmSDK.FName AnimName, ref float DurationScale)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_LieutenantSledgehammerAttack.GetAnimInfo", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AnimName, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DurationScale, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         AnimName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
         DurationScale = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

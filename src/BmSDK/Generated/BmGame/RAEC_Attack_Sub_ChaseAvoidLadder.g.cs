@@ -81,10 +81,11 @@ public partial class RAEC_Attack_Sub_ChaseAvoidLadder : BmSDK.BmGame.RAlertEvent
     /// <summary>
     /// Function: GetLadderTopAimPos
     /// </summary>
-    public unsafe virtual bool GetLadderTopAimPos(out BmSDK.TArray<System.Numerics.Vector3> AimPos)
+    public unsafe virtual bool GetLadderTopAimPos(ref BmSDK.TArray<System.Numerics.Vector3> AimPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RAEC_Attack_Sub_ChaseAvoidLadder.GetLadderTopAimPos", true);
         byte* paramsPtr = stackalloc byte[112];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AimPos, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         AimPos = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<System.Numerics.Vector3>>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 12);

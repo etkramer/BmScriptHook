@@ -117,12 +117,13 @@ public partial class PlayerInput : BmSDK.Engine.Input, BmSDK.IGameObject
     /// <summary>
     /// Function: SmoothMouse
     /// </summary>
-    public unsafe virtual float SmoothMouse(float aMouse, float DeltaTime, out byte SampleCount, int Index)
+    public unsafe virtual float SmoothMouse(float aMouse, float DeltaTime, ref byte SampleCount, int Index)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.PlayerInput.SmoothMouse", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(aMouse, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(DeltaTime, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SampleCount, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Index, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         SampleCount = BmSDK.Framework.MarshalUtil.ToManaged<byte>(paramsPtr + 8);

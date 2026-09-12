@@ -13,7 +13,7 @@ public partial interface OnlineCommunityContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: RateContent
     /// </summary>
-    public unsafe void RateContent(byte PlayerNum, out BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileToRate, int NewRating);
+    public unsafe void RateContent(byte PlayerNum, BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileToRate, int NewRating);
 
     /// <summary>
     /// Function: ClearGetContentPayloadCompleteDelegate
@@ -28,12 +28,12 @@ public partial interface OnlineCommunityContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: OnGetContentPayloadComplete
     /// </summary>
-    public unsafe void OnGetContentPayloadComplete(bool bWasSuccessful, BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileDownloaded, out BmSDK.TArray<byte> Payload);
+    public unsafe void OnGetContentPayloadComplete(bool bWasSuccessful, BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileDownloaded, BmSDK.TArray<byte> Payload);
 
     /// <summary>
     /// Function: GetContentPayload
     /// </summary>
-    public unsafe bool GetContentPayload(byte PlayerNum, out BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileDownloaded);
+    public unsafe bool GetContentPayload(byte PlayerNum, BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileDownloaded);
 
     /// <summary>
     /// Function: ClearDownloadContentCompleteDelegate
@@ -53,7 +53,7 @@ public partial interface OnlineCommunityContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: DownloadContent
     /// </summary>
-    public unsafe bool DownloadContent(byte PlayerNum, out BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileToDownload);
+    public unsafe bool DownloadContent(byte PlayerNum, BmSDK.Engine.OnlineSubsystem.FCommunityContentFile FileToDownload);
 
     /// <summary>
     /// Function: ClearUploadContentCompleteDelegate
@@ -73,12 +73,12 @@ public partial interface OnlineCommunityContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: UploadContent
     /// </summary>
-    public unsafe bool UploadContent(byte PlayerNum, out BmSDK.TArray<byte> Payload, out BmSDK.Engine.OnlineSubsystem.FCommunityContentMetadata MetaData);
+    public unsafe bool UploadContent(byte PlayerNum, BmSDK.TArray<byte> Payload, BmSDK.Engine.OnlineSubsystem.FCommunityContentMetadata MetaData);
 
     /// <summary>
     /// Function: GetFriendsContentList
     /// </summary>
-    public unsafe bool GetFriendsContentList(byte PlayerNum, out BmSDK.Engine.OnlineSubsystem.FOnlineFriend Friend, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FCommunityContentFile> ContentFiles);
+    public unsafe bool GetFriendsContentList(byte PlayerNum, BmSDK.Engine.OnlineSubsystem.FOnlineFriend Friend, ref BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FCommunityContentFile> ContentFiles);
 
     /// <summary>
     /// Function: ClearReadFriendsContentListCompleteDelegate
@@ -98,12 +98,12 @@ public partial interface OnlineCommunityContentInterface : BmSDK.Interface
     /// <summary>
     /// Function: ReadFriendsContentList
     /// </summary>
-    public unsafe bool ReadFriendsContentList(byte PlayerNum, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineFriend> Friends, int StartAt = default, int NumToRead = default);
+    public unsafe bool ReadFriendsContentList(byte PlayerNum, BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FOnlineFriend> Friends, int StartAt = default, int NumToRead = default);
 
     /// <summary>
     /// Function: GetContentList
     /// </summary>
-    public unsafe bool GetContentList(byte PlayerNum, out BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FCommunityContentFile> ContentFiles);
+    public unsafe bool GetContentList(byte PlayerNum, ref BmSDK.TArray<BmSDK.Engine.OnlineSubsystem.FCommunityContentFile> ContentFiles);
 
     /// <summary>
     /// Function: ClearReadContentListCompleteDelegate

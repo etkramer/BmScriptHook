@@ -116,10 +116,12 @@ public partial class RCombatMove_VillainJumpAttack : BmSDK.BmGame.RCombatMove_Vi
     /// <summary>
     /// Function: GetLandPositionAndRotation
     /// </summary>
-    public unsafe virtual void GetLandPositionAndRotation(out System.Numerics.Vector3 LandPosition, out BmSDK.Rotator LandRotation)
+    public unsafe virtual void GetLandPositionAndRotation(ref System.Numerics.Vector3 LandPosition, ref BmSDK.Rotator LandRotation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_VillainJumpAttack.GetLandPositionAndRotation", true);
         byte* paramsPtr = stackalloc byte[36];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LandPosition, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(LandRotation, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         LandPosition = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 0);
         LandRotation = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Rotator>(paramsPtr + 12);

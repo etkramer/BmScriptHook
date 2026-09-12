@@ -112,11 +112,13 @@ public partial class REffectVolume : BmSDK.Engine.PhysicsVolume, BmSDK.IGameObje
     /// <summary>
     /// Function: GetSectionDivision
     /// </summary>
-    public unsafe virtual void GetSectionDivision(float Size, out int SectionCount, out float SectionSize)
+    public unsafe virtual void GetSectionDivision(float Size, ref int SectionCount, ref float SectionSize)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.REffectVolume.GetSectionDivision", true);
         byte* paramsPtr = stackalloc byte[12];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Size, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SectionCount, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(SectionSize, paramsPtr + 8);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         SectionCount = BmSDK.Framework.MarshalUtil.ToManaged<int>(paramsPtr + 4);
         SectionSize = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);

@@ -104,10 +104,11 @@ public partial class DataStoreClient : BmSDK.Engine.UIRoot, BmSDK.IGameObject
     /// <summary>
     /// Function: GetPlayerDataStoreClasses
     /// </summary>
-    public unsafe virtual void GetPlayerDataStoreClasses(out BmSDK.TArray<BmSDK.Class> out_DataStoreClasses)
+    public unsafe virtual void GetPlayerDataStoreClasses(ref BmSDK.TArray<BmSDK.Class> out_DataStoreClasses)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.DataStoreClient.GetPlayerDataStoreClasses", true);
         byte* paramsPtr = stackalloc byte[12];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_DataStoreClasses, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_DataStoreClasses = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<BmSDK.Class>>(paramsPtr + 0);
         return;

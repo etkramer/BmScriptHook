@@ -936,12 +936,13 @@ public partial class RPawnVillainFreeze : BmSDK.BmGame.RPawnVillainFreezeBase, B
     /// <summary>
     /// Function: TakeBossStrikeWhileExhausted
     /// </summary>
-    public unsafe virtual BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId TakeBossStrikeWhileExhausted(System.Numerics.Vector3 vBMtoFreeze, bool final_strike, out System.Numerics.Vector3 AttackLocation)
+    public unsafe virtual BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId TakeBossStrikeWhileExhausted(System.Numerics.Vector3 vBMtoFreeze, bool final_strike, ref System.Numerics.Vector3 AttackLocation)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainFreeze.TakeBossStrikeWhileExhausted", true);
         byte* paramsPtr = stackalloc byte[96];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(vBMtoFreeze, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(final_strike, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(AttackLocation, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         AttackLocation = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 16);
         return BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.BmGame.RAnimUtil_PosePlayer.FTransitionId>(paramsPtr + 28);
@@ -1678,11 +1679,12 @@ public partial class RPawnVillainFreeze : BmSDK.BmGame.RPawnVillainFreezeBase, B
     /// <summary>
     /// Function: FindClearPointNearLocation
     /// </summary>
-    public unsafe virtual bool FindClearPointNearLocation(System.Numerics.Vector3 TheLocation, out System.Numerics.Vector3 ClearPoint)
+    public unsafe virtual bool FindClearPointNearLocation(System.Numerics.Vector3 TheLocation, ref System.Numerics.Vector3 ClearPoint)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainFreeze.FindClearPointNearLocation", true);
         byte* paramsPtr = stackalloc byte[72];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TheLocation, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ClearPoint, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ClearPoint = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
         return BmSDK.Framework.MarshalUtil.ToManaged<bool>(paramsPtr + 24);
@@ -1716,10 +1718,11 @@ public partial class RPawnVillainFreeze : BmSDK.BmGame.RPawnVillainFreezeBase, B
     /// <summary>
     /// Function: GetBestArrayDirection
     /// </summary>
-    public unsafe virtual float GetBestArrayDirection(out BmSDK.TArray<int> DirectionClearArray)
+    public unsafe virtual float GetBestArrayDirection(ref BmSDK.TArray<int> DirectionClearArray)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainFreeze.GetBestArrayDirection", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DirectionClearArray, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DirectionClearArray = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.TArray<int>>(paramsPtr + 0);
         return BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 12);
@@ -1751,10 +1754,11 @@ public partial class RPawnVillainFreeze : BmSDK.BmGame.RPawnVillainFreezeBase, B
     /// <summary>
     /// Function: IsArrayRangeClear
     /// </summary>
-    public unsafe virtual bool IsArrayRangeClear(out BmSDK.TArray<int> DirectionClearArray, int TestDirIndex, BmSDK.Rotator CurrentViewDirection)
+    public unsafe virtual bool IsArrayRangeClear(ref BmSDK.TArray<int> DirectionClearArray, int TestDirIndex, BmSDK.Rotator CurrentViewDirection)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainFreeze.IsArrayRangeClear", true);
         byte* paramsPtr = stackalloc byte[44];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DirectionClearArray, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(TestDirIndex, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CurrentViewDirection, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
@@ -1765,10 +1769,11 @@ public partial class RPawnVillainFreeze : BmSDK.BmGame.RPawnVillainFreezeBase, B
     /// <summary>
     /// Function: TestArrayDirection
     /// </summary>
-    public unsafe virtual bool TestArrayDirection(out BmSDK.TArray<int> DirectionClearArray, int ArrayDirection, BmSDK.Rotator CurrentViewDirection)
+    public unsafe virtual bool TestArrayDirection(ref BmSDK.TArray<int> DirectionClearArray, int ArrayDirection, BmSDK.Rotator CurrentViewDirection)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnVillainFreeze.TestArrayDirection", true);
         byte* paramsPtr = stackalloc byte[32];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DirectionClearArray, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ArrayDirection, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CurrentViewDirection, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);

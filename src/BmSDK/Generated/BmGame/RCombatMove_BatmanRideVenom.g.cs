@@ -239,11 +239,13 @@ public partial class RCombatMove_BatmanRideVenom : BmSDK.BmGame.RCombatMove_Batm
     /// <summary>
     /// Function: IsHeadingOk
     /// </summary>
-    public unsafe virtual bool IsHeadingOk(System.Numerics.Vector3 Heading, out System.Numerics.Vector3 CollidePoint, out System.Numerics.Vector3 CollideNormal)
+    public unsafe virtual bool IsHeadingOk(System.Numerics.Vector3 Heading, ref System.Numerics.Vector3 CollidePoint, ref System.Numerics.Vector3 CollideNormal)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmGame.RCombatMove_BatmanRideVenom.IsHeadingOk", true);
         byte* paramsPtr = stackalloc byte[40];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Heading, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollidePoint, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(CollideNormal, paramsPtr + 24);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         CollidePoint = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 12);
         CollideNormal = BmSDK.Framework.MarshalUtil.ToManaged<System.Numerics.Vector3>(paramsPtr + 24);

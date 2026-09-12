@@ -211,10 +211,12 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetRightStrikeHitReaction
     /// </summary>
-    public unsafe override void GetRightStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe override void GetRightStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetRightStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -225,10 +227,12 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetLeftStrikeHitReaction
     /// </summary>
-    public unsafe override void GetLeftStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe override void GetLeftStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetLeftStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -239,10 +243,12 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetRearStrikeHitReaction
     /// </summary>
-    public unsafe override void GetRearStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe override void GetRearStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetRearStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -253,10 +259,12 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetFrontStrikeHitReaction
     /// </summary>
-    public unsafe override void GetFrontStrikeHitReaction(out BmSDK.FName HitReaction, out BmSDK.FName PoseName, BmSDK.Class dmgType)
+    public unsafe override void GetFrontStrikeHitReaction(ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName, BmSDK.Class dmgType)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetFrontStrikeHitReaction", true);
         byte* paramsPtr = stackalloc byte[24];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 8);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(dmgType, paramsPtr + 16);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 0);
@@ -267,11 +275,13 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetRightExplosionHitReaction
     /// </summary>
-    public unsafe override void GetRightExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe override void GetRightExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetRightExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -281,11 +291,13 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetLeftExplosionHitReaction
     /// </summary>
-    public unsafe override void GetLeftExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe override void GetLeftExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetLeftExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -295,11 +307,13 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetRearExplosionHitReaction
     /// </summary>
-    public unsafe override void GetRearExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe override void GetRearExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetRearExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -309,11 +323,13 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetFrontExplosionHitReaction
     /// </summary>
-    public unsafe override void GetFrontExplosionHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe override void GetFrontExplosionHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetFrontExplosionHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);
@@ -323,11 +339,13 @@ public partial class RPawnBossVenom : BmSDK.BmGame.RPawnBossVenomBase, BmSDK.IGa
     /// <summary>
     /// Function: GetWallHitReaction
     /// </summary>
-    public unsafe override void GetWallHitReaction(bool bThresholdReached, out BmSDK.FName HitReaction, out BmSDK.FName PoseName)
+    public unsafe override void GetWallHitReaction(bool bThresholdReached, ref BmSDK.FName HitReaction, ref BmSDK.FName PoseName)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "BmScript.RPawnBossVenom.GetWallHitReaction", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(bThresholdReached, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(HitReaction, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(PoseName, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         HitReaction = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 4);
         PoseName = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.FName>(paramsPtr + 12);

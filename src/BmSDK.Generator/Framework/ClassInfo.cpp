@@ -102,6 +102,9 @@ PropertyInfo::PropertyInfo(UProperty* prop, bool isInStruct)
     IsParam = Flags & (uint64_t)EPropertyFlags::CPF_Parm;
     IsOptionalParam = Flags & (uint64_t)EPropertyFlags::CPF_OptionalParm;
     IsOutParam = Flags & (uint64_t)EPropertyFlags::CPF_OutParm;
+    IsConstParam = Flags & (uint64_t)EPropertyFlags::CPF_Const;
+    // "const out" is an input passed by reference for speed, so treat it as a plain input
+    IsRefParam = IsOutParam && !IsConstParam;
     IsReturnParam = Flags & (uint64_t)EPropertyFlags::CPF_ReturnParm;
     ShouldReturnByRef = prop->ShouldReturnByRef() && !IsInStruct;
 
@@ -184,7 +187,8 @@ FunctionInfo::FunctionInfo(UFunction* func)
 
     for (auto& param : Params)
     {
-        if (param.IsOptionalParam && param.IsOutParam)
+        // "ref" params can't carry default values, so the whole function loses them
+        if (param.IsOptionalParam && param.IsRefParam)
         {
             ShouldSuppressOptional = true;
             break;

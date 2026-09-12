@@ -281,12 +281,14 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ProjectSphereBounds
     /// </summary>
-    public unsafe virtual void ProjectSphereBounds(System.Numerics.Vector3 Center, float Radius, out System.Numerics.Vector2 Min, out System.Numerics.Vector2 Max)
+    public unsafe virtual void ProjectSphereBounds(System.Numerics.Vector3 Center, float Radius, ref System.Numerics.Vector2 Min, ref System.Numerics.Vector2 Max)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.ProjectSphereBounds", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Center, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(Radius, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Min, paramsPtr + 16);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Max, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -303,11 +305,13 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: ProjectStaticMeshBounds
     /// </summary>
-    public unsafe virtual bool ProjectStaticMeshBounds(BmSDK.Engine.StaticMeshComponent MeshComponent, out System.Numerics.Vector2 Min, out System.Numerics.Vector2 Max)
+    public unsafe virtual bool ProjectStaticMeshBounds(BmSDK.Engine.StaticMeshComponent MeshComponent, ref System.Numerics.Vector2 Min, ref System.Numerics.Vector2 Max)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.ProjectStaticMeshBounds", true);
         byte* paramsPtr = stackalloc byte[24];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(MeshComponent, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Min, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(Max, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -324,11 +328,12 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: WorldToPixel
     /// </summary>
-    public unsafe virtual bool WorldToPixel(System.Numerics.Vector3 InPosition, out System.Numerics.Vector3 OutPosition)
+    public unsafe virtual bool WorldToPixel(System.Numerics.Vector3 InPosition, ref System.Numerics.Vector3 OutPosition)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.WorldToPixel", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(InPosition, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(OutPosition, paramsPtr + 12);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -344,11 +349,13 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: DeProject
     /// </summary>
-    public unsafe virtual void DeProject(System.Numerics.Vector2 ScreenPos, out System.Numerics.Vector3 WorldOrigin, out System.Numerics.Vector3 WorldDirection)
+    public unsafe virtual void DeProject(System.Numerics.Vector2 ScreenPos, ref System.Numerics.Vector3 WorldOrigin, ref System.Numerics.Vector3 WorldDirection)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.DeProject", true);
         byte* paramsPtr = stackalloc byte[32];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(ScreenPos, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldOrigin, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(WorldDirection, paramsPtr + 20);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -397,7 +404,7 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: DrawText
     /// </summary>
-    public unsafe virtual void DrawText(BmSDK.FString Text, bool CR, float XScale, float YScale, out BmSDK.Engine.Canvas.FFontRenderInfo RenderInfo)
+    public unsafe virtual void DrawText(BmSDK.FString Text, bool CR = default, float XScale = default, float YScale = default, BmSDK.Engine.Canvas.FFontRenderInfo RenderInfo = default)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.DrawText", true);
         byte* paramsPtr = stackalloc byte[64];
@@ -405,6 +412,7 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.MarshalUtil.ToUnmanaged(CR, paramsPtr + 12);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(XScale, paramsPtr + 16);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(YScale, paramsPtr + 20);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(RenderInfo, paramsPtr + 24);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -413,18 +421,19 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         funcManaged.iNative = oldNative;
         funcManaged.FunctionFlags = oldFlags;
-        RenderInfo = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.Canvas.FFontRenderInfo>(paramsPtr + 24);
         return;
     }
 
     /// <summary>
     /// Function: TextSize
     /// </summary>
-    public unsafe virtual void TextSize(BmSDK.FString String, out float XL, out float YL)
+    public unsafe virtual void TextSize(BmSDK.FString String, ref float XL, ref float YL)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.TextSize", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(String, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(XL, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(YL, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;
@@ -441,11 +450,13 @@ public partial class Canvas : BmSDK.GameObject, BmSDK.IGameObject
     /// <summary>
     /// Function: StrLen
     /// </summary>
-    public unsafe virtual void StrLen(BmSDK.FString String, out float XL, out float YL)
+    public unsafe virtual void StrLen(BmSDK.FString String, ref float XL, ref float YL)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.Canvas.StrLen", true);
         byte* paramsPtr = stackalloc byte[20];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(String, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(XL, paramsPtr + 12);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(YL, paramsPtr + 16);
         var oldFlags = funcManaged.FunctionFlags;
         var oldNative = funcManaged.iNative;
         funcManaged.FunctionFlags &= ~BmSDK.Function.EFunctionFlags.FUNC_Native;

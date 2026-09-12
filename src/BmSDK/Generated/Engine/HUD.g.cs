@@ -156,12 +156,14 @@ public partial class HUD : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: DrawMessage
     /// </summary>
-    public unsafe virtual void DrawMessage(int I, float PosY, out float DX, out float DY)
+    public unsafe virtual void DrawMessage(int I, float PosY, ref float DX, ref float DY)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.HUD.DrawMessage", true);
         byte* paramsPtr = stackalloc byte[28];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(I, paramsPtr + 0);
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PosY, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DX, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(DY, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         DX = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
         DY = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 12);
@@ -171,11 +173,14 @@ public partial class HUD : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: GetScreenCoords
     /// </summary>
-    public unsafe virtual void GetScreenCoords(float PosY, out float ScreenX, out float ScreenY, out BmSDK.Engine.HUD.FHudLocalizedMessage InMessage)
+    public unsafe virtual void GetScreenCoords(float PosY, ref float ScreenX, ref float ScreenY, ref BmSDK.Engine.HUD.FHudLocalizedMessage InMessage)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.HUD.GetScreenCoords", true);
         byte* paramsPtr = stackalloc byte[76];
         BmSDK.Framework.MarshalUtil.ToUnmanaged(PosY, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ScreenX, paramsPtr + 4);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(ScreenY, paramsPtr + 8);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(InMessage, paramsPtr + 12);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         ScreenX = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
         ScreenY = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 8);
@@ -269,10 +274,11 @@ public partial class HUD : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ClearMessage
     /// </summary>
-    public unsafe virtual void ClearMessage(out BmSDK.Engine.HUD.FHudLocalizedMessage M)
+    public unsafe virtual void ClearMessage(ref BmSDK.Engine.HUD.FHudLocalizedMessage M)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.HUD.ClearMessage", true);
         byte* paramsPtr = stackalloc byte[64];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(M, paramsPtr + 0);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         M = BmSDK.Framework.MarshalUtil.ToManaged<BmSDK.Engine.HUD.FHudLocalizedMessage>(paramsPtr + 0);
         return;
@@ -325,10 +331,12 @@ public partial class HUD : BmSDK.Engine.Actor, BmSDK.IGameObject
     /// <summary>
     /// Function: ShowDebugInfo
     /// </summary>
-    public unsafe virtual void ShowDebugInfo(out float out_YL, out float out_YPos)
+    public unsafe virtual void ShowDebugInfo(ref float out_YL, ref float out_YPos)
     {
         var funcManaged = BmSDK.GameObject.StaticFindObjectChecked<BmSDK.Function>(BmSDK.Function.StaticClass(), null, "Engine.HUD.ShowDebugInfo", true);
         byte* paramsPtr = stackalloc byte[8];
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YL, paramsPtr + 0);
+        BmSDK.Framework.MarshalUtil.ToUnmanaged(out_YPos, paramsPtr + 4);
         BmSDK.Framework.GameFunctions.ProcessEvent(Ptr, funcManaged.Ptr, (nint)paramsPtr, 0);
         out_YL = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 0);
         out_YPos = BmSDK.Framework.MarshalUtil.ToManaged<float>(paramsPtr + 4);
