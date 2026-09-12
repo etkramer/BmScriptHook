@@ -41,9 +41,9 @@ A powerful, easy-to-use scripting platform for Batman: Arkham City that lets you
 
 <br />
 
-The scripthook gives you access to a full SDK for working with the game, world and engine. The SDK exposes Unreal Engine 3's own UnrealScript API to C# scripts. Modders get to work with the same types, properties and functions as the original developers did. There are also many useful life-cycle events *(e.g. tick and game enter)* and helpers provided. Below is an example mod that shows off some of BmSDK's capabilities:
+Scripts get the same types, properties and functions the original developers worked with, plus life-cycle events *(e.g. tick and game enter)* and helpers on top. Below is an example mod that shows off some of BmSDK's capabilities:
 <details> 
-<summary>Script to spawn in Joker near the player</summary>
+<summary>Example Script</summary>
 
 ```csharp
 using BmSDK;
@@ -75,10 +75,10 @@ public class DemoScript : Script
 Check out the [documentation](https://bmsdk.dev/docs) for more info!
 
 ## 🚀 Getting started
-If you want to play script mods, getting started is simple:
-1. Download `BmSDK-AC-Installer-*.exe` from the latest [release](../../releases/latest) and run it.
+If you want to use mods, here's how you get set up:
+1. Download [the latest installer](../../releases/latest/download/BmSDK-AC-Installer.exe) and run it.
 2. Pick your Arkham City folder. Steam and Epic installations are detected automatically, and you can browse for one yourself if yours isn't listed.
-3. Press **Install**. To play script mods, simply drop any .cs files into your `BmGame\Scripts` folder and start the game.
+3. Press **Install**, then start the game. Script mods go in your `BmGame\Scripts` folder as .cs files, and DLC bundles go in your `DLC` folder.
 
 The installer isn't code-signed, so Windows SmartScreen may warn you the first time you run it. Choose "More info" → "Run anyway" to continue.
 
@@ -87,10 +87,10 @@ The installer isn't code-signed, so Windows SmartScreen may warn you the first t
 
 1. Download the `BmSDK-AC-*.zip` from the latest [release](../../releases/latest) and open it.
 2. Inside you'll see two folders: `Binaries` and `BmGame`. Copy both to your game folder (likely `C:\Program Files\Epic Games\BatmanArkhamCity`). There should already be 2 folders in there with the same names.
-3. BmSDK is now installed! To play script mods, simply drop any .cs files into your `BmGame\Scripts` folder and start the game.
+3. BmSDK is now installed! Script mods go in your `BmGame\Scripts` folder as .cs files, and DLC bundles go in your `DLC` folder.
 </details>
 
-Keep in mind that script mods can potentially harm your computer. Make sure you only download and install scripts from trusted sources.
+Keep in mind that script mods can potentially harm your computer. Make sure you only download and install mods from trusted sources.
 
 ### ⚠️ Notice for GOG users:
 Only Steam and Epic copies of Arkham City are supported currently. GOG support is being considered, but BmSDK unfortunately does not work on this platform for the time being.

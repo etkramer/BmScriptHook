@@ -180,8 +180,7 @@ jobs:
 
         dotnet publish '${{ env.PROJ_PATH }}' -c Release `
           -o '${{ env.INSTALLER_DIR }}' --nologo `
-          -p:PayloadZip="$($payload.FullName)" `
-          -p:AssemblyName=BmSDK-AC-Installer-${{ env.TARGET_REF }}
+          -p:PayloadZip="$($payload.FullName)"
 
     - name: "Verify the installer published as a single file"
       run: |
