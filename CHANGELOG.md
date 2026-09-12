@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.1...v0.20.2) (2026-09-12)
+
+
+### Bug Fixes
+
+* Prevent loaded DLC from being cleared by the menu ([#141](https://github.com/Team-BmSDK/BmSDK-AC/issues/141)) ([e4a110b](https://github.com/Team-BmSDK/BmSDK-AC/commit/e4a110ba507f938402b20b389e1ed6cd5fc8502d))
+
 ## [0.20.1](https://github.com/Team-BmSDK/BmSDK-AC/compare/v0.20.0...v0.20.1) (2026-09-12)
 
 

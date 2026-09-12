@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- Project metadata -->
   <PropertyGroup>
-    <Version>0.20.1</Version>  <!-- x-release-please-version -->
+    <Version>0.20.2</Version>  <!-- x-release-please-version -->
   </PropertyGroup>
 
   <!-- Build options -->
