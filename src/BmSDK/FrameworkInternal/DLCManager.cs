@@ -4,7 +4,7 @@ using BmSDK.Engine;
 namespace BmSDK.Framework;
 
 /// <summary>
-/// Scans the game's DLC directory and installs every bundle found there on startup.
+/// Scans the game's DLC directory and installs every bundle found there.
 /// </summary>
 internal static class DLCManager
 {
@@ -17,7 +17,7 @@ internal static class DLCManager
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate void UpdateObjectListsDelegate(IntPtr self);
 
-    public static unsafe void Run()
+    public static unsafe void Run(bool rescan)
     {
         var engine = Game.GetEngine();
 
@@ -29,7 +29,10 @@ internal static class DLCManager
         }
 
         // Native scan of DLCRootDir ("../../DLC/"), one bundle per subdirectory
-        enumerator.FindDLC();
+        if (rescan)
+        {
+            enumerator.FindDLC();
+        }
 
         var manager = engine.DLCManager;
         if (manager is null)
